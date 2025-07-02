@@ -24,9 +24,9 @@
         -webkit-text-fill-color: #111 !important;
         border-radius: 8px;
     }
-    /* Alert login modern */
+    /* Alert login modern tanpa gradient */
     .mu-alert-login {
-        background: linear-gradient(90deg, #DA291C 80%, #B3A369 100%);
+        background: #DA291C;
         color: #fff;
         border-radius: 16px;
         padding: 1em 1.3em;
