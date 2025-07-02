@@ -44,6 +44,7 @@ class CheckoutController extends Controller
         \Log::info('Checkout validation passed');
         $paymentMethod = $request->payment_method;
         $order = Order::create([
+            'user_id' => auth()->id(),
             'nama_pemesan' => auth()->user()->name,
             'alamat' => $request->alamat,
             'total_harga' => $total,

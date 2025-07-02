@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('nama_pemesan');
             $table->string('alamat');
             $table->integer('total_harga');
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->timestamp('confirmed_at')->nullable(); // waktu pesanan dikonfirmasi admin
             $table->timestamp('delivered_at')->nullable(); // waktu pesanan selesai dikirim
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 
