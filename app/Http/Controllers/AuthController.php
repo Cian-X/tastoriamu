@@ -21,6 +21,12 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
+        // Cek apakah email terdaftar
+        $userExists = \App\Models\User::where('email', $credentials['email'])->exists();
+        if (!$userExists) {
+            return back()->with('error', 'Email tidak terdaftar.')->withInput($request->only('email'));
+        }
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             
@@ -34,9 +40,7 @@ class AuthController extends Controller
             }
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->withInput($request->only('email'));
+        return back()->with('error', 'Email atau password salah.')->withInput($request->only('email'));
     }
 
     public function logout(Request $request)
