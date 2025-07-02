@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->integer('harga');
             $table->string('gambar')->nullable();
-            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }
