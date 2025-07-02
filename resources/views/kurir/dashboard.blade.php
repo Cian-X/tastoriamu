@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $siapAntarOrders = $activeOrders->where('status', 'dikonfirmasi');
+@endphp
+@if($siapAntarOrders->count() > 0)
+    <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
+        <i class="fas fa-bell"></i> Ada <b>{{ $siapAntarOrders->count() }}</b> pesanan siap diantar!
+    </div>
+@endif
 <style>
     .kurir-hero {
         background: linear-gradient(90deg, #DA291C 60%, #B3A369 100%);
@@ -104,6 +112,10 @@
                 <div class="kurir-stat-card">
                     <div class="kurir-stat-label">Pengantaran Selesai</div>
                     <div class="kurir-stat-value">{{ $finishedOrders->count() }}</div>
+                </div>
+                <div class="kurir-stat-card">
+                    <div class="kurir-stat-label">Pesanan Siap Antar</div>
+                    <div class="kurir-stat-value">{{ $siapAntarOrders->count() }}</div>
                 </div>
             </div>
             <h5 class="mu-title" style="font-size:1.2em;text-align:left;margin-bottom:0.7em;color:#DA291C;">Pesanan Aktif</h5>

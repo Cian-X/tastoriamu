@@ -39,23 +39,29 @@ class CheckoutController extends Controller
         $request->validate([
             'nama_pemesan' => 'required',
             'alamat' => 'required',
+            'payment_method' => 'required|in:cash,online',
         ]);
         \Log::info('Checkout validation passed');
+        $paymentMethod = $request->payment_method;
         $order = Order::create([
             'nama_pemesan' => $request->nama_pemesan,
             'alamat' => $request->alamat,
             'total_harga' => $total,
-            'status' => 'pending',
+            'status' => 'menunggu pembayaran',
             'items' => json_encode($cart),
             'tracking_number' => 'TRK' . strtoupper(uniqid()),
             'estimated_delivery' => now()->addMinutes(45),
-            'payment_method' => 'midtrans',
+            'payment_method' => $paymentMethod,
             'payment_status' => 'unpaid',
         ]);
         \Log::info('Order created', ['order_id' => $order->id]);
         session()->forget('cart');
-        // Redirect ke pembayaran Midtrans
-        return redirect()->route('checkout.pay', ['order_id' => $order->id]);
+        if ($paymentMethod === 'online') {
+            // Untuk sekarang, redirect ke halaman dummy/disable
+            return redirect()->route('checkout.index')->with('error', 'Pembayaran online belum tersedia. Silakan pilih metode cash.');
+        }
+        // Untuk cash, redirect ke halaman pesanan/user
+        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat! Silakan lakukan pembayaran di kasir.');
     }
 
     public function payWithMidtrans(Request $request)

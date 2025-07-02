@@ -43,7 +43,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/users/{id}/edit', [AdminController::class, 'editUser'])->name('admin.users.edit');
     Route::put('/admin/users/{id}', [AdminController::class, 'updateUser'])->name('admin.users.update');
     Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::post('/admin/orders/{order}/confirm-cash', [AdminController::class, 'confirmPaymentCash'])->name('admin.orders.confirmCash');
 });
 
 // Kurir Routes (Tanpa Middleware)
 Route::get('/kurir/dashboard', [OrderController::class, 'dashboardKurir'])->name('kurir.dashboard');
+Route::post('/kurir/orders/{order}/update', [OrderController::class, 'updateStatusKurir'])->name('kurir.order.update');

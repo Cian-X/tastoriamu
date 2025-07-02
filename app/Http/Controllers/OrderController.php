@@ -36,8 +36,34 @@ class OrderController extends Controller
         if (!auth()->check() || auth()->user()->role !== 'kurir') {
             return redirect('/login')->with('error', 'Akses hanya untuk kurir!');
         }
-        $activeOrders = Order::whereIn('status', ['siap antar', 'dalam perjalanan'])->orderBy('created_at', 'desc')->get();
+        $activeOrders = Order::where(function($q){
+            $q->where('status', 'dikonfirmasi')->where('payment_status', 'paid')
+              ->orWhere('status', 'dalam pengiriman');
+        })->orderBy('created_at', 'desc')->get();
         $finishedOrders = Order::where('status', 'selesai')->orderBy('created_at', 'desc')->get();
         return view('kurir.dashboard', compact('activeOrders', 'finishedOrders'));
+    }
+
+    public function updateStatusKurir(Request $request, $id)
+    {
+        if (!auth()->check() || auth()->user()->role !== 'kurir') {
+            return redirect('/login')->with('error', 'Akses hanya untuk kurir!');
+        }
+        $order = Order::findOrFail($id);
+        $status = $request->input('status');
+        // Hanya bisa ambil pesanan yang sudah dikonfirmasi/lunas
+        if ($status === 'dalam perjalanan' && $order->status === 'dikonfirmasi' && $order->payment_status === 'paid') {
+            $order->status = 'dalam pengiriman';
+            $order->save();
+            return back()->with('success', 'Pesanan berhasil diambil!');
+        }
+        // Hanya bisa selesai jika status dalam pengiriman
+        if ($status === 'selesai' && $order->status === 'dalam pengiriman') {
+            $order->status = 'selesai';
+            $order->delivered_at = now();
+            $order->save();
+            return back()->with('success', 'Pesanan berhasil diselesaikan!');
+        }
+        return back()->with('error', 'Aksi tidak valid untuk pesanan ini.');
     }
 }

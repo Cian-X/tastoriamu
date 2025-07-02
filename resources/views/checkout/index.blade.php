@@ -19,6 +19,17 @@
                     <label for="catatan">Catatan (Opsional)</label>
                     <input type="text" name="catatan" id="catatan" class="mu-input" value="{{ old('catatan') }}">
                 </div>
+                <div class="mu-form-group">
+                    <label for="payment_method">Metode Pembayaran</label>
+                    <div style="display:flex;gap:1.2em;align-items:center;">
+                        <label style="display:flex;align-items:center;gap:0.5em;">
+                            <input type="radio" name="payment_method" value="cash" checked> Cash
+                        </label>
+                        <label style="display:flex;align-items:center;gap:0.5em;opacity:0.6;cursor:not-allowed;">
+                            <input type="radio" name="payment_method" value="online" disabled> Online <span style="font-size:0.95em;color:#B3A369;">(Belum tersedia)</span>
+                        </label>
+                    </div>
+                </div>
                 <div style="text-align:right;margin-top:1.5rem;">
                     <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Proses Pesanan</button>
                 </div>

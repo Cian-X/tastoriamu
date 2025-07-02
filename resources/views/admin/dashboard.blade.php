@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $pendingCashOrders = $orders->where('payment_method', 'cash')->where('status', 'menunggu pembayaran');
+@endphp
+@if($pendingCashOrders->count() > 0)
+    <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
+        <i class="fas fa-bell"></i> Ada <b>{{ $pendingCashOrders->count() }}</b> pesanan cash menunggu konfirmasi pembayaran!
+    </div>
+@endif
 <div class="mu-container" style="max-width:1100px;margin:2rem auto;">
     <div class="mu-card">
         <div class="mu-card-body">
@@ -78,6 +86,39 @@
                             <td>Rp{{ number_format(($item['harga'] ?? 0) * ($item['qty'] ?? 1),0,',','.') }}</td>
                         </tr>
                         @endforeach
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mu-card">
+    <div class="mu-card-body">
+        <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-money-bill-wave"></i> Konfirmasi Pembayaran Cash
+            @if($pendingCashOrders->count() > 0)
+                <span class="mu-badge" style="background:#DA291C;color:#fff;margin-left:0.7em;">{{ $pendingCashOrders->count() }}</span>
+            @endif
+        </h4>
+        <table class="mu-table">
+            <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Metode</th><th>Aksi</th></tr></thead>
+            <tbody>
+                @foreach($orders as $order)
+                    @if($order->payment_method === 'cash' && $order->status === 'menunggu pembayaran')
+                    <tr>
+                        <td>{{ $order->nama_pemesan }}</td>
+                        <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
+                        <td><span class="mu-badge" style="background:#B3A369;color:#111;">{{ ucfirst($order->status) }}</span></td>
+                        <td><span class="mu-badge" style="background:#DA291C;color:#fff;">Cash</span></td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.orders.confirmCash', $order->id) }}" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="mu-btn mu-btn-primary" onclick="return confirm('Konfirmasi pembayaran cash untuk pesanan ini?')">
+                                    <i class="fas fa-check"></i> Konfirmasi Pembayaran
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                     @endif
                 @endforeach
             </tbody>

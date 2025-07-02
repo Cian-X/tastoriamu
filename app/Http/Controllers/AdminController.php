@@ -96,4 +96,17 @@ class AdminController extends Controller
         
         return redirect()->route('admin.users')->with('success', 'User berhasil dihapus!');
     }
+
+    public function confirmPaymentCash($orderId)
+    {
+        $order = Order::findOrFail($orderId);
+        if ($order->payment_method === 'cash' && $order->status === 'menunggu pembayaran') {
+            $order->status = 'dikonfirmasi';
+            $order->payment_status = 'paid';
+            $order->confirmed_at = now();
+            $order->save();
+            return redirect()->route('admin.dashboard')->with('success', 'Pembayaran cash berhasil dikonfirmasi!');
+        }
+        return redirect()->route('admin.dashboard')->with('error', 'Pesanan tidak valid untuk konfirmasi pembayaran.');
+    }
 }

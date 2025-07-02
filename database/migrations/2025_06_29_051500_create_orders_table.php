@@ -16,12 +16,16 @@ return new class extends Migration
             $table->string('nama_pemesan');
             $table->string('alamat');
             $table->integer('total_harga');
+            // Status: Dibuat, Menunggu Pembayaran, Dikonfirmasi, Dalam Pengiriman, Selesai, Hold
             $table->string('status')->default('pending');
             $table->json('items'); // daftar makanan yang dipesan
             $table->string('tracking_number')->nullable();
             $table->timestamp('estimated_delivery')->nullable();
-            $table->string('payment_method')->nullable();
-            $table->string('payment_status')->default('unpaid');
+            $table->string('payment_method')->nullable(); // cash/online
+            $table->string('payment_status')->default('unpaid'); // unpaid/paid/failed
+            $table->integer('payment_attempts')->default(0); // retry pembayaran online
+            $table->timestamp('confirmed_at')->nullable(); // waktu pesanan dikonfirmasi admin
+            $table->timestamp('delivered_at')->nullable(); // waktu pesanan selesai dikirim
             $table->timestamps();
         });
     }
