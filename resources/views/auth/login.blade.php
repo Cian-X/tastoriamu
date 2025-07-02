@@ -10,25 +10,25 @@
                 <div class="mu-slogan" style="color:#B3A369;font-size:1.1rem;">Masuk ke akun Anda</div>
             </div>
             @if(session('error'))
-                <div class="mu-badge" style="background:#F8D7DA;color:#B71C1C;display:block;margin-bottom:1em;border-radius:8px;font-size:1rem;padding:0.7em 1em;text-align:center;">{{ session('error') }}</div>
+                <div class="mu-badge" style="background:#DA291C;color:#fff;display:block;margin-bottom:1em;border-radius:8px;font-size:1rem;padding:0.7em 1em;text-align:center;">{{ session('error') }}</div>
             @endif
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="mu-form-group">
+                <div class="mu-form-group" style="margin-bottom:1.3em;">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="mu-input" required autofocus style="background:#fff;">
+                    <input type="email" name="email" id="email" class="mu-input" required autofocus style="background:#fff;padding:0.7em 1em;border-radius:7px;border:1.5px solid #ccc;box-shadow:none;transition:box-shadow 0.2s;">
                 </div>
-                <div class="mu-form-group">
+                <div class="mu-form-group" style="margin-bottom:1.3em;">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="mu-input" required style="background:#fff;">
+                    <input type="password" name="password" id="password" class="mu-input" required style="background:#fff;padding:0.7em 1em;border-radius:7px;border:1.5px solid #ccc;box-shadow:none;transition:box-shadow 0.2s;">
                 </div>
-                <div style="margin-top:1.5rem;text-align:right;">
+                <div style="margin-top:1.2rem;text-align:right;">
                     <button type="submit" class="mu-btn mu-btn-primary" style="width:100%;font-size:1.1rem;padding:0.7em 0;"><i class="fas fa-sign-in-alt"></i> Login</button>
                 </div>
             </form>
-            <div style="margin-top:1.5rem;text-align:center;">
+            <div style="margin-top:1.2rem;text-align:center;">
                 <span style="color:#888;">Belum punya akun?</span><br>
-                <a href="/register" class="mu-btn mu-btn-outline" style="margin-top:0.5em;width:100%;font-size:1.05rem;"><i class="fas fa-user-plus"></i> Daftar Akun</a>
+                <a href="/register" class="mu-btn mu-btn-outline" style="margin-top:0.7em;width:100%;font-size:1.05rem;padding:0.7em 0;border-width:2px;"><i class="fas fa-user-plus"></i> Daftar Akun</a>
             </div>
         </div>
     </div>
