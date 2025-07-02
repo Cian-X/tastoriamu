@@ -1,0 +1,229 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Oswald:wght@500;700&display=swap');
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ===== Manchester United Red Theme ===== */
+:root {
+    --mu-red: #DA291C;
+    --mu-gold: #B3A369;
+    --mu-black: #111111;
+    --mu-white: #fff;
+    --mu-gray: #f3f3f7;
+    --mu-shadow: 0 4px 24px rgba(218,41,28,0.08);
+    --mu-radius: 18px;
+    --mu-font: 'Montserrat', 'Oswald', Arial, sans-serif;
+}
+
+body {
+    background: var(--mu-gray);
+    color: var(--mu-black);
+    font-family: var(--mu-font);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar/Header */
+.mu-navbar {
+    background: linear-gradient(90deg, var(--mu-red) 80%, var(--mu-gold) 100%);
+    color: var(--mu-white);
+    padding: 1.2rem 0;
+    box-shadow: var(--mu-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mu-navbar .mu-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--mu-gold);
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.mu-navbar .mu-menu {
+    display: flex;
+    gap: 2rem;
+}
+.mu-navbar .mu-menu a {
+    color: var(--mu-white);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+.mu-navbar .mu-menu a:hover {
+    color: var(--mu-gold);
+}
+
+/* Banner/Hero */
+.mu-hero {
+    background: linear-gradient(100deg, var(--mu-red) 60%, var(--mu-gold) 100%);
+    color: var(--mu-white);
+    text-align: center;
+    padding: 3rem 1rem 2rem 1rem;
+    border-radius: var(--mu-radius);
+    margin: 2rem 0 2.5rem 0;
+    box-shadow: var(--mu-shadow);
+    position: relative;
+    overflow: hidden;
+}
+.mu-hero .mu-title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+    color: var(--mu-gold);
+    text-shadow: 2px 2px 8px #a00,0 2px 8px #000;
+}
+.mu-hero .mu-slogan {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    color: var(--mu-white);
+    text-shadow: 0 2px 8px #a00;
+}
+.mu-hero .mu-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+.mu-badge {
+    background: var(--mu-gold);
+    color: var(--mu-black);
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 0.3em 1em;
+    font-size: 1em;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+/* Card Makanan */
+.mu-card {
+    background: var(--mu-white);
+    border-radius: var(--mu-radius);
+    box-shadow: var(--mu-shadow);
+    border: 2px solid var(--mu-red);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-bottom: 2rem;
+}
+.mu-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(218,41,28,0.18);
+}
+.mu-card-img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--mu-gold);
+    background: #eee center center/cover no-repeat;
+}
+.mu-card-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+}
+.mu-card-title {
+    color: var(--mu-red);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+.mu-card-desc {
+    color: #444;
+    margin-bottom: 1rem;
+}
+.mu-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.mu-price {
+    color: var(--mu-gold);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.mu-rating {
+    color: var(--mu-gold);
+    font-weight: bold;
+}
+
+/* Button */
+.mu-btn {
+    background: var(--mu-red);
+    color: var(--mu-white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 0.7em 1.2em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+.mu-btn:hover {
+    background: var(--mu-gold);
+    color: var(--mu-black);
+}
+.mu-btn-outline {
+    background: var(--mu-white);
+    color: var(--mu-red);
+    border: 2px solid var(--mu-red);
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 0.7em 1.2em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.mu-btn-outline:hover {
+    background: var(--mu-red);
+    color: var(--mu-white);
+}
+
+/* Footer */
+.mu-footer {
+    background: var(--mu-red);
+    color: var(--mu-white);
+    text-align: center;
+    padding: 2rem 0 1rem 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-top: 3px solid var(--mu-gold);
+    margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .mu-navbar .mu-menu { gap: 1rem; }
+    .mu-hero .mu-title { font-size: 2.1rem; }
+    .mu-card-img { height: 160px; }
+}
+@media (max-width: 600px) {
+    .mu-navbar { flex-direction: column; gap: 1rem; }
+    .mu-hero { padding: 2rem 0.5rem; }
+    .mu-card-img { height: 120px; }
+    .mu-card-body { padding: 1rem; }
+}
+
+/* CSS Reset Dasar */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; color: #222; font-family: Arial, sans-serif; }
