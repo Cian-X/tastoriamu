@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Inline style untuk memastikan input login benar-benar rapi dan konsisten */
+    .mu-input-auth {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.7em 1em;
+        border-radius: 8px;
+        border: 1.5px solid #ccc;
+        background: #fff;
+        font-size: 1rem;
+        margin-top: 0.2em;
+        transition: box-shadow 0.18s, border-color 0.18s;
+    }
+    .mu-input-auth:focus {
+        outline: none;
+        border-color: #DA291C;
+        box-shadow: 0 0 0 2px #DA291C22;
+    }
+    input.mu-input-auth:-webkit-autofill {
+        box-shadow: 0 0 0 1000px #fff inset !important;
+        -webkit-text-fill-color: #111 !important;
+        border-radius: 8px;
+    }
+</style>
 <div class="mu-container mu-auth-container" style="display:flex;justify-content:center;align-items:center;min-height:70vh;">
     <div class="mu-card" style="max-width:400px;width:100%;margin:2rem auto 2rem auto;box-shadow:0 4px 24px #DA291C22;border-radius:1.2rem;">
         <div class="mu-card-body" style="padding:2.2rem 2rem 1.5rem 2rem;">
