@@ -24,6 +24,39 @@
         -webkit-text-fill-color: #111 !important;
         border-radius: 8px;
     }
+    /* Alert login modern */
+    .mu-alert-login {
+        background: linear-gradient(90deg, #DA291C 80%, #B3A369 100%);
+        color: #fff;
+        border-radius: 16px;
+        padding: 1em 1.3em;
+        font-size: 1.08rem;
+        font-weight: bold;
+        margin-bottom: 1.2em;
+        text-align: center;
+        box-shadow: 0 4px 18px #DA291C22;
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        justify-content: center;
+        animation: popIn 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .mu-alert-login i {
+        font-size: 1.5em;
+        color: #fff;
+        animation: shake 0.7s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes popIn {
+        0% { transform: scale(0.7); opacity: 0; }
+        80% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes shake {
+        10%, 90% { transform: translateX(-1px); }
+        20%, 80% { transform: translateX(2px); }
+        30%, 50%, 70% { transform: translateX(-4px); }
+        40%, 60% { transform: translateX(4px); }
+    }
 </style>
 <div class="mu-container mu-auth-container" style="display:flex;justify-content:center;align-items:center;min-height:70vh;">
     <div class="mu-card" style="max-width:400px;width:100%;margin:2rem auto 2rem auto;box-shadow:0 4px 24px #DA291C22;border-radius:1.2rem;">
