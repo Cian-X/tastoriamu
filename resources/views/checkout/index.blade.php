@@ -9,7 +9,7 @@
                         @csrf
                 <div class="mu-form-group">
                     <label for="nama_pemesan">Nama Pemesan</label>
-                    <input type="text" name="nama_pemesan" id="nama_pemesan" class="mu-input" value="{{ old('nama_pemesan', auth()->user()->name ?? '') }}" required>
+                    <input type="text" name="nama_pemesan" id="nama_pemesan" class="mu-input" value="{{ auth()->user()->name ?? '' }}" readonly>
                 </div>
                 <div class="mu-form-group">
                     <label for="alamat">Alamat Pengiriman</label>
