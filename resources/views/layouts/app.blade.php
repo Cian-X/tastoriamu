@@ -13,7 +13,7 @@
 <body>
     <nav class="mu-navbar">
         <div class="mu-container">
-            <a href="/" class="mu-logo">Tastoria</a>
+            <a href="/" class="mu-logo"><i class="fas fa-fire"></i> Tastoria</a>
             <ul class="mu-nav">
                 <li><a href="/">Beranda</a></li>
                 <li><a href="/foods">Menu</a></li>
@@ -43,7 +43,7 @@
     <footer class="mu-footer">
         <div class="mu-container mu-footer-content">
             <div class="mu-footer-brand">
-                <span class="mu-footer-logo">Tastoria</span>
+                <span class="mu-footer-logo"><i class="fas fa-fire"></i> Tastoria</span>
                 <p>Platform pemesanan makanan online terpercaya dengan berbagai pilihan menu favorit Anda.</p>
             </div>
             <div class="mu-footer-links">
