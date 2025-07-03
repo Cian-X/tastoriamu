@@ -6,7 +6,7 @@
     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="" class="mu-hero-bgimg">
     <div class="mu-hero-content mu-hero-center">
         <div class="mu-hero-title-row">
-            {{-- <i class="fas fa-fire mu-hero-icon"></i> --}}
+            <i class="fas fa-fire mu-hero-icon"></i>
             <span class="mu-title">Tastoria</span>
         </div>
         <p class="mu-hero-slogan">Makan Enak, Semangat Juara!</p>
