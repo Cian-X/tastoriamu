@@ -157,5 +157,26 @@ window.onclick = function(event) {
   color: #666;
   margin-top: 0;
 }
+.mu-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.6em 1em;
+  border: 1.2px solid #ccc;
+  border-radius: 7px;
+  font-size: 1em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  background: #fafbfc;
+  transition: border 0.2s;
+}
+.mu-input:focus {
+  border: 1.2px solid #1877f2;
+  outline: none;
+  background: #fff;
+}
+.mu-form-group textarea.mu-input {
+  min-height: 60px;
+  resize: vertical;
+}
 </style>
 @endsection 
