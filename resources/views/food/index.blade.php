@@ -61,7 +61,7 @@
             </div>
             <div class="mu-form-group">
                 <label for="modalCatatan">Catatan untuk Kurir (opsional)</label>
-                <textarea name="catatan" id="modalCatatan" class="mu-input" placeholder="Contoh: Rumah cat biru, tolong antar sampai depan pagar."></textarea>
+                <textarea name="catatan" id="modalCatatan" class="mu-input" placeholder="Contoh: Rumah cat biru atau Request pada pesanannya"></textarea>
             </div>
             <div class="mu-form-group">
                 <label for="modalAlamat">Alamat Pengiriman</label>
