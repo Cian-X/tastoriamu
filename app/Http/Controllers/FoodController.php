@@ -82,7 +82,7 @@ class FoodController extends Controller
             ]),
             'tracking_number' => 'TRK' . strtoupper(uniqid()),
             'estimated_delivery' => now()->addMinutes(45),
-            'payment_method' => 'cash',
+            'payment_method' => $request->payment_method,
             'payment_status' => 'unpaid',
         ]);
 
