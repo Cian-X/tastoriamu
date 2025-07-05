@@ -16,10 +16,10 @@
                             </div>
                             <div style="flex:2;min-width:220px;display:flex;flex-direction:column;gap:0.5em;align-items:flex-start;max-width:100%;">
                                 <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
-                                <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                                 @if($order->tracking_number)
                                     <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                                 @endif
+                                <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                             </div>
                         </div>
                         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;margin-top:1.2em;justify-content:space-between;">
