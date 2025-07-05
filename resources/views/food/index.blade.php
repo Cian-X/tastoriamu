@@ -62,6 +62,9 @@
             <div class="mu-form-group">
                 <label for="modalAlamat">Alamat Pengiriman</label>
                 <textarea name="alamat" id="modalAlamat" class="mu-input" required>{{ auth()->user()->alamat ?? '' }}</textarea>
+                <div id="alamatWarning" style="color:#d9534f;font-size:0.97em;margin-top:0.2em;display:none;">
+                    Alamat terlalu singkat, mohon isi dengan lengkap!
+                </div>
             </div>
             <div class="mu-form-group">
                 <label for="modalPayment">Metode Pembayaran</label>
@@ -113,6 +116,10 @@ window.onclick = function(event) {
     var modal = document.getElementById('orderModal');
     if(event.target == modal) modal.style.display = 'none';
 }
+document.getElementById('modalAlamat').addEventListener('input', function() {
+    var val = this.value;
+    document.getElementById('alamatWarning').style.display = (val.length < 10) ? 'block' : 'none';
+});
 </script>
 <style>
 .mu-modal { position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center; }
