@@ -14,10 +14,9 @@
                                 <div class="order-title">
                                     <i class="fas fa-receipt"></i> Order #{{ $order->id }}
                                 </div>
-                                <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
                             </div>
                             <div style="display:flex;align-items:center;gap:1em;flex-wrap:wrap;">
-                                <span class="mu-badge mu-badge-date"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
+                                <span class="order-date"><i class="fas fa-calendar-alt"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
                                 @if($order->tracking_number)
                                     <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                                 @endif
@@ -206,6 +205,24 @@
 .order-title i {
   color: #DA291C;
   font-size: 1.1em;
+}
+.order-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: #f5f7fa;
+  color: #444;
+  font-weight: 600;
+  font-size: 1.05em;
+  padding: 0.38em 1.1em;
+  border-radius: 1.1em;
+  border: 1px solid #e3e8ee;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  letter-spacing: 0.2px;
+}
+.order-date i {
+  color: #b38b00;
+  font-size: 1.08em;
 }
 </style>
 @endsection 
