@@ -60,6 +60,10 @@
                 <input type="number" name="qty" id="modalQty" class="mu-input" value="1" min="1" required>
             </div>
             <div class="mu-form-group">
+                <label for="modalCatatan">Catatan untuk Kurir (opsional)</label>
+                <textarea name="catatan" id="modalCatatan" class="mu-input" placeholder="Contoh: Rumah cat biru, tolong antar sampai depan pagar."></textarea>
+            </div>
+            <div class="mu-form-group">
                 <label for="modalAlamat">Alamat Pengiriman</label>
                 <textarea name="alamat" id="modalAlamat" class="mu-input" required>{{ auth()->user()->alamat ?? '' }}</textarea>
                 <div id="alamatWarning" style="color:#d9534f;font-size:0.97em;margin-top:0.2em;display:none;">
