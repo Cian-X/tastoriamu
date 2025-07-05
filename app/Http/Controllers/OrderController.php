@@ -109,17 +109,21 @@ class OrderController extends Controller
                 'qty' => 'required|integer|min:1',
                 'alamat' => 'required|string|max:255',
             ]);
-            $order->qty = $request->qty;
+            $qty = $request->qty;
             $order->alamat = $request->alamat;
-            // Jika ada field items, update juga qty di items
-            if (is_array($order->items)) {
-                $order->items[0]['qty'] = $request->qty;
-            } else {
-                $items = json_decode($order->items, true);
-                if (is_array($items) && isset($items[0]['qty'])) {
-                    $items[0]['qty'] = $request->qty;
-                    $order->items = json_encode($items);
-                }
+
+            // Update qty di kolom orders jika ada
+            if (isset($order->qty)) {
+                $order->qty = $qty;
+            }
+
+            // Update qty di items dan total_harga
+            $items = is_array($order->items) ? $order->items : json_decode($order->items, true);
+            if (is_array($items) && isset($items[0])) {
+                $items[0]['qty'] = $qty;
+                $order->items = json_encode($items);
+                // Update total_harga
+                $order->total_harga = $items[0]['harga'] * $qty;
             }
             $order->save();
             return redirect()->route('orders.index')->with('success', 'Pesanan berhasil diupdate.');
