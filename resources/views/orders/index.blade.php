@@ -28,22 +28,17 @@
                                 <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                             @endif
                             <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
-                            <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;">
-                                @if($order->status == 'menunggu pembayaran')
+                            <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;align-items:center;">
+                                @if($order->payment_method == 'transfer' && $order->status == 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
-                                @elseif($order->status == 'siap antar')
-                                    <span class="mu-badge mu-badge-status mu-badge-info">Siap Antar</span>
-                                @elseif($order->status == 'dalam pengiriman')
-                                    <span class="mu-badge mu-badge-status mu-badge-primary">Dalam Pengiriman</span>
-                                @elseif($order->status == 'selesai')
-                                    <span class="mu-badge mu-badge-status mu-badge-success">Selesai</span>
-                                @else
-                                    <span class="mu-badge mu-badge-status">{{ ucfirst($order->status) }}</span>
+                                    <span class="mu-badge mu-badge-info">Transfer ke DANA: 0823 6726 4912</span>
+                                    <span style="color:#b38b00;font-size:0.97em;">Setelah transfer, upload bukti pembayaran di halaman ini.</span>
+                                @elseif($order->payment_method == 'cod' && $order->status == 'menunggu pembayaran')
+                                    <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran di Tempat</span>
+                                    <span style="color:#b38b00;font-size:0.97em;">Bayar langsung ke kurir saat pesanan diterima.</span>
                                 @endif
-                                @if($order->payment_status == 'unpaid')
+                                @if($order->payment_method == 'transfer' && $order->payment_status == 'unpaid' && $order->status != 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-danger">Belum Bayar</span>
-                                @else
-                                    <span class="mu-badge mu-badge-success">Sudah Bayar</span>
                                 @endif
                             </div>
                         </div>
