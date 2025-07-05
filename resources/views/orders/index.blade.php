@@ -28,6 +28,9 @@
                                 <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                             @endif
                             <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
+                            @if(!empty($order->catatan))
+                                <div class="order-badge order-badge-note"><i class="fas fa-sticky-note"></i> {{ $order->catatan }}</div>
+                            @endif
                             <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;">
                                 @if($order->status == 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
@@ -223,6 +226,14 @@
 .order-date i {
   color: #b38b00;
   font-size: 1.08em;
+}
+.order-badge-note {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+.order-badge-note i {
+  color: #ffc107;
 }
 </style>
 @endsection 
