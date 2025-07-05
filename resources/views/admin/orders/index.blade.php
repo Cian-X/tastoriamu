@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mu-container" style="max-width:1100px;margin:2rem auto;">
+<div class="mu-container" style="max-width:1200px;margin:2rem auto;">
     <div class="mu-card">
         <div class="mu-card-body">
-            <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-list"></i> Riwayat Pesanan</h4>
+            <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-list"></i> Semua Pesanan</h4>
             @if(count($orders) > 0)
                 @foreach($orders as $order)
                 <div class="mu-card" style="margin-bottom:1.5rem;">
                     <div class="mu-card-body">
                         <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
-                            <div style="flex:2;min-width:180px;">
+                            <div style="flex:1;min-width:150px;">
                                 <h6 class="mu-card-title">Order #{{ $order->id }}</h6>
                                 <small class="mu-badge" style="margin-bottom:0.3em;"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</small>
                             </div>
-                            <div style="flex:2;min-width:180px;">
-                                <h6 class="mu-card-title">{{ $order->nama_pemesan }}</h6>
+                            <div style="flex:1;min-width:150px;">
+                                <h6 class="mu-card-title">{{ $order->user->name ?? $order->nama_pemesan }}</h6>
                                 <small class="mu-badge"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</small>
                                 @if($order->tracking_number)
                                 <br><small class="mu-badge"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</small>
@@ -40,12 +40,18 @@
                             <div style="flex:1;text-align:center;">
                                 @if($order->payment_status == 'unpaid')
                                     <span class="mu-badge" style="background:#dc3545;color:#fff;">Belum Bayar</span>
+                                    @if($order->payment_method == 'cash' && $order->status == 'menunggu pembayaran')
+                                    <form action="{{ route('admin.orders.confirmPayment', $order->id) }}" method="POST" style="margin-top:0.5em;">
+                                        @csrf
+                                        <button type="submit" class="mu-btn mu-btn-sm">Konfirmasi Pembayaran</button>
+                                    </form>
+                                    @endif
                                 @else
                                     <span class="mu-badge" style="background:#28a745;color:#fff;">Sudah Bayar</span>
                                 @endif
                             </div>
                             <div style="flex:1;text-align:center;">
-                                <button class="mu-btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
+                                <button class="mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
                             </div>
                         </div>
                         <div class="collapse" id="order{{ $order->id }}" style="margin-top:1.2em;">
@@ -73,6 +79,16 @@
                                     <small><strong>Estimasi Pengiriman:</strong> {{ $order->estimated_delivery->format('d M Y H:i') }}</small>
                                 </div>
                                 @endif
+                                @if($order->confirmed_at)
+                                <div style="margin-top:0.5em;">
+                                    <small><strong>Dikonfirmasi:</strong> {{ $order->confirmed_at->format('d M Y H:i') }}</small>
+                                </div>
+                                @endif
+                                @if($order->delivered_at)
+                                <div style="margin-top:0.5em;">
+                                    <small><strong>Dikirim:</strong> {{ $order->delivered_at->format('d M Y H:i') }}</small>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -82,8 +98,7 @@
                 <div style="text-align:center;padding:2.5rem 0;">
                     <i class="fas fa-receipt" style="font-size:3rem;color:#ccc;"></i>
                     <h5 style="color:#888;">Belum Ada Pesanan</h5>
-                    <p style="color:#888;">Anda belum memiliki riwayat pesanan</p>
-                    <a href="{{ route('foods.index') }}" class="mu-btn" style="margin-top:1rem;"><i class="fas fa-utensils"></i> Pesan Sekarang</a>
+                    <p style="color:#888;">Belum ada pesanan yang masuk</p>
                 </div>
             @endif
         </div>

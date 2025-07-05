@@ -13,16 +13,16 @@ class AdminController extends Controller
     public function dashboard()
     {
         $totalOrders = Order::count();
-        $totalRevenue = Order::sum('total_harga');
+        $totalRevenue = Order::where('payment_status', 'paid')->sum('total_harga');
         $totalFoods = Food::count();
         $totalReviews = Review::count();
         $totalUsers = User::count();
         
-        $recentOrders = Order::orderBy('created_at', 'desc')->take(5)->get();
+        $recentOrders = Order::with('user')->orderBy('created_at', 'desc')->take(5)->get();
         $topFoods = Food::withCount('reviews')->orderBy('reviews_count', 'desc')->take(5)->get();
         $users = User::orderBy('created_at', 'desc')->get();
         $foods = Food::orderBy('created_at', 'desc')->get();
-        $orders = Order::orderBy('created_at', 'desc')->get();
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
         return view('admin.dashboard', compact(
             'totalOrders', 'totalRevenue', 'totalFoods', 'totalReviews', 'totalUsers',
             'recentOrders', 'topFoods', 'users', 'foods', 'orders'
@@ -46,7 +46,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,user'
+            'role' => 'required|in:admin,user,kurir'
         ]);
 
         User::create([
@@ -73,7 +73,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'required|in:admin,user'
+            'role' => 'required|in:admin,user,kurir'
         ]);
 
         $user->update([
@@ -101,12 +101,18 @@ class AdminController extends Controller
     {
         $order = Order::findOrFail($orderId);
         if ($order->payment_method === 'cash' && $order->status === 'menunggu pembayaran') {
-            $order->status = 'dikonfirmasi';
+            $order->status = 'siap antar';
             $order->payment_status = 'paid';
             $order->confirmed_at = now();
             $order->save();
             return redirect()->route('admin.dashboard')->with('success', 'Pembayaran cash berhasil dikonfirmasi!');
         }
         return redirect()->route('admin.dashboard')->with('error', 'Pesanan tidak valid untuk konfirmasi pembayaran.');
+    }
+
+    public function orders()
+    {
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        return view('admin.orders.index', compact('orders'));
     }
 }

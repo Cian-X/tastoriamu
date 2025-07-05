@@ -17,16 +17,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($cart as $item)
+                    @php $total = 0; @endphp
+                    @foreach($cart as $id => $item)
+                    @php $total += $item['harga'] * $item['qty']; @endphp
                     <tr>
                         <td>{{ $item['nama'] }}</td>
-                        <td>{{ $item['qty'] }}</td>
+                        <td>
+                            <form action="{{ route('cart.update', $id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <input type="number" name="qty" value="{{ $item['qty'] }}" min="1" style="width:60px;padding:0.3em;border:1px solid #ddd;border-radius:0.3em;" onchange="this.form.submit()">
+                            </form>
+                        </td>
                         <td>Rp{{ number_format($item['harga'], 0, ',', '.') }}</td>
                         <td>Rp{{ number_format($item['harga'] * $item['qty'], 0, ',', '.') }}</td>
                         <td>
-                            <form action="{{ route('cart.remove', $item['id']) }}" method="POST">
+                            <form action="{{ route('cart.remove', $id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <button type="submit" class="mu-btn mu-btn-danger"><i class="fas fa-trash"></i></button>
+                                <button type="submit" class="mu-btn mu-btn-danger mu-btn-sm"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

@@ -32,6 +32,24 @@
                         <div class="mu-title" style="font-size:2rem;">{{ $totalOrders }}</div>
                     </div>
                 </div>
+                <div class="mu-card mu-dashboard-box" style="flex:1 1 200px;text-align:center;">
+                    <div class="mu-card-body">
+                        <div class="mu-badge mu-badge-type" style="margin-bottom:0.7em;">Total Pendapatan</div>
+                        <div class="mu-title" style="font-size:2rem;">Rp{{ number_format($totalRevenue,0,',','.') }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                <a href="{{ route('admin.users') }}" class="mu-btn mu-btn-outline">
+                    <i class="fas fa-users"></i> Kelola User
+                </a>
+                <a href="{{ route('admin.orders') }}" class="mu-btn mu-btn-outline">
+                    <i class="fas fa-list"></i> Semua Pesanan
+                </a>
+                <a href="{{ route('foods.index') }}" class="mu-btn mu-btn-outline">
+                    <i class="fas fa-utensils"></i> Kelola Menu
+                </a>
             </div>
         </div>
     </div>
@@ -43,10 +61,10 @@
         <span class="mu-modal-close" onclick="closeModal('userModal')">&times;</span>
         <h4 class="mu-title">Daftar Pengguna</h4>
         <table class="mu-table">
-            <thead><tr><th>Nama</th><th>Role</th></tr></thead>
+            <thead><tr><th>Nama</th><th>Email</th><th>Role</th></tr></thead>
             <tbody>
                 @foreach($users as $user)
-                <tr><td>{{ $user->name }}</td><td>{{ ucfirst($user->role) }}</td></tr>
+                <tr><td>{{ $user->name }}</td><td>{{ $user->email }}</td><td>{{ ucfirst($user->role) }}</td></tr>
                 @endforeach
             </tbody>
         </table>
@@ -58,10 +76,10 @@
         <span class="mu-modal-close" onclick="closeModal('foodModal')">&times;</span>
         <h4 class="mu-title">Daftar Makanan/Minuman</h4>
         <table class="mu-table">
-            <thead><tr><th>Nama</th><th>Harga</th></tr></thead>
+            <thead><tr><th>Nama</th><th>Harga</th><th>Kategori</th></tr></thead>
             <tbody>
                 @foreach($foods as $food)
-                <tr><td>{{ $food->nama }}</td><td>Rp{{ number_format($food->harga,0,',','.') }}</td></tr>
+                <tr><td>{{ $food->nama }}</td><td>Rp{{ number_format($food->harga,0,',','.') }}</td><td>{{ $food->category->nama ?? '-' }}</td></tr>
                 @endforeach
             </tbody>
         </table>
@@ -71,22 +89,35 @@
 <div id="orderModal" class="mu-modal" style="display:none;">
     <div class="mu-modal-content">
         <span class="mu-modal-close" onclick="closeModal('orderModal')">&times;</span>
-        <h4 class="mu-title">Daftar Pesanan</h4>
+        <h4 class="mu-title">Daftar Pesanan Terbaru</h4>
         <table class="mu-table">
-            <thead><tr><th>Pemesan</th><th>Item</th><th>Qty</th><th>Harga Satuan</th><th>Total</th></tr></thead>
+            <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Pembayaran</th></tr></thead>
             <tbody>
-                @foreach($orders as $order)
-                    @if(is_array($order->items))
-                        @foreach($order->items as $item)
-                        <tr>
-                            <td>{{ $order->nama_pemesan }}</td>
-                            <td>{{ $item['nama'] ?? '-' }}</td>
-                            <td>{{ $item['qty'] ?? 1 }}</td>
-                            <td>Rp{{ number_format($item['harga'] ?? 0,0,',','.') }}</td>
-                            <td>Rp{{ number_format(($item['harga'] ?? 0) * ($item['qty'] ?? 1),0,',','.') }}</td>
-                        </tr>
-                        @endforeach
-                    @endif
+                @foreach($recentOrders as $order)
+                <tr>
+                    <td>{{ $order->nama_pemesan }}</td>
+                    <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
+                    <td>
+                        @if($order->status == 'menunggu pembayaran')
+                            <span class="mu-badge" style="background:#ffc107;color:#000;">Menunggu Pembayaran</span>
+                        @elseif($order->status == 'siap antar')
+                            <span class="mu-badge" style="background:#17a2b8;color:#fff;">Siap Antar</span>
+                        @elseif($order->status == 'dalam pengiriman')
+                            <span class="mu-badge" style="background:#007bff;color:#fff;">Dalam Pengiriman</span>
+                        @elseif($order->status == 'selesai')
+                            <span class="mu-badge" style="background:#28a745;color:#fff;">Selesai</span>
+                        @else
+                            <span class="mu-badge">{{ ucfirst($order->status) }}</span>
+                        @endif
+                    </td>
+                    <td>
+                        @if($order->payment_status == 'unpaid')
+                            <span class="mu-badge" style="background:#dc3545;color:#fff;">Belum Bayar</span>
+                        @else
+                            <span class="mu-badge" style="background:#28a745;color:#fff;">Sudah Bayar</span>
+                        @endif
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -100,29 +131,34 @@
                 <span class="mu-badge" style="background:#DA291C;color:#fff;margin-left:0.7em;">{{ $pendingCashOrders->count() }}</span>
             @endif
         </h4>
+        @if($pendingCashOrders->count() > 0)
         <table class="mu-table">
             <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Metode</th><th>Aksi</th></tr></thead>
             <tbody>
-                @foreach($orders as $order)
-                    @if($order->payment_method === 'cash' && $order->status === 'menunggu pembayaran')
-                    <tr>
-                        <td>{{ $order->nama_pemesan }}</td>
-                        <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                        <td><span class="mu-badge" style="background:#B3A369;color:#111;">{{ ucfirst($order->status) }}</span></td>
-                        <td><span class="mu-badge" style="background:#DA291C;color:#fff;">Cash</span></td>
-                        <td>
-                            <form method="POST" action="{{ route('admin.orders.confirmCash', $order->id) }}" style="display:inline;">
-                                @csrf
-                                <button type="submit" class="mu-btn mu-btn-primary" onclick="return confirm('Konfirmasi pembayaran cash untuk pesanan ini?')">
-                                    <i class="fas fa-check"></i> Konfirmasi Pembayaran
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endif
+                @foreach($pendingCashOrders as $order)
+                <tr>
+                    <td>{{ $order->nama_pemesan }}</td>
+                    <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
+                    <td><span class="mu-badge" style="background:#ffc107;color:#000;">{{ ucfirst($order->status) }}</span></td>
+                    <td><span class="mu-badge" style="background:#DA291C;color:#fff;">Cash</span></td>
+                    <td>
+                        <form method="POST" action="{{ route('admin.orders.confirmPayment', $order->id) }}" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="mu-btn mu-btn-primary" onclick="return confirm('Konfirmasi pembayaran cash untuk pesanan ini?')">
+                                <i class="fas fa-check"></i> Konfirmasi Pembayaran
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
+        @else
+        <div style="text-align:center;padding:2rem;color:#888;">
+            <i class="fas fa-check-circle" style="font-size:2rem;color:#28a745;margin-bottom:1rem;"></i>
+            <p>Tidak ada pesanan cash yang menunggu konfirmasi pembayaran</p>
+        </div>
+        @endif
     </div>
 </div>
 

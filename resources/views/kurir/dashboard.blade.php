@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@php
-    $siapAntarOrders = $activeOrders->where('status', 'dikonfirmasi');
-@endphp
-@if($siapAntarOrders->count() > 0)
+@if($activeOrders->count() > 0)
     <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
-        <i class="fas fa-bell"></i> Ada <b>{{ $siapAntarOrders->count() }}</b> pesanan siap diantar!
+        <i class="fas fa-bell"></i> Ada <b>{{ $activeOrders->count() }}</b> pesanan siap diantar!
     </div>
 @endif
 <style>
@@ -106,19 +103,21 @@
         <div class="mu-card-body" style="padding-top:2em;">
             <div class="kurir-stat">
                 <div class="kurir-stat-card">
-                    <div class="kurir-stat-label">Pesanan Aktif</div>
+                    <div class="kurir-stat-label">Pesanan Siap Antar</div>
                     <div class="kurir-stat-value">{{ $activeOrders->count() }}</div>
+                </div>
+                <div class="kurir-stat-card">
+                    <div class="kurir-stat-label">Dalam Pengiriman</div>
+                    <div class="kurir-stat-value">{{ $deliveringOrders->count() }}</div>
                 </div>
                 <div class="kurir-stat-card">
                     <div class="kurir-stat-label">Pengantaran Selesai</div>
                     <div class="kurir-stat-value">{{ $finishedOrders->count() }}</div>
                 </div>
-                <div class="kurir-stat-card">
-                    <div class="kurir-stat-label">Pesanan Siap Antar</div>
-                    <div class="kurir-stat-value">{{ $siapAntarOrders->count() }}</div>
-                </div>
             </div>
-            <h5 class="mu-title" style="font-size:1.2em;text-align:left;margin-bottom:0.7em;color:#DA291C;">Pesanan Aktif</h5>
+            
+            @if($activeOrders->count() > 0)
+            <h5 class="mu-title" style="font-size:1.2em;text-align:left;margin-bottom:0.7em;color:#DA291C;">Pesanan Siap Antar</h5>
             <table class="mu-table">
                 <thead>
                     <tr>
@@ -130,35 +129,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($activeOrders as $order)
+                    @foreach($activeOrders as $order)
                     <tr>
                         <td>{{ $order->nama_pemesan }}</td>
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                        <td class="status-{{ $order->status == 'siap antar' ? 'siap' : ($order->status == 'dalam perjalanan' ? 'perjalanan' : 'selesai') }}">
-                            {{ ucfirst($order->status) }}
-                        </td>
+                        <td class="status-siap">{{ ucfirst($order->status) }}</td>
                         <td>
-                            @if($order->status == 'siap antar')
-                                <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" name="status" value="dalam perjalanan" class="mu-btn mu-btn-primary"><i class="fas fa-motorcycle"></i> Ambil</button>
-                                </form>
-                            @elseif($order->status == 'dalam perjalanan')
-                                <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    <button type="submit" name="status" value="selesai" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Selesai</button>
-                                </form>
-                            @else
-                                -
-                            @endif
+                            <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" name="status" value="ambil" class="mu-btn mu-btn-primary"><i class="fas fa-motorcycle"></i> Ambil</button>
+                            </form>
                         </td>
                     </tr>
-                    @empty
-                    <tr><td colspan="5" style="text-align:center;color:#aaa;">Tidak ada pesanan aktif</td></tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
+            @endif
+
+            @if($deliveringOrders->count() > 0)
+            <h5 class="mu-title" style="font-size:1.2em;text-align:left;margin:2em 0 0.7em 0;color:#DA291C;">Pesanan Dalam Pengiriman</h5>
+            <table class="mu-table">
+                <thead>
+                    <tr>
+                        <th>Nama Pemesan</th>
+                        <th>Alamat</th>
+                        <th>Total Harga</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($deliveringOrders as $order)
+                    <tr>
+                        <td>{{ $order->nama_pemesan }}</td>
+                        <td>{{ $order->alamat }}</td>
+                        <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
+                        <td class="status-perjalanan">{{ ucfirst($order->status) }}</td>
+                        <td>
+                            <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" name="status" value="selesai" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Selesai</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            @endif
+
+            @if($finishedOrders->count() > 0)
             <h5 class="mu-title" style="font-size:1.2em;text-align:left;margin:2em 0 0.7em 0;color:#DA291C;">Riwayat Pengantaran</h5>
             <table class="mu-table">
                 <thead>
@@ -167,21 +187,30 @@
                         <th>Alamat</th>
                         <th>Total Harga</th>
                         <th>Status</th>
+                        <th>Waktu Selesai</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($finishedOrders as $order)
+                    @foreach($finishedOrders as $order)
                     <tr>
                         <td>{{ $order->nama_pemesan }}</td>
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
                         <td class="status-selesai">{{ ucfirst($order->status) }}</td>
+                        <td>{{ $order->delivered_at ? $order->delivered_at->format('d M Y H:i') : '-' }}</td>
                     </tr>
-                    @empty
-                    <tr><td colspan="4" style="text-align:center;color:#aaa;">Belum ada riwayat pengantaran</td></tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
+            @endif
+
+            @if($activeOrders->count() == 0 && $deliveringOrders->count() == 0 && $finishedOrders->count() == 0)
+            <div style="text-align:center;padding:2.5rem 0;">
+                <i class="fas fa-motorcycle" style="font-size:3rem;color:#ccc;"></i>
+                <h5 style="color:#888;">Belum Ada Pesanan</h5>
+                <p style="color:#888;">Belum ada pesanan yang perlu diantar</p>
+            </div>
+            @endif
         </div>
     </div>
 </div>
