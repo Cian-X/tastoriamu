@@ -14,7 +14,7 @@
                                 <h5 class="mu-card-title" style="margin-bottom:0.5em;">Order #{{ $order->id }}</h5>
                                 <span class="mu-badge mu-badge-date"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
                             </div>
-                            <div style="flex:2;min-width:220px;display:flex;flex-wrap:wrap;gap:0.5em 1em;align-items:center;">
+                            <div style="flex:2;min-width:220px;display:flex;flex-direction:column;gap:0.5em;align-items:flex-start;max-width:100%;">
                                 <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
                                 <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                                 @if($order->tracking_number)
@@ -134,7 +134,7 @@
     .mu-card-body { padding:1.2rem 0.7rem !important; }
 }
 .order-badge {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5em;
   background: #f4f7fa;
@@ -142,11 +142,18 @@
   font-weight: 600;
   padding: 0.45em 1.15em;
   border-radius: 1.2em;
-  font-size: 1em;
+  font-size: 0.98em;
   border: 1px solid #e3e8ee;
   box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
   transition: box-shadow 0.2s, border 0.2s;
+  width: fit-content;
+  max-width: 100%;
+  word-break: break-word;
+}
+.order-badge:last-child { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .order-badge { font-size: 0.95em; padding: 0.4em 0.8em; }
 }
 .order-badge i {
   color: #1877f2;
