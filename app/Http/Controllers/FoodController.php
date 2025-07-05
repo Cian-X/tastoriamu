@@ -94,4 +94,34 @@ class FoodController extends Controller
         }
         return redirect()->route('cart.index')->with('success', 'Item berhasil dihapus dari keranjang!');
     }
+
+    public function orderNow(Request $request, $id)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk memesan makanan!');
+        }
+        $food = Food::findOrFail($id);
+
+        // Buat order langsung
+        $order = \App\Models\Order::create([
+            'user_id' => auth()->id(),
+            'nama_pemesan' => auth()->user()->name,
+            'alamat' => auth()->user()->alamat ?? 'Alamat belum diisi',
+            'total_harga' => $food->harga,
+            'status' => 'menunggu pembayaran',
+            'items' => json_encode([
+                [
+                    'nama' => $food->nama,
+                    'harga' => $food->harga,
+                    'qty' => 1
+                ]
+            ]),
+            'tracking_number' => 'TRK' . strtoupper(uniqid()),
+            'estimated_delivery' => now()->addMinutes(45),
+            'payment_method' => 'cash',
+            'payment_status' => 'unpaid',
+        ]);
+
+        return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat!');
+    }
 }

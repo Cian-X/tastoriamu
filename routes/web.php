@@ -25,6 +25,7 @@ Route::get('/cart', [FoodController::class, 'cart'])->name('cart.index');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::post('/cart/{id}/update', [FoodController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/{id}/remove', [FoodController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('/foods/{id}/order-now', [FoodController::class, 'orderNow'])->name('foods.orderNow');
 
 // Checkout Routes (Protected)
 Route::middleware(['user'])->group(function () {

@@ -32,7 +32,7 @@
                 <p class="mu-card-desc">{{ $food->deskripsi }}</p>
                 <div class="mu-food-meta">
                     <span class="mu-price">Rp{{ number_format($food->harga, 0, ',', '.') }}</span>
-                    <form action="{{ route('foods.addToCart', $food->id) }}" method="POST">
+                    <form action="{{ route('foods.orderNow', $food->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-cart-plus"></i> Pesan</button>
                     </form>
