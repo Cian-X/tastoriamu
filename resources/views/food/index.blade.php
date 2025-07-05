@@ -34,7 +34,7 @@
                     <span class="mu-price">Rp{{ number_format($food->harga, 0, ',', '.') }}</span>
                     <form action="{{ route('foods.orderNow', $food->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-cart-plus"></i> Pesan</button>
+                        <button type="button" class="mu-btn mu-btn-primary" onclick="openOrderModal({{ $food->id }}, '{{ addslashes($food->nama) }}', {{ $food->harga }})"><i class="fas fa-cart-plus"></i> Pesan</button>
                     </form>
                 </div>
             </div>
@@ -46,4 +46,49 @@
         @endforelse
     </div>
 </div>
+
+<!-- Modal Order -->
+<div id="orderModal" class="mu-modal" style="display:none;">
+    <div class="mu-modal-content" style="max-width:400px;">
+        <span class="mu-modal-close" onclick="closeOrderModal()">&times;</span>
+        <h4 class="mu-title">Pesan <span id="modalFoodName"></span></h4>
+        <form id="orderNowForm" method="POST">
+            @csrf
+            <input type="hidden" name="food_id" id="modalFoodId">
+            <div class="mu-form-group">
+                <label for="modalQty">Jumlah</label>
+                <input type="number" name="qty" id="modalQty" class="mu-input" value="1" min="1" required>
+            </div>
+            <div class="mu-form-group">
+                <label for="modalAlamat">Alamat Pengiriman</label>
+                <textarea name="alamat" id="modalAlamat" class="mu-input" required>{{ auth()->user()->alamat ?? '' }}</textarea>
+            </div>
+            <div style="text-align:right;margin-top:1.5rem;">
+                <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Pesan Sekarang</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+function openOrderModal(foodId, foodName, foodHarga) {
+    document.getElementById('orderModal').style.display = 'flex';
+    document.getElementById('modalFoodName').innerText = foodName;
+    document.getElementById('modalFoodId').value = foodId;
+    document.getElementById('orderNowForm').action = '/foods/' + foodId + '/order-now';
+    document.getElementById('modalQty').value = 1;
+    document.getElementById('modalAlamat').value = '{{ auth()->user()->alamat ?? '' }}';
+}
+function closeOrderModal() {
+    document.getElementById('orderModal').style.display = 'none';
+}
+window.onclick = function(event) {
+    var modal = document.getElementById('orderModal');
+    if(event.target == modal) modal.style.display = 'none';
+}
+</script>
+<style>
+.mu-modal { position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center; }
+.mu-modal-content { background:#fff;border-radius:1em;padding:2em 1.5em;max-width:400px;width:95vw;box-shadow:0 8px 32px rgba(0,0,0,0.2);position:relative; margin:0 auto; display:block; }
+.mu-modal-close { position:absolute;top:1em;right:1em;font-size:2em;cursor:pointer;color:#DA291C; }
+</style>
 @endsection 

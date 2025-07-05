@@ -51,18 +51,32 @@ class FoodController extends Controller
         }
         $food = Food::findOrFail($id);
 
+        $request->validate([
+            'qty' => 'required|integer|min:1',
+            'alamat' => 'required|string|max:255',
+        ]);
+
+        // Simpan alamat ke profil user jika berbeda
+        if (auth()->user()->alamat !== $request->alamat) {
+            auth()->user()->alamat = $request->alamat;
+            auth()->user()->save();
+        }
+
+        $qty = $request->qty;
+        $total = $food->harga * $qty;
+
         // Buat order langsung
         $order = \App\Models\Order::create([
             'user_id' => auth()->id(),
             'nama_pemesan' => auth()->user()->name,
-            'alamat' => auth()->user()->alamat ?? 'Alamat belum diisi',
-            'total_harga' => $food->harga,
+            'alamat' => $request->alamat,
+            'total_harga' => $total,
             'status' => 'menunggu pembayaran',
             'items' => json_encode([
                 [
                     'nama' => $food->nama,
                     'harga' => $food->harga,
-                    'qty' => 1
+                    'qty' => $qty
                 ]
             ]),
             'tracking_number' => 'TRK' . strtoupper(uniqid()),
