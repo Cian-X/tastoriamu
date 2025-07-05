@@ -19,7 +19,7 @@
 
 <div class="mu-section mu-promo-banner-hero">
     <div class="mu-promo-badge-big">Promo GGMU</div>
-    <h2 class="mu-promo-hero-title">Diskon 7% Setiap Hari Senin!</h2>
+    <h2 class="mu-promo-hero-title">Diskon 70% Setiap Hari Senin!</h2>
     <p class="mu-promo-hero-desc">Menu favorit United, harga spesial untuk kamu. Jangan lewatkan!</p>
 </div>
 
