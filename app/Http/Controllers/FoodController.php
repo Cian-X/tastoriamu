@@ -44,57 +44,6 @@ class FoodController extends Controller
         return view('food.index', compact('foods'));
     }
 
-    public function addToCart(Request $request, $id)
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk memesan makanan!');
-        }
-        $food = Food::findOrFail($id);
-        $cart = session()->get('cart', []);
-        if(isset($cart[$id])) {
-            $cart[$id]['qty']++;
-        } else {
-            $cart[$id] = [
-                'nama' => $food->nama,
-                'harga' => $food->harga,
-                'qty' => 1
-            ];
-        }
-        session(['cart' => $cart]);
-        return redirect()->route('foods.index')->with('success', 'Berhasil menambah ke keranjang!');
-    }
-
-    public function cart()
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu!');
-        }
-        
-        $cart = session()->get('cart', []);
-        return view('food.cart', compact('cart'));
-    }
-
-    public function updateCart(Request $request, $id)
-    {
-        $cart = session()->get('cart', []);
-        if (isset($cart[$id])) {
-            $qty = max(1, (int)$request->qty);
-            $cart[$id]['qty'] = $qty;
-            session(['cart' => $cart]);
-        }
-        return redirect()->route('cart.index')->with('success', 'Keranjang berhasil diupdate!');
-    }
-
-    public function removeFromCart($id)
-    {
-        $cart = session()->get('cart', []);
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            session(['cart' => $cart]);
-        }
-        return redirect()->route('cart.index')->with('success', 'Item berhasil dihapus dari keranjang!');
-    }
-
     public function orderNow(Request $request, $id)
     {
         if (!auth()->check()) {

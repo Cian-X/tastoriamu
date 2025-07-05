@@ -20,19 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/foods', [FoodController::class, 'index'])->name('foods.index');
-Route::post('/foods/{id}/add-to-cart', [FoodController::class, 'addToCart'])->name('foods.addToCart');
-Route::get('/cart', [FoodController::class, 'cart'])->name('cart.index');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::post('/cart/{id}/update', [FoodController::class, 'updateCart'])->name('cart.update');
-Route::post('/cart/{id}/remove', [FoodController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/foods/{id}/order-now', [FoodController::class, 'orderNow'])->name('foods.orderNow');
-
-// Checkout Routes (Protected)
-Route::middleware(['user'])->group(function () {
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('/checkout/pay', [CheckoutController::class, 'payWithMidtrans'])->name('checkout.pay');
-});
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 // User Routes (Protected)
 Route::middleware(['user'])->group(function () {
