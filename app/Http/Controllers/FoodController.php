@@ -70,6 +70,7 @@ class FoodController extends Controller
             'user_id' => auth()->id(),
             'nama_pemesan' => auth()->user()->name,
             'alamat' => $request->alamat,
+            'catatan' => $request->catatan,
             'total_harga' => $total,
             'status' => 'menunggu pembayaran',
             'items' => json_encode([
