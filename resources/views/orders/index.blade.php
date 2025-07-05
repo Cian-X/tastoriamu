@@ -14,11 +14,11 @@
                                 <h5 class="mu-card-title" style="margin-bottom:0.5em;">Order #{{ $order->id }}</h5>
                                 <span class="mu-badge mu-badge-date"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
                             </div>
-                            <div style="flex:2;min-width:220px;">
-                                <div class="mu-badge mu-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
-                                <div class="mu-badge mu-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
+                            <div style="flex:2;min-width:220px;display:flex;flex-wrap:wrap;gap:0.5em 1em;align-items:center;">
+                                <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
+                                <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                                 @if($order->tracking_number)
-                                <div class="mu-badge mu-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
+                                    <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                                 @endif
                             </div>
                         </div>
@@ -132,6 +132,45 @@
 }
 @media (max-width: 700px) {
     .mu-card-body { padding:1.2rem 0.7rem !important; }
+}
+.order-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: #f4f7fa;
+  color: #3a3a3a;
+  font-weight: 600;
+  padding: 0.45em 1.15em;
+  border-radius: 1.2em;
+  font-size: 1em;
+  border: 1px solid #e3e8ee;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  margin-bottom: 0.3em;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+.order-badge i {
+  color: #1877f2;
+  font-size: 1.08em;
+}
+.order-badge-user {
+  background: #eaf4ff;
+  color: #1877f2;
+  border: 1px solid #cbe2fa;
+}
+.order-badge-alamat {
+  background: #fffbe6;
+  color: #b38b00;
+  border: 1px solid #f7e6b0;
+}
+.order-badge-tracking {
+  background: #eafaf1;
+  color: #1e8e3e;
+  border: 1px solid #b6e7d6;
+}
+.order-badge:hover {
+  box-shadow: 0 2px 8px rgba(24,119,242,0.08);
+  border: 1.5px solid #1877f2;
+  cursor: pointer;
 }
 </style>
 @endsection 
