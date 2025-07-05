@@ -28,9 +28,6 @@
                                 <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                             @endif
                             <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
-                            @if(!empty($order->catatan))
-                                <div class="order-badge order-badge-note"><i class="fas fa-sticky-note"></i> {{ $order->catatan }}</div>
-                            @endif
                             <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;">
                                 @if($order->status == 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
@@ -90,6 +87,15 @@
                                     <div><b>Dikirim:</b> {{ $order->delivered_at->format('d M Y H:i') }}</div>
                                     @endif
                                 </div>
+                                @if(!empty($order->catatan))
+                                <div class="order-detail-note" style="margin-top:1em;display:flex;align-items:flex-start;gap:0.5em;">
+                                    <i class="fas fa-sticky-note" style="color:#ffc107;font-size:1.2em;"></i>
+                                    <div>
+                                        <span style="color:#856404;font-weight:600;">Catatan untuk Kurir:</span><br>
+                                        <span style="color:#856404;">{{ $order->catatan }}</span>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
