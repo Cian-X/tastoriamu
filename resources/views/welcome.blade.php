@@ -9,7 +9,7 @@
             <i class="fas fa-fire mu-hero-icon"></i>
             <span class="mu-title">Tastoria</span>
         </div>
-        <p class="mu-hero-slogan">Makan Enak, Semangat Juara!</p>
+        <p class="mu-hero-slogan">Makan Enak, Semangat Juara 20 EPL!</p>
         <div class="mu-hero-btn-group">
             <a href="{{ route('foods.index') }}" class="mu-btn mu-btn-lg mu-cta-main mu-cta-anim"><i class="fas fa-utensils"></i> Lihat Menu</a>
             <a href="{{ route('register') }}" class="mu-btn mu-btn-outline mu-btn-lg mu-cta-anim" style="margin-left:1rem;">Gabung Member</a>
@@ -19,7 +19,7 @@
 
 <div class="mu-section mu-promo-banner-hero">
     <div class="mu-promo-badge-big">Promo GGMU</div>
-    <h2 class="mu-promo-hero-title">Diskon 11% Setiap Hari Senin!</h2>
+    <h2 class="mu-promo-hero-title">Diskon 20% Setiap Hari Senin!</h2>
     <p class="mu-promo-hero-desc">Menu favorit United, harga spesial untuk kamu. Jangan lewatkan!</p>
 </div>
 
