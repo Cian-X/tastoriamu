@@ -29,22 +29,28 @@
                             @endif
                             <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                             <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;align-items:center;">
-                                @if($order->payment_method == 'transfer' && $order->status == 'menunggu pembayaran')
+                                @if($order->status == 'menunggu pembayaran')
                                     <div class="order-payment-info">
-                                        <span class="badge-waiting">
-                                            <i class="fas fa-hourglass-half"></i> Menunggu Pembayaran
-                                        </span>
-                                        <span class="badge-dana">
-                                            <img src="{{ asset('images/dana.jpg') }}" alt="DANA" class="badge-dana-logo">
-                                            Transfer ke DANA: <b>0823 6726 4912</b>
-                                        </span>
-                                        <div class="badge-instruction">
-                                            Setelah transfer, upload bukti pembayaran di halaman ini.
-                                        </div>
+                                        @if($order->payment_method == 'transfer')
+                                            <span class="badge-waiting">
+                                                <i class="fas fa-hourglass-half"></i> Menunggu Pembayaran
+                                            </span>
+                                            <span class="badge-dana">
+                                                <img src="{{ asset('images/dana.jpg') }}" alt="DANA" class="badge-dana-logo">
+                                                Transfer ke DANA: <b>0823 6726 4912</b>
+                                            </span>
+                                            <div class="badge-instruction">
+                                                Setelah transfer, upload bukti pembayaran di halaman ini.
+                                            </div>
+                                        @elseif($order->payment_method == 'cod')
+                                            <span class="badge-waiting">
+                                                <i class="fas fa-hourglass-half"></i> Menunggu Pembayaran di Tempat
+                                            </span>
+                                            <div class="badge-instruction">
+                                                Bayar langsung ke kurir saat pesanan diterima.
+                                            </div>
+                                        @endif
                                     </div>
-                                @elseif($order->payment_method == 'cod' && $order->status == 'menunggu pembayaran')
-                                    <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-hourglass-half"></i> Menunggu Pembayaran di Tempat</span>
-                                    <span style="color:#b38b00;font-size:0.97em;">Bayar langsung ke kurir saat pesanan diterima.</span>
                                 @endif
                                 @if($order->payment_method == 'transfer' && $order->payment_status == 'unpaid' && $order->status != 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-danger">Belum Bayar</span>
