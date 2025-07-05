@@ -21,10 +21,12 @@
                                 <div class="mu-badge mu-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                                 @endif
                             </div>
-                            <div style="flex:1;text-align:center;">
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;margin-top:1.2em;justify-content:space-between;">
+                            <div style="flex:1;text-align:left;min-width:120px;">
                                 <span class="mu-price" style="font-size:1.3em;">Rp{{ number_format($order->total_harga, 0, ',', '.') }}</span>
                             </div>
-                            <div style="flex:1;text-align:center;">
+                            <div style="flex:1;text-align:left;min-width:160px;">
                                 @if($order->status == 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
                                 @elseif($order->status == 'siap antar')
@@ -37,14 +39,14 @@
                                     <span class="mu-badge mu-badge-status">{{ ucfirst($order->status) }}</span>
                                 @endif
                             </div>
-                            <div style="flex:1;text-align:center;">
+                            <div style="flex:1;text-align:left;min-width:120px;">
                                 @if($order->payment_status == 'unpaid')
                                     <span class="mu-badge mu-badge-danger">Belum Bayar</span>
                                 @else
                                     <span class="mu-badge mu-badge-success">Sudah Bayar</span>
                                 @endif
                             </div>
-                            <div style="flex:1;text-align:center;">
+                            <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
                             </div>
                         </div>
