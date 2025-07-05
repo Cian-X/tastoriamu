@@ -52,7 +52,7 @@
     <div class="mu-modal-content" style="max-width:400px;">
         <span class="mu-modal-close" onclick="closeOrderModal()">&times;</span>
         <h4 class="mu-title">Pesan <span id="modalFoodName"></span></h4>
-        <form id="orderNowForm" method="POST">
+        <form id="orderNowForm" method="POST" onsubmit="return confirmAlamatBeforeSubmit()">
             @csrf
             <input type="hidden" name="food_id" id="modalFoodId">
             <div class="mu-form-group">
@@ -120,6 +120,14 @@ document.getElementById('modalAlamat').addEventListener('input', function() {
     var val = this.value;
     document.getElementById('alamatWarning').style.display = (val.length < 10) ? 'block' : 'none';
 });
+function confirmAlamatBeforeSubmit() {
+    var alamat = document.getElementById('modalAlamat').value;
+    if (alamat.length < 10) {
+        alert('Alamat terlalu singkat, mohon isi dengan lengkap!');
+        return false;
+    }
+    return confirm('Apakah alamat pengiriman sudah benar dan lengkap?');
+}
 </script>
 <style>
 .mu-modal { position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center; }
