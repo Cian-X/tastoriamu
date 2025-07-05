@@ -30,11 +30,20 @@
                             <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                             <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;align-items:center;">
                                 @if($order->payment_method == 'transfer' && $order->status == 'menunggu pembayaran')
-                                    <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
-                                    <span class="mu-badge mu-badge-info">Transfer ke DANA: 0823 6726 4912</span>
-                                    <span style="color:#b38b00;font-size:0.97em;">Setelah transfer, upload bukti pembayaran di halaman ini.</span>
+                                    <div class="order-payment-info">
+                                        <span class="badge-waiting">
+                                            <i class="fas fa-hourglass-half"></i> Menunggu Pembayaran
+                                        </span>
+                                        <span class="badge-dana">
+                                            <img src="{{ asset('images/dana.jpg') }}" alt="DANA" class="badge-dana-logo">
+                                            Transfer ke DANA: <b>0823 6726 4912</b>
+                                        </span>
+                                        <div class="badge-instruction">
+                                            Setelah transfer, upload bukti pembayaran di halaman ini.
+                                        </div>
+                                    </div>
                                 @elseif($order->payment_method == 'cod' && $order->status == 'menunggu pembayaran')
-                                    <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran di Tempat</span>
+                                    <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-hourglass-half"></i> Menunggu Pembayaran di Tempat</span>
                                     <span style="color:#b38b00;font-size:0.97em;">Bayar langsung ke kurir saat pesanan diterima.</span>
                                 @endif
                                 @if($order->payment_method == 'transfer' && $order->payment_status == 'unpaid' && $order->status != 'menunggu pembayaran')
@@ -235,6 +244,54 @@
 }
 .order-badge-note i {
   color: #ffc107;
+}
+.order-payment-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.badge-waiting {
+  background: #ffe066;
+  color: #b38b00;
+  font-weight: 700;
+  padding: 0.6em 1.5em;
+  border-radius: 1.2em;
+  font-size: 1.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  box-shadow: 0 1px 4px rgba(255,224,102,0.08);
+}
+.badge-waiting i {
+  color: #b38b00;
+}
+.badge-dana {
+  background: #e3f0ff;
+  color: #1877f2;
+  font-weight: 700;
+  padding: 0.6em 1.5em;
+  border-radius: 1.2em;
+  font-size: 1.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  box-shadow: 0 1px 4px rgba(24,119,242,0.08);
+}
+.badge-dana-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+  margin-right: 0.3em;
+}
+.badge-instruction {
+  font-size: 0.98em;
+  color: #666;
+  margin-top: 0.2em;
+  margin-left: 0.2em;
 }
 </style>
 @endsection 
