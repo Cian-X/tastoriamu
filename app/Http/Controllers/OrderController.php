@@ -130,4 +130,20 @@ class OrderController extends Controller
         }
         return redirect()->route('orders.index')->with('error', 'Pesanan tidak bisa diedit.');
     }
+
+    public function uploadBuktiTransfer(Request $request, $id)
+    {
+        $order = \App\Models\Order::findOrFail($id);
+        $user = auth()->user();
+        if ($order->user_id != $user->id || $order->payment_method != 'transfer') {
+            return back()->with('error', 'Akses tidak diizinkan.');
+        }
+        $request->validate([
+            'bukti_transfer' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+        $path = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
+        $order->bukti_transfer = $path;
+        $order->save();
+        return back()->with('success', 'Bukti transfer berhasil diupload!');
+    }
 }

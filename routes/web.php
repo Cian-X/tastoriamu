@@ -29,6 +29,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::post('/orders/{id}/upload-bukti', [OrderController::class, 'uploadBuktiTransfer'])->name('orders.uploadBukti');
 });
 
 // Admin Routes (Protected)

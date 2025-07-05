@@ -106,6 +106,25 @@
                                     </div>
                                 </div>
                                 @endif
+                                @if($order->payment_method == 'transfer' && $order->payment_status == 'unpaid')
+                                    <div style="margin-top:1.5em;">
+                                        @if($order->bukti_transfer)
+                                            <div style="margin-bottom:0.7em;">
+                                                <b>Bukti Transfer:</b><br>
+                                                <a href="{{ asset('storage/'.$order->bukti_transfer) }}" target="_blank">
+                                                    <img src="{{ asset('storage/'.$order->bukti_transfer) }}" alt="Bukti Transfer" style="max-width:180px;border-radius:8px;border:1.5px solid #e3e8ee;">
+                                                </a>
+                                            </div>
+                                        @elseif(auth()->id() == $order->user_id)
+                                            <form action="{{ route('orders.uploadBukti', $order->id) }}" method="POST" enctype="multipart/form-data" style="margin-bottom:1em;">
+                                                @csrf
+                                                <label for="bukti_transfer_{{ $order->id }}" style="font-weight:600;">Upload Bukti Transfer:</label><br>
+                                                <input type="file" name="bukti_transfer" id="bukti_transfer_{{ $order->id }}" accept="image/*" required style="margin-bottom:0.5em;">
+                                                <button type="submit" class="mu-btn mu-btn-primary mu-btn-sm"><i class="fas fa-upload"></i> Upload</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
