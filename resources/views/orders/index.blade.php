@@ -49,7 +49,7 @@
                             <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
                                 @if($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')
-                                    <button type="button" class="mu-btn mu-btn-warning mu-btn-sm" style="margin-left:0.5em;" onclick="openEditModal({{ $order->id }}, {{ $order->qty }}, `{{ addslashes($order->alamat) }}`)"><i class="fas fa-edit"></i> Edit</button>
+                                    <button type="button" class="mu-btn mu-btn-warning mu-btn-sm" style="margin-left:0.5em;" onclick="openEditModal({{ $order->id }}, {{ isset($order->qty) ? $order->qty : (isset((is_array($order->items) ? $order->items : (json_decode($order->items, true)))[0]['qty']) ? (is_array($order->items) ? $order->items : (json_decode($order->items, true)))[0]['qty'] : 1) }}, `{{ addslashes($order->alamat) }}`)"><i class="fas fa-edit"></i> Edit</button>
                                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
