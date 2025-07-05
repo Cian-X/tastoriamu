@@ -74,10 +74,15 @@
                     </label>
                 </div>
                 <div id="danaInfo" style="display:none;margin-top:1em;">
-                    <div class="mu-badge mu-badge-dana" style="background:#f5f5f5;color:#DA291C;font-weight:700;padding:0.7em 1.5em;border-radius:1em;font-size:1.1em;">
-                        <i class="fas fa-wallet"></i> Transfer ke DANA: <b>0823 6726 4912</b>
+                    <div class="dana-transfer-box">
+                        <img src="{{ asset('images/dana.png') }}" alt="DANA" class="dana-logo">
+                        <div>
+                            <div class="dana-number">0823 6726 4912</div>
+                            <div class="dana-instruction">
+                                Setelah transfer, upload bukti pembayaran di halaman selanjutnya.
+                            </div>
+                        </div>
                     </div>
-                    <div style="color:#888;font-size:0.97em;margin-top:0.3em;">Setelah transfer, upload bukti pembayaran di halaman selanjutnya.</div>
                 </div>
             </div>
             <div style="text-align:right;margin-top:1.5rem;">
@@ -116,5 +121,31 @@ window.onclick = function(event) {
 .mu-badge-dana { letter-spacing:1px; }
 .mu-form-group label { font-weight:600; }
 .mu-form-group input[type=number], .mu-form-group textarea { margin-top:0.3em; }
+.dana-transfer-box {
+  display: flex;
+  align-items: center;
+  background: #e3f0ff;
+  border: 1.5px solid #1877f2;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0 8px 0;
+  gap: 14px;
+}
+.dana-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.dana-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1877f2;
+  letter-spacing: 1px;
+}
+.dana-instruction {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 2px;
+}
 </style>
 @endsection 
