@@ -11,7 +11,9 @@
                     <div class="mu-card-body" style="padding:2rem 2.5rem;">
                         <div class="order-header-flex" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1em 2em;">
                             <div style="display:flex;align-items:center;gap:1em;flex-wrap:wrap;">
-                                <h5 class="mu-card-title" style="margin-bottom:0.5em;">Order #{{ $order->id }}</h5>
+                                <div class="order-title">
+                                    <i class="fas fa-receipt"></i> Order #{{ $order->id }}
+                                </div>
                                 <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
                             </div>
                             <div style="display:flex;align-items:center;gap:1em;flex-wrap:wrap;">
@@ -188,6 +190,22 @@
 @media (max-width: 700px) {
   .order-header-flex { flex-direction:column; gap:0.5em; }
   .order-info-vert { gap:0.4em; }
+}
+.order-title {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1.5px solid #e3e8ee;
+  padding-bottom: 0.2em;
+  letter-spacing: 0.5px;
+}
+.order-title i {
+  color: #DA291C;
+  font-size: 1.1em;
 }
 </style>
 @endsection 
