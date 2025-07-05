@@ -9,24 +9,25 @@
                 @foreach($orders as $order)
                 <div class="mu-card mu-order-card" style="margin-bottom:2rem;box-shadow:0 2px 12px rgba(218,41,28,0.07);border-radius:1.2em;overflow:hidden;">
                     <div class="mu-card-body" style="padding:2rem 2.5rem;">
-                        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;">
-                            <div style="flex:1;min-width:180px;">
+                        <div class="order-header-flex" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1em 2em;">
+                            <div style="display:flex;align-items:center;gap:1em;flex-wrap:wrap;">
                                 <h5 class="mu-card-title" style="margin-bottom:0.5em;">Order #{{ $order->id }}</h5>
-                                <span class="mu-badge mu-badge-date"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
-                            </div>
-                            <div style="flex:2;min-width:220px;display:flex;flex-direction:column;gap:0.5em;align-items:flex-start;max-width:100%;">
                                 <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:1em;flex-wrap:wrap;">
+                                <span class="mu-badge mu-badge-date"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</span>
                                 @if($order->tracking_number)
                                     <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
                                 @endif
-                                <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
                             </div>
                         </div>
-                        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;margin-top:1.2em;justify-content:space-between;">
-                            <div style="flex:1;text-align:left;min-width:120px;">
-                                <span class="mu-price" style="font-size:1.3em;">Rp{{ number_format($order->total_harga, 0, ',', '.') }}</span>
-                            </div>
-                            <div style="flex:1;text-align:left;min-width:160px;">
+                        <div class="order-info-vert" style="display:flex;flex-direction:column;gap:0.5em;margin-top:0.7em;max-width:100%;">
+                            <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $order->nama_pemesan }}</div>
+                            @if($order->tracking_number)
+                                <div class="order-badge order-badge-tracking"><i class="fas fa-truck"></i> {{ $order->tracking_number }}</div>
+                            @endif
+                            <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $order->alamat }}</div>
+                            <div style="display:flex;gap:1em;flex-wrap:wrap;margin-top:0.5em;">
                                 @if($order->status == 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-status mu-badge-warning">Menunggu Pembayaran</span>
                                 @elseif($order->status == 'siap antar')
@@ -38,13 +39,16 @@
                                 @else
                                     <span class="mu-badge mu-badge-status">{{ ucfirst($order->status) }}</span>
                                 @endif
-                            </div>
-                            <div style="flex:1;text-align:left;min-width:120px;">
                                 @if($order->payment_status == 'unpaid')
                                     <span class="mu-badge mu-badge-danger">Belum Bayar</span>
                                 @else
                                     <span class="mu-badge mu-badge-success">Sudah Bayar</span>
                                 @endif
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.5rem;margin-top:1.2em;justify-content:space-between;">
+                            <div style="flex:1;text-align:left;min-width:120px;">
+                                <span class="mu-price" style="font-size:1.3em;">Rp{{ number_format($order->total_harga, 0, ',', '.') }}</span>
                             </div>
                             <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
@@ -178,6 +182,12 @@
   box-shadow: 0 2px 8px rgba(24,119,242,0.08);
   border: 1.5px solid #1877f2;
   cursor: pointer;
+}
+.order-header-flex { margin-bottom: 0.2em; }
+.order-info-vert { margin-bottom: 1.2em; }
+@media (max-width: 700px) {
+  .order-header-flex { flex-direction:column; gap:0.5em; }
+  .order-info-vert { gap:0.4em; }
 }
 </style>
 @endsection 
