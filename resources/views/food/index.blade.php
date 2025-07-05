@@ -75,8 +75,8 @@
                 </div>
                 <div id="danaInfo" style="display:none;margin-top:1em;">
                     <div class="dana-transfer-box">
-                        <img src="{{ asset('images/dana.png') }}" alt="DANA" class="dana-logo">
-                        <div>
+                        <img src="{{ asset('images/dana.jpg') }}" alt="DANA" class="dana-logo">
+                        <div class="dana-text">
                             <div class="dana-number">0823 6726 4912</div>
                             <div class="dana-instruction">
                                 Setelah transfer, upload bukti pembayaran di halaman selanjutnya.
@@ -130,22 +130,32 @@ window.onclick = function(event) {
   padding: 12px 16px;
   margin: 12px 0 8px 0;
   gap: 14px;
+  min-height: 60px;
 }
 .dana-logo {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e3f0ff;
+}
+.dana-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .dana-number {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: bold;
   color: #1877f2;
   letter-spacing: 1px;
+  margin-bottom: 2px;
 }
 .dana-instruction {
-  font-size: 0.95rem;
+  font-size: 0.97rem;
   color: #666;
-  margin-top: 2px;
+  margin-top: 0;
 }
 </style>
 @endsection 
