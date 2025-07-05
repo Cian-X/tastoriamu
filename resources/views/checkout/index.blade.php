@@ -5,12 +5,8 @@
     <div class="mu-card">
         <div class="mu-card-body">
             <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-credit-card"></i> Checkout</h4>
-                    <form action="{{ route('checkout.store') }}" method="POST">
-                        @csrf
-                <div class="mu-form-group">
-                    <label for="nama_pemesan">Nama Pemesan</label>
-                    <input type="text" name="nama_pemesan" id="nama_pemesan" class="mu-input" value="{{ auth()->user()->name ?? '' }}" readonly>
-                </div>
+            <form action="{{ route('checkout.store') }}" method="POST">
+                @csrf
                 <div class="mu-form-group">
                     <label for="alamat">Alamat Pengiriman</label>
                     <textarea name="alamat" id="alamat" class="mu-input" required>{{ old('alamat') }}</textarea>

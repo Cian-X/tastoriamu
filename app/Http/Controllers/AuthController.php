@@ -55,15 +55,15 @@ class AuthController extends Controller
     public function userDashboard()
     {
         $user = Auth::user();
-        $recentOrders = Order::where('nama_pemesan', $user->name)
+        $recentOrders = Order::where('user_id', $user->id)
                             ->orderBy('created_at', 'desc')
                             ->take(5)
                             ->get();
-        $lastOrder = Order::where('nama_pemesan', $user->name)
+        $lastOrder = Order::where('user_id', $user->id)
                           ->orderBy('created_at', 'desc')
                           ->first();
-        $totalOrders = Order::where('nama_pemesan', $user->name)->count();
-        $totalSpent = Order::where('nama_pemesan', $user->name)->sum('total_harga');
+        $totalOrders = Order::where('user_id', $user->id)->count();
+        $totalSpent = Order::where('user_id', $user->id)->sum('total_harga');
         return view('user.dashboard', compact('user', 'recentOrders', 'totalOrders', 'totalSpent', 'lastOrder'));
     }
 
