@@ -28,6 +28,7 @@ Route::middleware(['user'])->group(function () {
     Route::get('/user/dashboard', [AuthController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{id}', [OrderController::class, 'update'])->name('orders.update');
 });
 
 // Admin Routes (Protected)

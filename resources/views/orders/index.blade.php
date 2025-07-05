@@ -49,6 +49,7 @@
                             <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
                                 @if($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')
+                                    <button type="button" class="mu-btn mu-btn-warning mu-btn-sm" style="margin-left:0.5em;" onclick="openEditModal({{ $order->id }}, {{ $order->qty }}, `{{ addslashes($order->alamat) }}`)"><i class="fas fa-edit"></i> Edit</button>
                                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
@@ -98,6 +99,43 @@
         </div>
     </div>
 </div>
+<!-- Modal Edit Order -->
+<div id="editOrderModal" class="mu-modal" style="display:none;">
+    <div class="mu-modal-content" style="max-width:400px;">
+        <span class="mu-modal-close" onclick="closeEditModal()">&times;</span>
+        <h4 class="mu-title">Edit Pesanan</h4>
+        <form id="editOrderForm" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="mu-form-group">
+                <label for="editQty">Jumlah</label>
+                <input type="number" name="qty" id="editQty" class="mu-input" value="1" min="1" required>
+            </div>
+            <div class="mu-form-group">
+                <label for="editAlamat">Alamat Pengiriman</label>
+                <textarea name="alamat" id="editAlamat" class="mu-input" required></textarea>
+            </div>
+            <div style="text-align:right;margin-top:1.5rem;">
+                <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-save"></i> Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+function openEditModal(orderId, qty, alamat) {
+    document.getElementById('editOrderModal').style.display = 'flex';
+    document.getElementById('editQty').value = qty;
+    document.getElementById('editAlamat').value = alamat;
+    document.getElementById('editOrderForm').action = '/orders/' + orderId;
+}
+function closeEditModal() {
+    document.getElementById('editOrderModal').style.display = 'none';
+}
+window.onclick = function(event) {
+    var modal = document.getElementById('editOrderModal');
+    if(event.target == modal) modal.style.display = 'none';
+}
+</script>
 <style>
 .mu-order-card { transition:box-shadow 0.2s; }
 .mu-badge-date, .mu-badge-user, .mu-badge-alamat, .mu-badge-tracking {
@@ -119,6 +157,16 @@
 .mu-btn-danger:hover {
   background: #b52a37;
   color: #fff;
+}
+.mu-btn-warning {
+  background: #ffc107;
+  color: #111;
+  border: none;
+  transition: background 0.2s;
+}
+.mu-btn-warning:hover {
+  background: #e0a800;
+  color: #111;
 }
 @media (max-width: 700px) {
     .mu-card-body { padding:1.2rem 0.7rem !important; }
