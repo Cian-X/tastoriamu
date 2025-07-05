@@ -48,6 +48,13 @@
                             </div>
                             <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
+                                @if($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')
+                                    <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="mu-btn mu-btn-danger mu-btn-sm" onclick="return confirm('Yakin ingin menghapus pesanan ini?')" style="margin-left:0.5em;"><i class="fas fa-trash"></i> Hapus</button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         <div class="collapse" id="order{{ $order->id }}" style="margin-top:1.5em;">
@@ -103,6 +110,16 @@
 .mu-badge-success { background:#28a745;color:#fff; }
 .mu-badge-danger { background:#dc3545;color:#fff; }
 .mu-btn-outline.mu-btn-sm { font-size:0.95em;padding:0.4em 1.2em; }
+.mu-btn-danger {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  transition: background 0.2s;
+}
+.mu-btn-danger:hover {
+  background: #b52a37;
+  color: #fff;
+}
 @media (max-width: 700px) {
     .mu-card-body { padding:1.2rem 0.7rem !important; }
 }

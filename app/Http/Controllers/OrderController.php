@@ -87,4 +87,16 @@ class OrderController extends Controller
         
         return back()->with('error', 'Aksi tidak valid untuk pesanan ini.');
     }
+
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $user = auth()->user();
+        // Hanya user yang punya pesanan & status belum bayar yang bisa hapus
+        if ($order->user_id == $user->id && ($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')) {
+            $order->delete();
+            return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dihapus.');
+        }
+        return redirect()->route('orders.index')->with('error', 'Pesanan tidak bisa dihapus.');
+    }
 }

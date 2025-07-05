@@ -27,6 +27,7 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 Route::middleware(['user'])->group(function () {
     Route::get('/user/dashboard', [AuthController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
 // Admin Routes (Protected)
