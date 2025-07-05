@@ -63,6 +63,23 @@
                 <label for="modalAlamat">Alamat Pengiriman</label>
                 <textarea name="alamat" id="modalAlamat" class="mu-input" required>{{ auth()->user()->alamat ?? '' }}</textarea>
             </div>
+            <div class="mu-form-group">
+                <label for="modalPayment">Metode Pembayaran</label>
+                <div style="display:flex;gap:1.2em;align-items:center;">
+                    <label style="display:flex;align-items:center;gap:0.5em;">
+                        <input type="radio" name="payment_method" value="cod" checked onchange="toggleDanaInfo()"> COD (Bayar di Tempat)
+                    </label>
+                    <label style="display:flex;align-items:center;gap:0.5em;">
+                        <input type="radio" name="payment_method" value="transfer" onchange="toggleDanaInfo()"> Transfer
+                    </label>
+                </div>
+                <div id="danaInfo" style="display:none;margin-top:1em;">
+                    <div class="mu-badge mu-badge-dana" style="background:#f5f5f5;color:#DA291C;font-weight:700;padding:0.7em 1.5em;border-radius:1em;font-size:1.1em;">
+                        <i class="fas fa-wallet"></i> Transfer ke DANA: <b>0823 6726 4912</b>
+                    </div>
+                    <div style="color:#888;font-size:0.97em;margin-top:0.3em;">Setelah transfer, upload bukti pembayaran di halaman selanjutnya.</div>
+                </div>
+            </div>
             <div style="text-align:right;margin-top:1.5rem;">
                 <button type="submit" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Pesan Sekarang</button>
             </div>
@@ -77,9 +94,15 @@ function openOrderModal(foodId, foodName, foodHarga) {
     document.getElementById('orderNowForm').action = '/foods/' + foodId + '/order-now';
     document.getElementById('modalQty').value = 1;
     document.getElementById('modalAlamat').value = '{{ auth()->user()->alamat ?? '' }}';
+    document.querySelector('input[name=payment_method][value=cod]').checked = true;
+    toggleDanaInfo();
 }
 function closeOrderModal() {
     document.getElementById('orderModal').style.display = 'none';
+}
+function toggleDanaInfo() {
+    var isTransfer = document.querySelector('input[name=payment_method]:checked').value === 'transfer';
+    document.getElementById('danaInfo').style.display = isTransfer ? 'block' : 'none';
 }
 window.onclick = function(event) {
     var modal = document.getElementById('orderModal');
@@ -90,5 +113,8 @@ window.onclick = function(event) {
 .mu-modal { position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center; }
 .mu-modal-content { background:#fff;border-radius:1em;padding:2em 1.5em;max-width:400px;width:95vw;box-shadow:0 8px 32px rgba(0,0,0,0.2);position:relative; margin:0 auto; display:block; }
 .mu-modal-close { position:absolute;top:1em;right:1em;font-size:2em;cursor:pointer;color:#DA291C; }
+.mu-badge-dana { letter-spacing:1px; }
+.mu-form-group label { font-weight:600; }
+.mu-form-group input[type=number], .mu-form-group textarea { margin-top:0.3em; }
 </style>
 @endsection 
