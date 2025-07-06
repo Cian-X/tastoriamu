@@ -102,7 +102,7 @@
                                     <div><b>Dikonfirmasi:</b> {{ $order->confirmed_at->format('d M Y H:i') }}</div>
                                     @endif
                                     @if($order->delivered_at)
-                                    <div><b>Dikirim:</b> {{ $order->delivered_at->format('d M Y H:i') }}</div>
+                                    <div><b>Dikirim:</b> {{ \Carbon\Carbon::parse($order->delivered_at)->format('d M Y H:i') }}</div>
                                     @endif
                                 </div>
                                 @if(!empty($order->catatan))
