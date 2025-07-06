@@ -1,35 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="dashboard-bg">
-  <div class="dashboard-main-card">
-    <div class="dashboard-header">
-      <div class="avatar-xl">{{ strtoupper(substr(auth()->user()->name,0,1)) }}</div>
-      <h1 class="dashboard-title">Halo, {{ auth()->user()->name }}!</h1>
-      <p class="dashboard-subtext">Selamat datang di Tastoria, nikmati kemudahan memesan makanan favoritmu.</p>
-    </div>
-    <a href="{{ route('orders.index') }}" class="btn-main"><i class="fas fa-history"></i> Lihat Riwayat Pesanan</a>
-    <div class="dashboard-section">
-      <h2><i class="fas fa-utensils"></i> Pesanan Terakhir</h2>
+<div class="mu-container" style="max-width:700px;margin:2.5rem auto;">
+  <div class="mu-card" style="padding:2.2rem 1.5rem 1.5rem 1.5rem;">
+    <h2 class="mu-title" style="font-size:2rem;margin-bottom:0.5rem;"><i class="fas fa-user-circle"></i> Halo, {{ auth()->user()->name }}!</h2>
+    <div style="color:#666;font-size:1.08rem;margin-bottom:1.5rem;">Selamat datang di Tastoria, nikmati kemudahan memesan makanan favoritmu.</div>
+    <a href="{{ route('orders.index') }}" class="mu-btn mu-btn-primary" style="font-size:1.1em;margin-bottom:2rem;"><i class="fas fa-history"></i> Lihat Riwayat Pesanan</a>
+    <div class="mu-card" style="background:#fff;box-shadow:0 2px 12px #eee;border-radius:16px;padding:1.5rem 1rem;margin-bottom:2rem;">
+      <h3 class="mu-card-title" style="font-size:1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-utensils"></i> Pesanan Terakhir</h3>
       @if($lastOrder)
-        <div class="order-flex">
-          <div class="order-info">
-            <div class="order-id"><i class="fas fa-receipt"></i> <b>Order #{{ $lastOrder->id }}</b></div>
-            <div class="order-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
-            <div class="order-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
-            <div class="order-address"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
+        <div style="display:flex;flex-direction:column;gap:0.7rem;">
+          <div style="font-weight:700;font-size:1.1rem;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
+          <div style="color:#888;"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
+          <div style="color:#888;"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
+          <div style="color:#888;"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
+          <div style="font-size:1.2rem;font-weight:900;color:#DA291C;margin-top:0.5rem;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</div>
+          <div>
+            @if($lastOrder->status == 'menunggu pembayaran')
+              <span class="mu-badge mu-badge-status mu-badge-wait"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
+            @elseif($lastOrder->status == 'siap antar')
+              <span class="mu-badge mu-badge-status mu-badge-ready"><i class="fas fa-biking"></i> Siap Antar</span>
+            @elseif($lastOrder->status == 'dalam pengiriman')
+              <span class="mu-badge mu-badge-status mu-badge-ongoing"><i class="fas fa-shipping-fast"></i> Dalam Pengiriman</span>
+            @elseif($lastOrder->status == 'selesai')
+              <span class="mu-badge mu-badge-status mu-badge-done"><i class="fas fa-check-circle"></i> Selesai</span>
+            @else
+              <span class="mu-badge mu-badge-status">{{ ucfirst($lastOrder->status) }}</span>
+            @endif
           </div>
-          <div class="order-divider"></div>
-          <div class="order-right">
-            <div class="order-price">Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</div>
-            <div class="order-status order-status-{{ str_replace(' ', '-', $lastOrder->status) }}">
-              <i class="fas fa-clock"></i> {{ ucfirst($lastOrder->status) }}
-            </div>
-            <a href="{{ route('orders.index') }}" class="btn-detail">Detail Pesanan</a>
+          <div style="margin-top:0.7rem;">
+            <a href="{{ route('orders.index') }}" class="mu-btn mu-btn-outline" style="font-size:1em;"><i class="fas fa-info-circle"></i> Detail Pesanan</a>
           </div>
         </div>
       @else
-        <div style="text-align:center;padding:2.5rem 0;">
+        <div style="text-align:center;padding:2rem 0;">
           <i class="fas fa-receipt" style="font-size:2rem;color:#ccc;"></i>
           <h5 style="color:#888;">Belum Ada Pesanan</h5>
           <p style="color:#888;">Mulai pesan makanan favoritmu sekarang!</p>
@@ -38,18 +42,16 @@
       @endif
     </div>
     @if($totalOrders > 0)
-    <div class="dashboard-section">
-      <h2><i class="fas fa-chart-bar"></i> Statistik Pesanan</h2>
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-list-ol"></i></div>
-          <div class="stat-label">Total Pesanan</div>
-          <div class="stat-value">{{ $totalOrders }}</div>
+    <div class="mu-card" style="background:#fff;box-shadow:0 2px 12px #eee;border-radius:16px;padding:1.5rem 1rem;">
+      <h3 class="mu-card-title" style="font-size:1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-chart-bar"></i> Statistik Pesanan</h3>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:120px;text-align:center;">
+          <div class="mu-badge mu-badge-type"><i class="fas fa-list-ol"></i> Total Pesanan</div>
+          <div class="mu-title" style="font-size:1.5rem;margin-top:0.5rem;font-weight:900;">{{ $totalOrders }}</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-wallet"></i></div>
-          <div class="stat-label">Total Pengeluaran</div>
-          <div class="stat-value">Rp{{ number_format($totalSpent, 0, ',', '.') }}</div>
+        <div style="flex:1;min-width:120px;text-align:center;">
+          <div class="mu-badge mu-badge-type"><i class="fas fa-wallet"></i> Total Pengeluaran</div>
+          <div class="mu-title" style="font-size:1.5rem;margin-top:0.5rem;font-weight:900;">Rp{{ number_format($totalSpent, 0, ',', '.') }}</div>
         </div>
       </div>
     </div>
