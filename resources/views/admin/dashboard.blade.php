@@ -1,14 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@php
-    // $pendingCashOrders = $orders->where('payment_method', 'cash')->where('status', 'menunggu pembayaran');
-@endphp
-@if($pendingCashOrders->count() > 0)
-    <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
-        <i class="fas fa-bell"></i> Ada <b>{{ $pendingCashOrders->count() }}</b> pesanan cash menunggu konfirmasi pembayaran!
-    </div>
-@endif
 <div class="mu-container" style="max-width:1100px;margin:2rem auto;">
     <div class="mu-card">
         <div class="mu-card-body">
