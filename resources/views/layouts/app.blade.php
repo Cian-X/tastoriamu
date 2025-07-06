@@ -23,6 +23,8 @@
                 @else
                     @if(auth()->user()->role === 'admin')
                         <li><a href="/admin">Dashboard</a></li>
+                    @elseif(auth()->user()->role === 'kurir')
+                        <li><a href="/kurir/dashboard">Dashboard</a></li>
                     @else
                         <li><a href="/user/dashboard">Dashboard</a></li>
                     @endif
