@@ -197,7 +197,13 @@
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
                         <td class="status-selesai">{{ ucfirst($order->status) }}</td>
-                        <td>{{ $order->delivered_at ? $order->delivered_at->format('d M Y H:i') : '-' }}</td>
+                        <td>
+                            @if($order->delivered_at)
+                                {{ \Carbon\Carbon::parse($order->delivered_at)->format('d M Y H:i') }}
+                            @else
+                                -
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
