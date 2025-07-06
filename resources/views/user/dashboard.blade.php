@@ -11,11 +11,11 @@
       @if($lastOrder)
         <div style="display:flex;flex-direction:column;gap:0.7rem;">
           <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#222;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
-          <div class="order-badge order-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
-          <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
-          <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
-          <span class="mu-badge mu-badge-price" style="display:inline-flex;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
-          <div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5em 0.7em;align-items:center;">
+            <span class="mu-badge mu-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</span>
+            <span class="mu-badge mu-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</span>
+            <span class="mu-badge mu-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</span>
+            <span class="mu-badge mu-badge-price"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
             @if($lastOrder->status == 'menunggu pembayaran')
               <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
             @elseif($lastOrder->status == 'siap antar')
@@ -62,17 +62,25 @@
 
 {{-- Tambahkan ke file CSS global Anda (misal: public/css/mu-theme.css) --}}
 <style>
-.mu-badge-price {
+.mu-badge {
   display: inline-flex;
   align-items: center;
-  background: #d4b24a;
-  color: #222;
-  font-weight: 600;
   border-radius: 999px;
-  padding: 0.35em 1em 0.35em 0.9em;
-  font-size: 1em;
-  gap: 0.5em;
+  font-size: 0.98em;
+  font-weight: 500;
+  padding: 0.32em 0.95em 0.32em 0.85em;
+  margin-bottom: 0.18em;
+  margin-right: 0.3em;
+  gap: 0.45em;
   box-shadow: 0 1px 4px #eee;
-  margin-bottom: 0.2em;
 }
+.mu-badge-date { background: #f5f5f5; color: #444; }
+.mu-badge-user { background: #f5f5f5; color: #444; }
+.mu-badge-alamat { background: #f5f5f5; color: #444; }
+.mu-badge-price { background: #d4b24a; color: #222; font-weight: 600; }
+.mu-badge-status { background: #eee; color: #333; font-weight: 600; }
+.mu-badge-warning { background: #fff3cd; color: #b68900; }
+.mu-badge-info { background: #e3f0ff; color: #1976d2; }
+.mu-badge-primary { background: #ffe0e0; color: #d32f2f; }
+.mu-badge-success { background: #e6f7d9; color: #388e3c; }
 </style> 
