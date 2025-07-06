@@ -65,6 +65,15 @@ class FoodController extends Controller
         $qty = $request->qty;
         $total = $food->harga * $qty;
 
+        // Tentukan status dan payment_status sesuai metode pembayaran
+        if ($request->payment_method === 'cash') {
+            $status = 'siap antar';
+            $payment_status = 'paid';
+        } else {
+            $status = 'menunggu pembayaran';
+            $payment_status = 'unpaid';
+        }
+
         // Buat order langsung
         $order = \App\Models\Order::create([
             'user_id' => auth()->id(),
@@ -72,7 +81,7 @@ class FoodController extends Controller
             'alamat' => $request->alamat,
             'catatan' => $request->catatan,
             'total_harga' => $total,
-            'status' => 'menunggu pembayaran',
+            'status' => $status,
             'items' => json_encode([
                 [
                     'nama' => $food->nama,
@@ -83,7 +92,7 @@ class FoodController extends Controller
             'tracking_number' => 'TRK' . strtoupper(uniqid()),
             'estimated_delivery' => now()->addMinutes(45),
             'payment_method' => $request->payment_method,
-            'payment_status' => 'unpaid',
+            'payment_status' => $payment_status,
         ]);
 
         return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat!');
