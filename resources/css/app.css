@@ -60,6 +60,11 @@ body {
 .mu-navbar .mu-menu a:hover {
     color: var(--mu-gold);
 }
+.mu-navbar .mu-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 /* Banner/Hero */
 .mu-hero {
@@ -598,9 +603,14 @@ body { background: #fff; color: #222; font-family: Arial, sans-serif; }
 }
 
 .mu-nav {
-    height: 40px;
-    align-items: center;
     display: flex;
+    align-items: center;
+    height: 40px;
+}
+.mu-nav li {
+    display: flex;
+    align-items: center;
+    height: 40px;
 }
 .mu-nav a,
 .mu-nav a.active {
