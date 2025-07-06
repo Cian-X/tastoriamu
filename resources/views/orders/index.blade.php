@@ -97,9 +97,9 @@
                                 </div>
                                 <div style="margin-top:1em;display:flex;gap:2em;flex-wrap:wrap;">
                                     <div><b>Metode Pembayaran:</b> {{ ucfirst($order->payment_method) }}</div>
-                                    <div><b>Estimasi Pengiriman:</b> {{ $order->estimated_delivery ? $order->estimated_delivery->format('d M Y H:i') : '-' }}</div>
+                                    <div><b>Estimasi Pengiriman:</b> {{ $order->estimated_delivery ? \Carbon\Carbon::parse($order->estimated_delivery)->format('d M Y H:i') : '-' }}</div>
                                     @if($order->confirmed_at)
-                                    <div><b>Dikonfirmasi:</b> {{ $order->confirmed_at->format('d M Y H:i') }}</div>
+                                    <div><b>Dikonfirmasi:</b> {{ \Carbon\Carbon::parse($order->confirmed_at)->format('d M Y H:i') }}</div>
                                     @endif
                                     @if($order->delivered_at)
                                     <div><b>Dikirim:</b> {{ \Carbon\Carbon::parse($order->delivered_at)->format('d M Y H:i') }}</div>
