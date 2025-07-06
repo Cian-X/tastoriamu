@@ -2,7 +2,7 @@
 
 @section('content')
 @php
-    $pendingCashOrders = $orders->where('payment_method', 'cash')->where('status', 'menunggu pembayaran');
+    // $pendingCashOrders = $orders->where('payment_method', 'cash')->where('status', 'menunggu pembayaran');
 @endphp
 @if($pendingCashOrders->count() > 0)
     <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
@@ -121,44 +121,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-</div>
-
-<div class="mu-card">
-    <div class="mu-card-body">
-        <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-money-bill-wave"></i> Konfirmasi Pembayaran Cash
-            @if($pendingCashOrders->count() > 0)
-                <span class="mu-badge" style="background:#DA291C;color:#fff;margin-left:0.7em;">{{ $pendingCashOrders->count() }}</span>
-            @endif
-        </h4>
-        @if($pendingCashOrders->count() > 0)
-        <table class="mu-table">
-            <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Metode</th><th>Aksi</th></tr></thead>
-            <tbody>
-                @foreach($pendingCashOrders as $order)
-                <tr>
-                    <td>{{ $order->nama_pemesan }}</td>
-                    <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                    <td><span class="mu-badge" style="background:#ffc107;color:#000;">{{ ucfirst($order->status) }}</span></td>
-                    <td><span class="mu-badge" style="background:#DA291C;color:#fff;">Cash</span></td>
-                    <td>
-                        <form method="POST" action="{{ route('admin.orders.confirmPayment', $order->id) }}" style="display:inline;">
-                            @csrf
-                            <button type="submit" class="mu-btn mu-btn-primary" onclick="return confirm('Konfirmasi pembayaran cash untuk pesanan ini?')">
-                                <i class="fas fa-check"></i> Konfirmasi Pembayaran
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @else
-        <div style="text-align:center;padding:2rem;color:#888;">
-            <i class="fas fa-check-circle" style="font-size:2rem;color:#28a745;margin-bottom:1rem;"></i>
-            <p>Tidak ada pesanan cash yang menunggu konfirmasi pembayaran</p>
-        </div>
-        @endif
     </div>
 </div>
 
