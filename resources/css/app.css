@@ -44,12 +44,18 @@ body {
     display: flex;
     gap: 2rem;
 }
-.mu-navbar .mu-menu a {
+.mu-navbar .mu-menu a,
+.mu-navbar .mu-menu a.active {
     color: var(--mu-white);
     font-weight: 700;
     text-decoration: none;
     font-size: 1.1rem;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 .mu-navbar .mu-menu a:hover {
     color: var(--mu-gold);
