@@ -63,7 +63,15 @@
                             </div>
                             <div style="flex:1;text-align:right;min-width:120px;">
                                 <button class="mu-btn mu-btn-outline mu-btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#order{{ $order->id }}"><i class="fas fa-eye"></i> Detail</button>
-                                @if($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')
+                                @if(
+                                    $order->status == 'menunggu pembayaran' ||
+                                    $order->payment_status == 'unpaid' ||
+                                    (
+                                        $order->status == 'siap antar' &&
+                                        $order->payment_status == 'paid' &&
+                                        in_array(strtolower($order->payment_method), ['cod', 'cash'])
+                                    )
+                                )
                                     <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
