@@ -10,20 +10,20 @@
       <h3 class="mu-card-title" style="font-size:1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-utensils"></i> Pesanan Terakhir</h3>
       @if($lastOrder)
         <div style="display:flex;flex-direction:column;gap:0.7rem;">
-          <div style="font-weight:700;font-size:1.1rem;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
-          <div style="color:#888;"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
-          <div style="color:#888;"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
-          <div style="color:#888;"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
-          <div style="font-size:1.2rem;font-weight:900;color:#DA291C;margin-top:0.5rem;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</div>
+          <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#222;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
+          <div class="order-badge order-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
+          <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
+          <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
+          <div class="order-badge order-badge-price" style="background:#DA291C;color:#fff;font-size:1.15em;font-weight:900;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</div>
           <div>
             @if($lastOrder->status == 'menunggu pembayaran')
-              <span class="mu-badge mu-badge-status mu-badge-wait"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
+              <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
             @elseif($lastOrder->status == 'siap antar')
-              <span class="mu-badge mu-badge-status mu-badge-ready"><i class="fas fa-biking"></i> Siap Antar</span>
+              <span class="mu-badge mu-badge-status mu-badge-info"><i class="fas fa-biking"></i> Siap Antar</span>
             @elseif($lastOrder->status == 'dalam pengiriman')
-              <span class="mu-badge mu-badge-status mu-badge-ongoing"><i class="fas fa-shipping-fast"></i> Dalam Pengiriman</span>
+              <span class="mu-badge mu-badge-status mu-badge-primary"><i class="fas fa-shipping-fast"></i> Dalam Pengiriman</span>
             @elseif($lastOrder->status == 'selesai')
-              <span class="mu-badge mu-badge-status mu-badge-done"><i class="fas fa-check-circle"></i> Selesai</span>
+              <span class="mu-badge mu-badge-status mu-badge-success"><i class="fas fa-check-circle"></i> Selesai</span>
             @else
               <span class="mu-badge mu-badge-status">{{ ucfirst($lastOrder->status) }}</span>
             @endif
