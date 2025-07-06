@@ -14,7 +14,7 @@
           <div class="order-badge order-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
           <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
           <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
-          <span class="mu-badge mu-badge-danger" style="font-size:1.08em;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
+          <span class="mu-badge mu-badge-price"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
           <div>
             @if($lastOrder->status == 'menunggu pembayaran')
               <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
@@ -59,3 +59,20 @@
   </div>
 </div>
 @endsection 
+
+{{-- Tambahkan ke file CSS global Anda (misal: public/css/mu-theme.css) --}}
+<style>
+.mu-badge-price {
+  display: inline-flex;
+  align-items: center;
+  background: #d4b24a;
+  color: #222;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.35em 1em 0.35em 0.9em;
+  font-size: 1em;
+  gap: 0.5em;
+  box-shadow: 0 1px 4px #eee;
+  margin-bottom: 0.2em;
+}
+</style> 
