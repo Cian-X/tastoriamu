@@ -27,7 +27,7 @@
             @elseif($lastOrder->status == 'dalam pengiriman')
               <span class="mu-badge mu-badge-status mu-badge-primary"><i class="fas fa-shipping-fast"></i> Dalam Pengiriman</span>
             @elseif($lastOrder->status == 'selesai')
-              <span class="mu-badge mu-badge-status mu-badge-success"><i class="fas fa-check-circle"></i> Selesai</span>
+              <span class="mu-badge mu-badge-status mu-badge-success2"><i class="fas fa-check-circle"></i> Selesai</span>
             @else
               <span class="mu-badge mu-badge-status mu-badge-danger">{{ ucfirst($lastOrder->status) }}</span>
             @endif
@@ -48,14 +48,14 @@
     @if($totalOrders > 0)
     <div class="mu-card" style="background:#fff;box-shadow:0 2px 12px #eee;border-radius:16px;padding:1.5rem 1rem;">
       <h3 class="mu-card-title" style="font-size:1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-chart-bar"></i> Statistik Pesanan</h3>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
-        <div style="flex:1;min-width:120px;text-align:center;">
-          <div class="mu-badge mu-badge-type"><i class="fas fa-list-ol"></i> Total Pesanan</div>
-          <div class="mu-title" style="font-size:1.5rem;margin-top:0.5rem;font-weight:900;">{{ $totalOrders }}</div>
+      <div class="mu-stats-row">
+        <div class="mu-stats-col">
+          <span class="mu-badge mu-badge-stats mu-badge-stats-red"><i class="fas fa-list-ol"></i> Total Pesanan</span>
+          <div class="mu-stats-value">{{ $totalOrders }}</div>
         </div>
-        <div style="flex:1;min-width:120px;text-align:center;">
-          <div class="mu-badge mu-badge-type"><i class="fas fa-wallet"></i> Total Pengeluaran</div>
-          <div class="mu-title" style="font-size:1.5rem;margin-top:0.5rem;font-weight:900;">Rp{{ number_format($totalSpent, 0, ',', '.') }}</div>
+        <div class="mu-stats-col">
+          <span class="mu-badge mu-badge-stats mu-badge-stats-blue"><i class="fas fa-wallet"></i> Total Pengeluaran</span>
+          <div class="mu-stats-value">Rp{{ number_format($totalSpent, 0, ',', '.') }}</div>
         </div>
       </div>
     </div>
@@ -130,5 +130,47 @@
   background: #ffe082 !important;
   color: #795548 !important;
   border-color: #ffd54f !important;
+}
+.mu-badge-success2 {
+  background: #43a047 !important;
+  color: #fff !important;
+  border-color: #b7eb8f !important;
+}
+.mu-badge-stats {
+  font-size: 1em;
+  font-weight: 700;
+  padding: 0.45em 1.2em;
+  border-radius: 1.2em;
+  margin-bottom: 0.5em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.mu-badge-stats-red {
+  background: #d32f2f !important;
+  color: #fff !important;
+}
+.mu-badge-stats-blue {
+  background: #1976d2 !important;
+  color: #fff !important;
+}
+.mu-stats-row {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+.mu-stats-col {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+}
+.mu-stats-value {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #222;
+  margin-top: 0.5em;
+  letter-spacing: 1px;
 }
 </style> 
