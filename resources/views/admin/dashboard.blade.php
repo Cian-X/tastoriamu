@@ -162,6 +162,51 @@
     </div>
 </div>
 
+<div class="mu-card">
+    <div class="mu-card-body">
+        <h4 class="mu-title" style="margin-bottom:1.5rem;"><i class="fas fa-money-bill-wave"></i> Konfirmasi Pembayaran Transfer
+            @if($pendingTransferOrders->count() > 0)
+                <span class="mu-badge" style="background:#DA291C;color:#fff;margin-left:0.7em;">{{ $pendingTransferOrders->count() }}</span>
+            @endif
+        </h4>
+        @if($pendingTransferOrders->count() > 0)
+        <table class="mu-table">
+            <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Metode</th><th>Bukti Transfer</th><th>Aksi</th></tr></thead>
+            <tbody>
+                @foreach($pendingTransferOrders as $order)
+                <tr>
+                    <td>{{ $order->nama_pemesan }}</td>
+                    <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
+                    <td><span class="mu-badge" style="background:#ffc107;color:#000;">{{ ucfirst($order->status) }}</span></td>
+                    <td><span class="mu-badge" style="background:#1877f2;color:#fff;">Transfer</span></td>
+                    <td>
+                        @if($order->bukti_transfer)
+                            <a href="{{ asset('storage/'.$order->bukti_transfer) }}" target="_blank">Lihat Bukti</a>
+                        @else
+                            <span style="color:#dc3545;">Belum Upload</span>
+                        @endif
+                    </td>
+                    <td>
+                        <form method="POST" action="{{ route('admin.orders.confirmPayment', $order->id) }}" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="mu-btn mu-btn-primary" onclick="return confirm('Konfirmasi pembayaran transfer untuk pesanan ini?')">
+                                <i class="fas fa-check"></i> Konfirmasi Pembayaran
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        @else
+        <div style="text-align:center;padding:2rem;color:#888;">
+            <i class="fas fa-check-circle" style="font-size:2rem;color:#28a745;margin-bottom:1rem;"></i>
+            <p>Tidak ada pesanan transfer yang menunggu konfirmasi pembayaran</p>
+        </div>
+        @endif
+    </div>
+</div>
+
 <script>
 function showModal(id) {
     document.getElementById(id).style.display = 'block';

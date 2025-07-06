@@ -23,9 +23,14 @@ class AdminController extends Controller
         $users = User::orderBy('created_at', 'desc')->get();
         $foods = Food::orderBy('created_at', 'desc')->get();
         $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        $pendingTransferOrders = Order::where('payment_method', 'transfer')
+            ->where('status', 'menunggu pembayaran')
+            ->where('payment_status', 'unpaid')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('admin.dashboard', compact(
             'totalOrders', 'totalRevenue', 'totalFoods', 'totalReviews', 'totalUsers',
-            'recentOrders', 'topFoods', 'users', 'foods', 'orders'
+            'recentOrders', 'topFoods', 'users', 'foods', 'orders', 'pendingTransferOrders'
         ));
     }
 
