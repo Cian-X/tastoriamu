@@ -49,6 +49,9 @@ class FoodController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk memesan makanan!');
         }
+        if (auth()->user()->role === 'kurir') {
+            return redirect()->back()->with('error', 'Kurir tidak boleh memesan makanan!');
+        }
         $food = Food::findOrFail($id);
 
         $request->validate([

@@ -93,7 +93,13 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $user = auth()->user();
         // Hanya user yang punya pesanan & status belum bayar yang bisa hapus
-        if ($order->user_id == $user->id && ($order->status == 'menunggu pembayaran' || $order->payment_status == 'unpaid')) {
+        if (
+            $order->user_id == $user->id && (
+                $order->status == 'menunggu pembayaran' ||
+                ($order->status == 'siap antar' && $order->payment_status == 'paid' && $order->payment_method == 'cod') ||
+                $order->payment_status == 'unpaid'
+            )
+        ) {
             $order->delete();
             return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dihapus.');
         }
