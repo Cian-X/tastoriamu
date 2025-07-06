@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@php $isKurir = auth()->check() && auth()->user()->role === 'kurir'; @endphp
+
 @section('content')
 <div class="mu-hero mu-hero-food mu-hero-food-img">
     <div class="mu-hero-food-overlay"></div>
