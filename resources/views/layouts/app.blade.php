@@ -15,16 +15,16 @@
         <div class="mu-container">
             <a href="/" class="mu-logo"><i class="fas fa-fire"></i> Tastoria</a>
             <ul class="mu-nav">
-                <li><a href="/">Beranda</a></li>
-                <li><a href="/foods">Menu</a></li>
-                <li><a href="/orders">Pesanan</a></li>
+                <li><a href="/" @if(request()->is('/')) class="active" @endif>Beranda</a></li>
+                <li><a href="/foods" @if(request()->is('foods')) class="active" @endif>Menu</a></li>
+                <li><a href="/orders" @if(request()->is('orders')) class="active" @endif>Pesanan</a></li>
                 @guest
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login" @if(request()->is('login')) class="active" @endif>Login</a></li>
                 @else
                     @if(auth()->user()->role === 'admin')
-                        <li><a href="/admin">Dashboard</a></li>
+                        <li><a href="/admin" @if(request()->is('admin')) class="active" @endif>Dashboard</a></li>
                     @else
-                        <li><a href="/user/dashboard">Dashboard</a></li>
+                        <li><a href="/user/dashboard" @if(request()->is('user/dashboard')) class="active" @endif>Dashboard</a></li>
                     @endif
                     <li class="mu-nav-item" style="display:flex;align-items:center;gap:0.7em;">
                         <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
