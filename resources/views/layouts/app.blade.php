@@ -8,13 +8,28 @@
     <link rel="stylesheet" href="/css/mu-theme.css?v=fixoverflow2">
     <style>
         body { background: #e5e5e5; }
+        .mu-nav-user {
+            display: flex;
+            align-items: center;
+            gap: 1.2em;
+            margin-left: 2em;
+        }
+        .mu-nav-username {
+            color: #fff;
+            font-weight: 600;
+            background: #1976d2;
+            padding: 0.25em 1em;
+            border-radius: 1em;
+            font-size: 1em;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
     <nav class="mu-navbar">
-        <div class="mu-container">
+        <div class="mu-container" style="display:flex;align-items:center;justify-content:space-between;">
             <a href="/" class="mu-logo"><i class="fas fa-fire"></i> Tastoria</a>
-            <ul class="mu-nav">
+            <ul class="mu-nav" style="display:flex;align-items:center;gap:1.5em;margin:0;">
                 <li><a href="/">Beranda</a></li>
                 <li><a href="/foods">Menu</a></li>
                 <li><a href="/orders">Pesanan</a></li>
@@ -28,15 +43,17 @@
                     @else
                         <li><a href="/user/dashboard">Dashboard</a></li>
                     @endif
-                    <li class="mu-nav-item" style="display:flex;align-items:center;gap:0.7em;">
-                        <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
-                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
-                        </form>
-                    </li>
                 @endguest
             </ul>
+            @auth
+            <div class="mu-nav-user">
+                <span class="mu-nav-username">{{ auth()->user()->name }}</span>
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
+                </form>
+            </div>
+            @endauth
         </div>
     </nav>
     <main class="mu-main">
