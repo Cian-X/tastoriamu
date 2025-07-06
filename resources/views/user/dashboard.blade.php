@@ -14,7 +14,9 @@
           <div class="order-badge order-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</div>
           <div class="order-badge order-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</div>
           <div class="order-badge order-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</div>
-          <div class="order-badge order-badge-price" style="background:#DA291C;color:#fff;font-size:1.15em;font-weight:900;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</div>
+          <div class="order-badge order-badge-price" style="background:#DA291C;color:#fff;font-size:1.15em;font-weight:900;">
+            <span class="mu-badge mu-badge-danger" style="font-size:1.08em;"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
+          </div>
           <div>
             @if($lastOrder->status == 'menunggu pembayaran')
               <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
