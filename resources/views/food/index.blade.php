@@ -34,7 +34,7 @@
                     <span class="mu-price">Rp{{ number_format($food->harga, 0, ',', '.') }}</span>
                     <form action="{{ route('foods.orderNow', $food->id) }}" method="POST">
                         @csrf
-                        <button type="button" class="mu-btn mu-btn-primary" onclick="openOrderModal({{ $food->id }}, '{{ addslashes($food->nama) }}', {{ $food->harga }})"><i class="fas fa-cart-plus"></i> Pesan</button>
+                        <button type="button" class="mu-btn mu-btn-primary" onclick="openOrderModal({{ $food->id }}, '{{ addslashes($food->nama) }}', {{ $food->harga }})" @if($isKurir) disabled title="Kurir tidak boleh memesan makanan!" style="opacity:0.6;cursor:not-allowed;" @endif><i class="fas fa-cart-plus"></i> Pesan</button>
                     </form>
                 </div>
             </div>
@@ -100,6 +100,11 @@
 </div>
 <script>
 function openOrderModal(foodId, foodName, foodHarga) {
+    var isKurir = {{ $isKurir ? 'true' : 'false' }};
+    if(isKurir) {
+        alert('Kurir tidak boleh memesan makanan!');
+        return;
+    }
     document.getElementById('orderModal').style.display = 'flex';
     document.getElementById('modalFoodName').innerText = foodName;
     document.getElementById('modalFoodId').value = foodId;
