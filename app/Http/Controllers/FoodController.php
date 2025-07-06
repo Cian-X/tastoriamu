@@ -66,7 +66,7 @@ class FoodController extends Controller
         $total = $food->harga * $qty;
 
         // Tentukan status dan payment_status sesuai metode pembayaran
-        if ($request->payment_method === 'cash') {
+        if ($request->payment_method === 'cash' || $request->payment_method === 'cod') {
             $status = 'siap antar';
             $payment_status = 'paid';
         } else {
