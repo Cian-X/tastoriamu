@@ -24,7 +24,7 @@
                     @if(auth()->user()->role === 'admin')
                         <li><a href="/admin" @if(request()->is('admin')) class="active" @endif>Dashboard</a></li>
                     @else
-                        <li><a href="/user/dashboard" @if(request()->is('user/dashboard')) class="active" @endif>Dashboard</a></li>
+                        <li><a href="/user/dashboard" @if(request()->is('user/dashboard*')) class="active" @endif>Dashboard</a></li>
                     @endif
                     <li class="mu-nav-item" style="display:flex;align-items:center;gap:0.7em;">
                         <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
