@@ -596,3 +596,21 @@ body { background: #fff; color: #222; font-family: Arial, sans-serif; }
   .order-divider { display: none; }
   .order-right { align-items: flex-start; }
 }
+
+.mu-nav {
+    height: 40px;
+    align-items: center;
+    display: flex;
+}
+.mu-nav a,
+.mu-nav a.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
