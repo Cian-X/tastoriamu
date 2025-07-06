@@ -26,12 +26,14 @@
                     @else
                         <li><a href="/user/dashboard">Dashboard</a></li>
                     @endif
-                    <li class="mu-nav-item" style="display:flex;align-items:center;gap:0.7em;">
-                        <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
-                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
-                        </form>
+                    <li class="mu-nav-item" style="display:flex;align-items:center;gap:0.7em;height:48px;">
+                        <div style="display:flex;align-items:center;gap:0.7em;height:100%;">
+                            <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;line-height:1;display:flex;align-items:center;height:100%;">{{ auth()->user()->name }}</span>
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;margin:0;height:100%;">
+                                @csrf
+                                <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;height:100%;display:flex;align-items:center;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
+                            </form>
+                        </div>
                     </li>
                 @endguest
             </ul>
