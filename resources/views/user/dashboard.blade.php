@@ -85,15 +85,27 @@
   background: #f8f9fa;
   box-shadow: 0 1px 4px #eee;
 }
-.mu-badge-date { background: #f4f6fa; color: #888; border-color: #e3e8ee; }
-.mu-badge-user { background: #e3f0ff; color: #1976d2; border-color: #b6d4fe; }
-.mu-badge-alamat { background: #fffbe6; color: #b68900; border-color: #ffe58f; }
+.mu-badge-date {
+  background: #e0e0e0;
+  color: #444;
+  border-color: #bdbdbd;
+}
+.mu-badge-user {
+  background: #2196f3;
+  color: #fff;
+  border-color: #1976d2;
+}
+.mu-badge-alamat {
+  background: #ffe082;
+  color: #795548;
+  border-color: #ffd54f;
+}
 .mu-badge-status { font-weight:700;padding:0.5em 1.2em;border-radius:1em;font-size:1em; border-width:2px; }
-.mu-badge-warning { background:#fffbe6;color:#b68900; border-color:#ffe58f; }
-.mu-badge-info { background:#e3f0ff;color:#1976d2; border-color:#b6d4fe; }
-.mu-badge-primary { background:#e6f7ff;color:#007bff; border-color:#91d5ff; }
-.mu-badge-success { background:#e6f7d9;color:#388e3c; border-color:#b7eb8f; }
-.mu-badge-danger { background:#fff1f0;color:#d32f2f; border-color:#ffa39e; }
+.mu-badge-warning { background:#ffc107;color:#111; border-color:#ffecb3; }
+.mu-badge-info { background:#29b6f6;color:#fff; border-color:#0288d1; }
+.mu-badge-primary { background:#1976d2;color:#fff; border-color:#1565c0; }
+.mu-badge-success { background:#43a047;color:#fff; border-color:#388e3c; }
+.mu-badge-danger { background:#e53935;color:#fff; border-color:#b71c1c; }
 .mu-price {
   color: #d32f2f;
   font-size: 1.6em;
