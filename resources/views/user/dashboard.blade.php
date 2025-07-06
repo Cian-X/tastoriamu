@@ -10,7 +10,7 @@
       <h3 class="mu-card-title" style="font-size:1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;"><i class="fas fa-utensils"></i> Pesanan Terakhir</h3>
       @if($lastOrder)
         <div style="display:flex;flex-direction:column;gap:0.7rem;">
-          <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#222;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
+          <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#d32f2f;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
           <div style="display:flex;flex-wrap:wrap;gap:0.5em 0.7em;align-items:center;">
             <span class="mu-badge mu-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</span>
             <span class="mu-badge mu-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</span>
@@ -25,7 +25,7 @@
             @elseif($lastOrder->status == 'selesai')
               <span class="mu-badge mu-badge-status mu-badge-success"><i class="fas fa-check-circle"></i> Selesai</span>
             @else
-              <span class="mu-badge mu-badge-status">{{ ucfirst($lastOrder->status) }}</span>
+              <span class="mu-badge mu-badge-status mu-badge-danger">{{ ucfirst($lastOrder->status) }}</span>
             @endif
           </div>
           <div style="margin-top:0.7rem;">
@@ -62,25 +62,39 @@
 
 {{-- Tambahkan ke file CSS global Anda (misal: public/css/mu-theme.css) --}}
 <style>
+.mu-card {
+  box-shadow: 0 2px 12px rgba(218,41,28,0.07);
+  border-radius: 1.2em;
+  overflow: hidden;
+}
 .mu-badge {
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
+  border-radius: 1em;
   font-size: 0.98em;
-  font-weight: 500;
-  padding: 0.32em 0.95em 0.32em 0.85em;
+  font-weight: 600;
+  padding: 0.4em 1em;
   margin-bottom: 0.18em;
   margin-right: 0.3em;
   gap: 0.45em;
   box-shadow: 0 1px 4px #eee;
 }
-.mu-badge-date { background: #f5f5f5; color: #444; }
-.mu-badge-user { background: #f5f5f5; color: #444; }
-.mu-badge-alamat { background: #f5f5f5; color: #444; }
-.mu-badge-price { background: #d4b24a; color: #222; font-weight: 600; }
-.mu-badge-status { background: #eee; color: #333; font-weight: 600; }
-.mu-badge-warning { background: #fff3cd; color: #b68900; }
-.mu-badge-info { background: #e3f0ff; color: #1976d2; }
-.mu-badge-primary { background: #ffe0e0; color: #d32f2f; }
-.mu-badge-success { background: #e6f7d9; color: #388e3c; }
+.mu-badge-date, .mu-badge-user, .mu-badge-alamat {
+  background: #f5f5f5;
+  color: #B3A369;
+}
+.mu-badge-price {
+  background: #ffd700;
+  color: #222;
+  font-weight: 700;
+  border: 1.5px solid #e3e8ee;
+}
+.mu-badge-status { font-weight:700;padding:0.5em 1.2em;border-radius:1em;font-size:1em; }
+.mu-badge-warning { background:#ffc107;color:#111; }
+.mu-badge-info { background:#17a2b8;color:#fff; }
+.mu-badge-primary { background:#007bff;color:#fff; }
+.mu-badge-success { background:#28a745;color:#fff; }
+.mu-badge-danger { background:#dc3545;color:#fff; }
+.mu-btn-outline { border:2px solid #d32f2f;color:#d32f2f;background:#fff;transition:all 0.2s; }
+.mu-btn-outline:hover { background:#d32f2f;color:#fff; }
 </style> 
