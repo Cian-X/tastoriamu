@@ -96,8 +96,12 @@ class OrderController extends Controller
         if (
             $order->user_id == $user->id && (
                 $order->status == 'menunggu pembayaran' ||
-                ($order->status == 'siap antar' && $order->payment_status == 'paid' && $order->payment_method == 'cod') ||
-                $order->payment_status == 'unpaid'
+                $order->payment_status == 'unpaid' ||
+                (
+                    $order->status == 'siap antar' &&
+                    $order->payment_status == 'paid' &&
+                    in_array(strtolower($order->payment_method), ['cod', 'cash'])
+                )
             )
         ) {
             $order->delete();
