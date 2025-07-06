@@ -11,11 +11,15 @@
       @if($lastOrder)
         <div style="display:flex;flex-direction:column;gap:0.7rem;">
           <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#d32f2f;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.5em 0.7em;align-items:center;">
+          <div style="display:flex;flex-wrap:wrap;gap:0.7em 1em;align-items:center;margin-bottom:0.5em;">
             <span class="mu-badge mu-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</span>
             <span class="mu-badge mu-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</span>
             <span class="mu-badge mu-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</span>
-            <span class="mu-badge mu-badge-price"><i class="fas fa-money-bill-wave"></i> Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
+          </div>
+          <div style="margin-bottom:0.5em;">
+            <span class="mu-price">Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.7em 1em;align-items:center;">
             @if($lastOrder->status == 'menunggu pembayaran')
               <span class="mu-badge mu-badge-status mu-badge-warning"><i class="fas fa-clock"></i> Menunggu Pembayaran</span>
             @elseif($lastOrder->status == 'siap antar')
@@ -28,7 +32,7 @@
               <span class="mu-badge mu-badge-status mu-badge-danger">{{ ucfirst($lastOrder->status) }}</span>
             @endif
           </div>
-          <div style="margin-top:0.7rem;">
+          <div style="margin-top:0.9rem;">
             <a href="{{ route('orders.index') }}" class="mu-btn mu-btn-outline" style="font-size:1em;"><i class="fas fa-info-circle"></i> Detail Pesanan</a>
           </div>
         </div>
@@ -70,31 +74,34 @@
 .mu-badge {
   display: inline-flex;
   align-items: center;
-  border-radius: 1em;
-  font-size: 0.98em;
+  border-radius: 1.2em;
+  font-size: 1em;
   font-weight: 600;
-  padding: 0.4em 1em;
+  padding: 0.38em 1.1em;
   margin-bottom: 0.18em;
   margin-right: 0.3em;
   gap: 0.45em;
+  border: 1.5px solid #e3e8ee;
+  background: #f8f9fa;
   box-shadow: 0 1px 4px #eee;
 }
-.mu-badge-date, .mu-badge-user, .mu-badge-alamat {
-  background: #f5f5f5;
-  color: #B3A369;
+.mu-badge-date { background: #f4f6fa; color: #888; border-color: #e3e8ee; }
+.mu-badge-user { background: #e3f0ff; color: #1976d2; border-color: #b6d4fe; }
+.mu-badge-alamat { background: #fffbe6; color: #b68900; border-color: #ffe58f; }
+.mu-badge-status { font-weight:700;padding:0.5em 1.2em;border-radius:1em;font-size:1em; border-width:2px; }
+.mu-badge-warning { background:#fffbe6;color:#b68900; border-color:#ffe58f; }
+.mu-badge-info { background:#e3f0ff;color:#1976d2; border-color:#b6d4fe; }
+.mu-badge-primary { background:#e6f7ff;color:#007bff; border-color:#91d5ff; }
+.mu-badge-success { background:#e6f7d9;color:#388e3c; border-color:#b7eb8f; }
+.mu-badge-danger { background:#fff1f0;color:#d32f2f; border-color:#ffa39e; }
+.mu-price {
+  color: #d32f2f;
+  font-size: 1.6em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2em;
+  display: inline-block;
 }
-.mu-badge-price {
-  background: #ffd700;
-  color: #222;
-  font-weight: 700;
-  border: 1.5px solid #e3e8ee;
-}
-.mu-badge-status { font-weight:700;padding:0.5em 1.2em;border-radius:1em;font-size:1em; }
-.mu-badge-warning { background:#ffc107;color:#111; }
-.mu-badge-info { background:#17a2b8;color:#fff; }
-.mu-badge-primary { background:#007bff;color:#fff; }
-.mu-badge-success { background:#28a745;color:#fff; }
-.mu-badge-danger { background:#dc3545;color:#fff; }
 .mu-btn-outline { border:2px solid #d32f2f;color:#d32f2f;background:#fff;transition:all 0.2s; }
 .mu-btn-outline:hover { background:#d32f2f;color:#fff; }
 </style> 
