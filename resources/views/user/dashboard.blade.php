@@ -12,9 +12,9 @@
         <div style="display:flex;flex-direction:column;gap:0.7rem;">
           <div class="order-title" style="font-size:1.1rem;font-weight:700;color:#d32f2f;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-receipt"></i> Order #{{ $lastOrder->id }}</div>
           <div style="display:flex;flex-wrap:wrap;gap:0.7em 1em;align-items:center;margin-bottom:0.5em;">
-            <span class="mu-badge mu-badge-date"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</span>
-            <span class="mu-badge mu-badge-user"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</span>
-            <span class="mu-badge mu-badge-alamat"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</span>
+            <span class="mu-badge mu-badge-date2"><i class="fas fa-calendar-alt"></i> {{ $lastOrder->created_at->format('d M Y H:i') }}</span>
+            <span class="mu-badge mu-badge-user2"><i class="fas fa-user"></i> {{ $lastOrder->nama_pemesan }}</span>
+            <span class="mu-badge mu-badge-alamat2"><i class="fas fa-map-marker-alt"></i> {{ $lastOrder->alamat }}</span>
           </div>
           <div style="margin-bottom:0.5em;">
             <span class="mu-price">Rp{{ number_format($lastOrder->total_harga, 0, ',', '.') }}</span>
@@ -116,4 +116,19 @@
 }
 .mu-btn-outline { border:2px solid #d32f2f;color:#d32f2f;background:#fff;transition:all 0.2s; }
 .mu-btn-outline:hover { background:#d32f2f;color:#fff; }
+.mu-badge-date2 {
+  background: #e0e0e0 !important;
+  color: #444 !important;
+  border-color: #bdbdbd !important;
+}
+.mu-badge-user2 {
+  background: #2196f3 !important;
+  color: #fff !important;
+  border-color: #1976d2 !important;
+}
+.mu-badge-alamat2 {
+  background: #ffe082 !important;
+  color: #795548 !important;
+  border-color: #ffd54f !important;
+}
 </style> 

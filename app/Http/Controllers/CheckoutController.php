@@ -49,21 +49,21 @@ class CheckoutController extends Controller
         $paymentMethod = $request->payment_method;
         
         try {
-            $order = Order::create([
+        $order = Order::create([
                 'user_id' => auth()->id(),
                 'nama_pemesan' => auth()->user()->name,
-                'alamat' => $request->alamat,
-                'total_harga' => $total,
+            'alamat' => $request->alamat,
+            'total_harga' => $total,
                 'status' => 'menunggu pembayaran',
-                'items' => json_encode($cart),
-                'tracking_number' => 'TRK' . strtoupper(uniqid()),
-                'estimated_delivery' => now()->addMinutes(45),
+            'items' => json_encode($cart),
+            'tracking_number' => 'TRK' . strtoupper(uniqid()),
+            'estimated_delivery' => now()->addMinutes(45),
                 'payment_method' => $paymentMethod,
-                'payment_status' => 'unpaid',
-            ]);
+            'payment_status' => 'unpaid',
+        ]);
             
             \Log::info('Order created successfully', ['order_id' => $order->id]);
-            session()->forget('cart');
+        session()->forget('cart');
             
             if ($paymentMethod === 'online') {
                 // Untuk sekarang, redirect ke halaman dummy/disable

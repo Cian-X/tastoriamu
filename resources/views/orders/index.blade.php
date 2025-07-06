@@ -50,7 +50,7 @@
                                                 Bayar langsung ke kurir saat pesanan diterima.
                                             </div>
                                         @endif
-                                    </div>
+                            </div>
                                 @endif
                                 @if($order->payment_method == 'transfer' && $order->payment_status == 'unpaid' && $order->status != 'menunggu pembayaran')
                                     <span class="mu-badge mu-badge-danger">Belum Bayar</span>

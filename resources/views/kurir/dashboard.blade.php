@@ -167,10 +167,10 @@
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
                         <td class="status-perjalanan">{{ ucfirst($order->status) }}</td>
                         <td>
-                            <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                <button type="submit" name="status" value="selesai" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Selesai</button>
-                            </form>
+                                <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" name="status" value="selesai" class="mu-btn mu-btn-primary"><i class="fas fa-check"></i> Selesai</button>
+                                </form>
                         </td>
                     </tr>
                     @endforeach

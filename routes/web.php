@@ -48,6 +48,6 @@ Route::middleware(['admin'])->group(function () {
 
 // Kurir Routes (Protected)
 Route::middleware(['kurir'])->group(function () {
-    Route::get('/kurir/dashboard', [OrderController::class, 'dashboardKurir'])->name('kurir.dashboard');
+Route::get('/kurir/dashboard', [OrderController::class, 'dashboardKurir'])->name('kurir.dashboard');
     Route::post('/kurir/orders/{order}/update', [OrderController::class, 'updateStatusKurir'])->name('kurir.order.update');
 });
