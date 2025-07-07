@@ -280,8 +280,8 @@
                         <td>{{ $order->nama_pemesan }}</td>
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                        <td style="display:flex;align-items:center;gap:0.5em;">
-                            <span class="status-siap"><i class="fas fa-box"></i> Siap antar</span>
+                        <td><span class="status-siap" style="margin-right:0.5em;"><i class="fas fa-box"></i> Siap antar</span></td>
+                        <td>
                             <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" name="status" value="ambil" class="mu-btn mu-btn-primary"><i class="fas fa-motorcycle"></i> Ambil</button>
