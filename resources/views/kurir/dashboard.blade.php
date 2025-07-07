@@ -15,7 +15,7 @@
     --tastoria-pastel-gray: #f3f3f3;
 }
 .kurir-hero {
-    background: linear-gradient(90deg, var(--tastoria-red) 60%, var(--tastoria-gold) 100%);
+    background: var(--tastoria-red);
     color: #fff;
     border-radius: 1.2em 1.2em 0 0;
     padding: 2.7em 2em 2em 2em;
@@ -151,7 +151,7 @@
     border-spacing: 0;
 }
 .mu-table th {
-    background: linear-gradient(90deg, var(--tastoria-red) 60%, var(--tastoria-gold) 100%) !important;
+    background: var(--tastoria-red) !important;
     color: #fff !important;
     position: sticky;
     top: 0;
