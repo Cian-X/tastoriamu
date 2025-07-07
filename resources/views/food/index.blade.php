@@ -21,6 +21,11 @@
         </form>
     </div>
 </div>
+<div class="mu-hero-wave">
+  <svg viewBox="0 0 500 30" preserveAspectRatio="none" style="display:block;width:100%;height:30px;">
+    <path d="M0,30 Q250,0 500,30 L500,30 L0,30 Z" fill="#fff"/>
+  </svg>
+</div>
 <div class="mu-container mu-food-container">
     <div class="mu-food-list">
         @forelse($foods as $food)

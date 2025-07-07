@@ -738,3 +738,13 @@ body { background: #fff; color: #222; font-family: Arial, sans-serif; }
     color: #fff !important;
   }
 }
+
+.mu-hero-wave {
+  margin-top: -1px;
+  line-height: 0;
+  height: 30px;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  .mu-hero-wave svg { height: 18px; }
+}
