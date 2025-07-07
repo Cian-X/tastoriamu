@@ -12,7 +12,7 @@
                         <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
                             <div style="flex:1;min-width:150px;">
                                 <h6 class="mu-card-title">Order #{{ $order->id }}</h6>
-                                <small class="mu-badge" style="margin-bottom:0.3em;"><i class="fas fa-calendar"></i> {{ $order->created_at->format('d M Y H:i') }}</small>
+                                <small class="mu-badge" style="margin-bottom:0.3em;"><i class="fas fa-calendar"></i> {{ $order->created_at ? \Carbon\Carbon::parse($order->created_at)->format('d M Y H:i') : '-' }}</small>
                             </div>
                             <div style="flex:1;min-width:150px;">
                                 <h6 class="mu-card-title">{{ $order->user->name ?? $order->nama_pemesan }}</h6>
@@ -76,7 +76,7 @@
                                 @endif
                                 @if($order->estimated_delivery)
                                 <div style="margin-top:0.5em;">
-                                    <small><strong>Estimasi Pengiriman:</strong> {{ $order->estimated_delivery->format('d M Y H:i') }}</small>
+                                    <small><strong>Estimasi Pengiriman:</strong> {{ $order->estimated_delivery ? \Carbon\Carbon::parse($order->estimated_delivery)->format('d M Y H:i') : '-' }}</small>
                                 </div>
                                 @endif
                                 @if($order->confirmed_at)
@@ -86,7 +86,7 @@
                                 @endif
                                 @if($order->delivered_at)
                                 <div style="margin-top:0.5em;">
-                                    <small><strong>Dikirim:</strong> {{ $order->delivered_at->format('d M Y H:i') }}</small>
+                                    <small><strong>Dikirim:</strong> {{ $order->delivered_at ? \Carbon\Carbon::parse($order->delivered_at)->format('d M Y H:i') : '-' }}</small>
                                 </div>
                                 @endif
                             </div>
