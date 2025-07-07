@@ -141,8 +141,12 @@
       btn && btn.addEventListener('click', function() {
         if(menu.style.display === 'block') {
           menu.style.display = 'none';
+          document.body.style.overflowX = '';
+          document.documentElement.style.overflowX = '';
         } else {
           menu.style.display = 'block';
+          document.body.style.overflowX = 'hidden';
+          document.documentElement.style.overflowX = 'hidden';
         }
       });
       // Auto close menu on link click (mobile only)
@@ -151,6 +155,8 @@
           link.addEventListener('click', function() {
             if(window.innerWidth <= 700) {
               menu.style.display = 'none';
+              document.body.style.overflowX = '';
+              document.documentElement.style.overflowX = '';
             }
           });
         });

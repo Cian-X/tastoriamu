@@ -653,7 +653,7 @@ body { background: #fff; color: #222; font-family: Arial, sans-serif; }
     border-radius: 0 0 18px 18px !important;
     z-index: 1001 !important;
     padding: 0.5em 0 1em 0 !important;
-    width: 100vw !important;
+    width: 100% !important;
     min-width: 0 !important;
     display: none !important;
     align-items: stretch !important;
