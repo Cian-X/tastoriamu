@@ -36,4 +36,28 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection
+
+@push('styles')
+<style>
+.mu-table th {
+    background: #DA291C !important;
+    color: #fff !important;
+}
+.mu-btn.mu-btn-danger {
+    background: #DA291C;
+    color: #fff;
+    border: none;
+    border-radius: 0.7em;
+    font-weight: 700;
+    padding: 0.5em 1.1em;
+    font-size: 1.1em;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px #da291c22;
+}
+.mu-btn.mu-btn-danger:hover {
+    background: #B71C1C;
+    color: #fff;
+}
+</style>
+@endpush 
