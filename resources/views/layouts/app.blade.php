@@ -97,6 +97,16 @@
           menu.style.display = 'block';
         }
       });
+      // Auto close menu on link click (mobile only)
+      if(menu) {
+        menu.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            if(window.innerWidth <= 700) {
+              menu.style.display = 'none';
+            }
+          });
+        });
+      }
       window.addEventListener('resize', checkMobile);
       window.addEventListener('DOMContentLoaded', checkMobile);
     })();
