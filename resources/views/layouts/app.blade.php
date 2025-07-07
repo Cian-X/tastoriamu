@@ -9,6 +9,7 @@
     <style>
         body { background: #e5e5e5; }
     </style>
+    @stack('styles')
 </head>
 <body>
     <nav class="mu-navbar">
