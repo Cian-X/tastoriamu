@@ -15,7 +15,10 @@
     <nav class="mu-navbar">
         <div class="mu-container">
             <a href="/" class="mu-logo"><i class="fas fa-fire"></i> Tastoria</a>
-            <ul class="mu-nav">
+            <button class="mu-hamburger" id="muHamburgerBtn" aria-label="Menu" style="display:none;">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="mu-nav" id="muNavMenu">
                 <li><a href="/" @if(request()->is('/')) class="active" @endif>Beranda</a></li>
                 <li><a href="/foods" @if(request()->is('foods')) class="active" @endif>Menu</a></li>
                 <li><a href="/orders" @if(request()->is('orders')) class="active" @endif>Pesanan</a></li>
@@ -71,5 +74,32 @@
             <span>&copy; {{ date('Y') }} Tastoria - Red Passion Food</span>
         </div>
     </footer>
+    <script>
+    // Hamburger menu mobile only
+    (function() {
+      var btn = document.getElementById('muHamburgerBtn');
+      var menu = document.getElementById('muNavMenu');
+      function checkMobile() {
+        if(window.innerWidth <= 700) {
+          btn.style.display = 'block';
+          menu.classList.add('mu-nav-mobile');
+          menu.style.display = 'none';
+        } else {
+          btn.style.display = 'none';
+          menu.classList.remove('mu-nav-mobile');
+          menu.style.display = '';
+        }
+      }
+      btn && btn.addEventListener('click', function() {
+        if(menu.style.display === 'block') {
+          menu.style.display = 'none';
+        } else {
+          menu.style.display = 'block';
+        }
+      });
+      window.addEventListener('resize', checkMobile);
+      window.addEventListener('DOMContentLoaded', checkMobile);
+    })();
+    </script>
 </body>
 </html> 
