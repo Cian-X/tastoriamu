@@ -226,7 +226,10 @@ body {
 }
 @media (max-width: 700px) {
     .mu-hero, .mu-hero-full {
-        border-radius: 0 0 18px 18px !important;
+        border-radius: 0 !important;
+    }
+    .mu-hero-wave {
+        display: none !important;
     }
 }
 
