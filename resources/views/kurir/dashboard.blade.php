@@ -17,16 +17,35 @@
 .kurir-hero {
     background: var(--tastoria-red);
     color: #fff;
-    border-radius: 1.2em 1.2em 0 0;
-    padding: 3em 2.5em 2.5em 2.5em;
+    border-radius: 2em 2em 0 0;
+    padding: 3.2em 2.5em 2.7em 2.5em;
     display: flex;
     align-items: center;
-    gap: 2.2em;
+    gap: 2em;
     box-shadow: var(--tastoria-shadow);
     position: relative;
     overflow: hidden;
     min-height: 180px;
     margin-bottom: 1.5em;
+}
+.kurir-hero-svg-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kurir-hero-svg-glow {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff7 0%, #B3A36922 80%, transparent 100%);
+    filter: blur(12px);
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
 }
 .kurir-hero-svg {
     width: 140px;
@@ -39,10 +58,8 @@
     box-shadow: 0 6px 32px 0 #b3a36933;
     margin-right: 0.5em;
     animation: motor-bounce 2.5s infinite cubic-bezier(.68,-0.55,.27,1.55);
-}
-@keyframes motor-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    border: 3px solid var(--tastoria-gold);
+    z-index: 1;
 }
 .kurir-hero-content {
     display: flex;
@@ -52,37 +69,51 @@
     min-width: 0;
 }
 .kurir-hero-title {
-    font-size: 2.7em;
+    font-size: 2.9em;
     font-weight: 900;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.25em;
     letter-spacing: 1px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    line-height: 1.1;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.18);
+    line-height: 1.08;
 }
 .kurir-hero-badge {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.92);
     color: var(--tastoria-gold);
-    font-size: 1.13em;
-    font-weight: 800;
-    border-radius: 0.7em;
-    padding: 0.45em 1.5em;
-    box-shadow: 0 2px 8px #b3a36922;
+    font-size: 1.18em;
+    font-weight: 900;
+    border-radius: 0.9em;
+    padding: 0.5em 1.7em;
+    box-shadow: 0 4px 16px #b3a36933;
     display: inline-block;
     margin: 0.2em 0 0.7em 0;
-    backdrop-filter: blur(4px);
-    border: 1.5px solid #e7d7b1;
+    backdrop-filter: blur(6px);
+    border: 2px solid #e7d7b1;
     max-width: 100vw;
     white-space: nowrap;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+}
+.kurir-hero-badge .badge-emoji {
+    font-size: 1.2em;
+    margin-right: 0.1em;
 }
 .kurir-hero-subtitle {
-    font-size: 1.05em;
+    font-size: 1.08em;
     color: #fff;
-    opacity: 0.85;
+    opacity: 0.90;
     margin-top: 0.1em;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.2px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.13);
     line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.kurir-hero-subtitle .subtitle-emoji {
+    font-size: 1.1em;
 }
 .kurir-stat {
     display: flex;
@@ -281,7 +312,7 @@
 @media (max-width: 900px) {
     .kurir-stat { flex-direction: column; gap: 1.2em; }
     .kurir-hero { flex-direction: column; gap: 1.2em; text-align: center; padding: 2em 0.7em 1.5em 0.7em; }
-    .kurir-hero-svg { margin: 0 auto 1em auto; }
+    .kurir-hero-svg-wrap { margin: 0 auto 1em auto; }
     .kurir-hero-content { align-items: center; }
 }
 @media (max-width: 600px) {
@@ -303,28 +334,31 @@
 <div class="mu-container" style="max-width:1100px;margin:2rem auto;">
     <div class="mu-card" style="padding:0;overflow:hidden;background:var(--tastoria-bg);">
         <div class="kurir-hero">
-            <div class="kurir-hero-svg">
-                <!-- SVG motor delivery animasi -->
-                <svg width="100" height="100" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="40" r="40" fill="#fff3"/>
-                  <g>
-                    <rect x="30" y="38" width="20" height="8" rx="2" fill="#DA291C"/>
-                    <rect x="50" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
-                    <rect x="22" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
-                    <rect x="36" y="30" width="8" height="8" rx="2" fill="#DA291C"/>
-                    <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3">
-                      <animateTransform attributeName="transform" type="rotate" from="0 26 50" to="360 26 50" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3">
-                      <animateTransform attributeName="transform" type="rotate" from="0 54 50" to="360 54 50" dur="2s" repeatCount="indefinite"/>
-                    </circle>
-                  </g>
-                </svg>
+            <div class="kurir-hero-svg-wrap">
+                <div class="kurir-hero-svg-glow"></div>
+                <div class="kurir-hero-svg">
+                    <!-- SVG motor delivery animasi -->
+                    <svg width="100" height="100" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="40" cy="40" r="40" fill="#fff3"/>
+                      <g>
+                        <rect x="30" y="38" width="20" height="8" rx="2" fill="#DA291C"/>
+                        <rect x="50" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
+                        <rect x="22" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
+                        <rect x="36" y="30" width="8" height="8" rx="2" fill="#DA291C"/>
+                        <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3">
+                          <animateTransform attributeName="transform" type="rotate" from="0 26 50" to="360 26 50" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3">
+                          <animateTransform attributeName="transform" type="rotate" from="0 54 50" to="360 54 50" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                      </g>
+                    </svg>
+                </div>
             </div>
             <div class="kurir-hero-content">
                 <div class="kurir-hero-title">Dashboard Kurir</div>
-                <span class="kurir-hero-badge">Selamat datang, {{ auth()->user()->name }}!</span>
-                <div class="kurir-hero-subtitle">Siap mengantarkan pesanan dengan semangat juara! 🚀</div>
+                <span class="kurir-hero-badge"><span class="badge-emoji">👋</span>Selamat datang, {{ auth()->user()->name }}!</span>
+                <div class="kurir-hero-subtitle"><span class="subtitle-emoji">🏅</span>Siap mengantarkan pesanan dengan semangat juara!</div>
             </div>
         </div>
         <div class="mu-card-body" style="padding-top:2em;">
