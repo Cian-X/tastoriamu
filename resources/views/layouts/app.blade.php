@@ -22,7 +22,9 @@
                 @guest
                     <li><a href="/login" @if(request()->is('login')) class="active" @endif>Login</a></li>
                 @else
-                    @if(auth()->user()->role === 'kurir')
+                    @if(auth()->user()->role === 'admin')
+                        <li><a href="/admin" @if(request()->is('admin')) class="active" @endif>Dashboard</a></li>
+                    @elseif(auth()->user()->role === 'kurir')
                         <li><a href="/kurir/dashboard" @if(request()->is('kurir/dashboard*')) class="active" @endif>Dashboard</a></li>
                     @elseif(auth()->user()->role === 'user')
                         <li><a href="/user/dashboard" @if(request()->is('user/dashboard*')) class="active" @endif>Dashboard</a></li>
