@@ -225,10 +225,12 @@ body {
     .mu-card-body { padding: 1rem; }
 }
 @media (max-width: 700px) {
-    .mu-hero, .mu-hero-full, .mu-main, .mu-container, .mu-section {
+    .mu-hero, .mu-hero-full, .mu-main, .mu-container, .mu-section,
+    .mu-hero-overlay, .mu-hero-bgimg, .mu-hero-food, .mu-hero-food-img, .mu-hero-food-overlay {
         border-radius: 0 !important;
         overflow: visible !important;
         background: #fff !important;
+        box-shadow: none !important;
     }
     .mu-hero .mu-btn,
     .mu-hero .mu-btn-outline {
