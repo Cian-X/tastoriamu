@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tastoria - Rasa yang Membawa Kemenangan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/css/mu-theme.css?v=fixoverflow2">
+    {{-- <link rel="stylesheet" href="/css/mu-theme.css?v=fixoverflow2"> --}}
     <style>
         body { background: #e5e5e5; }
     </style>
