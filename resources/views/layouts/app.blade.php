@@ -13,20 +13,23 @@
     <style>
     @media (max-width: 700px) {
       .mu-nav {
-        display: none !important;
-        flex-direction: column !important;
-        gap: 0 !important;
-        width: 100vw !important;
-        position: absolute !important;
+        position: fixed !important;
+        top: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        top: 64px !important;
+        width: 100vw !important;
+        min-width: 0 !important;
+        max-width: 100vw !important;
         background: #DA291C !important;
-        z-index: 1001 !important;
-        align-items: stretch !important;
+        z-index: 2000 !important;
         box-shadow: 0 8px 32px rgba(218,41,28,0.13) !important;
         border-radius: 0 0 18px 18px !important;
-        padding: 0.5em 0 1em 0 !important;
+        padding: 1.5em 0 1em 0 !important;
+        margin: 0 !important;
+        overflow-x: hidden !important;
+      }
+      body, html {
+        overflow-x: hidden !important;
       }
       .mu-nav[style*='display: block'] {
         display: flex !important;
