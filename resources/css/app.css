@@ -231,6 +231,13 @@ body {
     .mu-hero-wave {
         display: none !important;
     }
+    .mu-container, .mu-main {
+        border-radius: 0 !important;
+        overflow: visible !important;
+    }
+    .mu-food-container, .mu-section, .mu-main {
+        background: #fff !important;
+    }
 }
 
 /* CSS Reset Dasar */
