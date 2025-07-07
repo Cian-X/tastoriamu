@@ -81,7 +81,7 @@
                                 @endif
                                 @if($order->confirmed_at)
                                 <div style="margin-top:0.5em;">
-                                    <small><strong>Dikonfirmasi:</strong> {{ $order->confirmed_at->format('d M Y H:i') }}</small>
+                                    <small><strong>Dikonfirmasi:</strong> {{ $order->confirmed_at ? \Carbon\Carbon::parse($order->confirmed_at)->format('d M Y H:i') : '-' }}</small>
                                 </div>
                                 @endif
                                 @if($order->delivered_at)
