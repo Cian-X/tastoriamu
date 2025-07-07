@@ -149,7 +149,7 @@
     padding: 1em 1.2em;
     border: none;
 }
-.mu-table td.status-siap {
+.mu-table td.status-siap, .mu-table td.status-selesai {
     color: var(--tastoria-dark);
     background: var(--tastoria-pastel-gold);
     font-weight: 900;
@@ -159,14 +159,15 @@
     font-size: 1.08em;
     letter-spacing: 0.5px;
     padding: 0.6em 1.4em;
-    display: inline-block;
-    box-shadow: 0 2px 8px #e7d7b1cc;
-    margin: 0.1em 0;
-    vertical-align: middle;
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
     transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
 }
-.mu-table td.status-siap:hover {
+.mu-table td.status-siap:hover, .mu-table td.status-selesai:hover {
     background: #f5e7c6;
     box-shadow: 0 4px 16px #e7d7b1cc;
     transform: scale(1.04);
@@ -180,28 +181,6 @@
     min-width: 110px;
     font-size: 1.08em;
     letter-spacing: 0.5px;
-}
-.mu-table td.status-selesai {
-    color: #fff;
-    background: #444;
-    font-weight: 900;
-    border-radius: 0.7em;
-    text-align: center;
-    min-width: 110px;
-    font-size: 1.08em;
-    letter-spacing: 0.5px;
-    padding: 0.6em 1.4em;
-    display: inline-block;
-    box-shadow: 0 2px 8px #bbb;
-    margin: 0.1em 0;
-    vertical-align: middle;
-    border: none;
-    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
-}
-.mu-table td.status-selesai:hover {
-    background: #666;
-    box-shadow: 0 4px 16px #bbb;
-    transform: scale(1.04);
 }
 .mu-btn.mu-btn-primary {
     background: var(--tastoria-red);
@@ -301,8 +280,8 @@
                         <td>{{ $order->nama_pemesan }}</td>
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                        <td class="status-siap"><i class="fas fa-box"></i> Siap antar</td>
-                        <td>
+                        <td style="display:flex;align-items:center;gap:1em;justify-content:center;">
+                            <span class="status-siap"><i class="fas fa-box"></i> Siap antar</span>
                             <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" name="status" value="ambil" class="mu-btn mu-btn-primary"><i class="fas fa-motorcycle"></i> Ambil</button>
