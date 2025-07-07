@@ -18,10 +18,10 @@
     background: var(--tastoria-red);
     color: #fff;
     border-radius: 1.2em 1.2em 0 0;
-    padding: 2.7em 2em 2em 2em;
+    padding: 3em 2.5em 2.5em 2.5em;
     display: flex;
     align-items: center;
-    gap: 2.5em;
+    gap: 2.2em;
     box-shadow: var(--tastoria-shadow);
     position: relative;
     overflow: hidden;
@@ -29,14 +29,14 @@
     margin-bottom: 1.5em;
 }
 .kurir-hero-svg {
-    width: 130px;
-    height: 130px;
-    background: var(--tastoria-glass);
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.7);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    box-shadow: 0 6px 32px 0 #b3a36933;
     margin-right: 0.5em;
     animation: motor-bounce 2.5s infinite cubic-bezier(.68,-0.55,.27,1.55);
 }
@@ -48,34 +48,41 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+    min-width: 0;
 }
 .kurir-hero-title {
-    font-size: 2.5em;
+    font-size: 2.7em;
     font-weight: 900;
     margin-bottom: 0.3em;
     letter-spacing: 1px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    line-height: 1.1;
 }
 .kurir-hero-badge {
-    background: var(--tastoria-glass);
+    background: rgba(255,255,255,0.85);
     color: var(--tastoria-gold);
-    font-size: 1.1em;
-    font-weight: 700;
-    border-radius: 0.5em;
-    padding: 0.3em 1.1em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-size: 1.13em;
+    font-weight: 800;
+    border-radius: 0.7em;
+    padding: 0.45em 1.5em;
+    box-shadow: 0 2px 8px #b3a36922;
     display: inline-block;
-    margin-top: 0.5em;
+    margin: 0.2em 0 0.7em 0;
     backdrop-filter: blur(4px);
+    border: 1.5px solid #e7d7b1;
+    max-width: 100vw;
+    white-space: nowrap;
 }
 .kurir-hero-subtitle {
-    font-size: 1.1em;
+    font-size: 1.05em;
     color: #fff;
     opacity: 0.85;
-    margin-top: 0.7em;
+    margin-top: 0.1em;
     font-weight: 500;
     letter-spacing: 0.2px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    line-height: 1.3;
 }
 .kurir-stat {
     display: flex;
@@ -272,9 +279,10 @@
     transform: scale(1.07);
 }
 @media (max-width: 900px) {
-    .kurir-stat { flex-direction: column; gap: 1em; }
-    .kurir-hero { flex-direction: column; gap: 1em; text-align: center; }
+    .kurir-stat { flex-direction: column; gap: 1.2em; }
+    .kurir-hero { flex-direction: column; gap: 1.2em; text-align: center; padding: 2em 0.7em 1.5em 0.7em; }
     .kurir-hero-svg { margin: 0 auto 1em auto; }
+    .kurir-hero-content { align-items: center; }
 }
 @media (max-width: 600px) {
     .mu-container { padding: 0 0.5em; }
@@ -297,7 +305,7 @@
         <div class="kurir-hero">
             <div class="kurir-hero-svg">
                 <!-- SVG motor delivery animasi -->
-                <svg width="90" height="90" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="100" height="100" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="40" cy="40" r="40" fill="#fff3"/>
                   <g>
                     <rect x="30" y="38" width="20" height="8" rx="2" fill="#DA291C"/>
