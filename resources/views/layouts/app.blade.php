@@ -83,11 +83,11 @@
                     @elseif(auth()->user()->role === 'user')
                         <li><a href="/user/dashboard" @if(request()->is('user/dashboard*')) class="active" @endif>Dashboard</a></li>
                     @endif
-                    <li class="mu-nav-item">
-                        <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
-                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    <li class="mu-nav-username" style="font-weight:600;color:#fff;min-width:60px;text-align:left;padding-left:1.5em;">{{ auth()->user()->name }}</li>
+                    <li class="mu-nav-logout">
+                        <form action="{{ route('logout') }}" method="POST" style="display:block;width:100%;">
                             @csrf
-                            <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
+                            <button type="submit" class="mu-logout-btn">Logout</button>
                         </form>
                     </li>
                 @endguest
