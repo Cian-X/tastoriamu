@@ -12,12 +12,13 @@
     --tastoria-glass: rgba(255,255,255,0.7);
     --tastoria-pastel-gold: #e7d7b1;
     --tastoria-pastel-red: #f8bdb7;
+    --tastoria-pastel-gray: #f3f3f3;
 }
 .kurir-hero {
     background: linear-gradient(90deg, var(--tastoria-red) 60%, var(--tastoria-gold) 100%);
     color: #fff;
     border-radius: 1.2em 1.2em 0 0;
-    padding: 2.5em 2em 1.5em 2em;
+    padding: 2.7em 2em 2em 2em;
     display: flex;
     align-items: center;
     gap: 2.5em;
@@ -25,10 +26,11 @@
     position: relative;
     overflow: hidden;
     min-height: 180px;
+    margin-bottom: 1.5em;
 }
 .kurir-hero-svg {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     background: var(--tastoria-glass);
     border-radius: 50%;
     display: flex;
@@ -36,6 +38,11 @@
     justify-content: center;
     box-shadow: 0 2px 16px rgba(0,0,0,0.10);
     margin-right: 0.5em;
+    animation: motor-bounce 2.5s infinite cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes motor-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 .kurir-hero-content {
     display: flex;
@@ -43,7 +50,7 @@
     justify-content: center;
 }
 .kurir-hero-title {
-    font-size: 2.4em;
+    font-size: 2.5em;
     font-weight: 900;
     margin-bottom: 0.3em;
     letter-spacing: 1px;
@@ -61,6 +68,15 @@
     margin-top: 0.5em;
     backdrop-filter: blur(4px);
 }
+.kurir-hero-subtitle {
+    font-size: 1.1em;
+    color: #fff;
+    opacity: 0.85;
+    margin-top: 0.7em;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
 .kurir-stat {
     display: flex;
     gap: 2em;
@@ -71,30 +87,37 @@
 .kurir-stat-card {
     background: #fff;
     border-radius: 1.2em;
-    box-shadow: var(--tastoria-shadow-card);
-    padding: 1.5em 2.2em;
+    box-shadow: 0 4px 24px rgba(218,41,28,0.10);
+    padding: 1.7em 2.3em;
     min-width: 220px;
     text-align: center;
     flex: 1 1 220px;
     position: relative;
     overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
     cursor: pointer;
     margin-bottom: 1em;
-    border: 2px solid transparent;
+    border: 2px solid var(--tastoria-pastel-gold);
     will-change: transform;
 }
 .kurir-stat-card:hover {
-    box-shadow: 0 8px 32px rgba(218,41,28,0.13);
-    transform: translateY(-6px) scale(1.04);
-    border: 2px solid var(--tastoria-gold);
+    box-shadow: 0 12px 32px rgba(218,41,28,0.18);
+    transform: translateY(-8px) scale(1.045);
+    border: 2.5px solid var(--tastoria-gold);
 }
 .kurir-stat-icon {
-    font-size: 2.7em;
+    font-size: 2.3em;
     margin-bottom: 0.2em;
     color: var(--tastoria-gold);
-    display: block;
-    filter: drop-shadow(0 2px 8px #e7d7b1cc);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5em;
+    height: 2.5em;
+    background: var(--tastoria-pastel-gold);
+    border-radius: 50%;
+    margin: 0 auto 0.3em auto;
+    box-shadow: 0 2px 8px #e7d7b1cc;
 }
 .kurir-stat-label {
     color: var(--tastoria-gold);
@@ -104,7 +127,7 @@
     letter-spacing: 0.5px;
 }
 .kurir-stat-value {
-    font-size: 2.5em;
+    font-size: 2.6em;
     font-weight: 900;
     color: var(--tastoria-red);
     letter-spacing: 1px;
@@ -128,7 +151,7 @@
     border-spacing: 0;
 }
 .mu-table th {
-    background: var(--tastoria-red) !important;
+    background: linear-gradient(90deg, var(--tastoria-red) 60%, var(--tastoria-gold) 100%) !important;
     color: #fff !important;
     position: sticky;
     top: 0;
@@ -143,13 +166,13 @@
 }
 .mu-table tbody tr:hover {
     background: #fff6f5;
-    box-shadow: 0 2px 8px rgba(218,41,28,0.07);
+    box-shadow: 0 2px 12px #f8bdb7cc;
 }
 .mu-table td, .mu-table th {
-    padding: 1em 1.2em;
+    padding: 1.1em 1.3em;
     border: none;
 }
-.mu-table td.status-siap, .mu-table td.status-selesai {
+.mu-table td.status-siap {
     color: var(--tastoria-dark);
     background: var(--tastoria-pastel-gold);
     font-weight: 900;
@@ -159,28 +182,57 @@
     font-size: 1.08em;
     letter-spacing: 0.5px;
     padding: 0.6em 1.4em;
-    display: flex;
+    box-shadow: 0 2px 8px #e7d7b1cc;
+    margin: 0.1em 0;
+    vertical-align: middle;
+    border: none;
+    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+    gap: 0.5em;
+    cursor: pointer;
 }
-.mu-table td.status-siap:hover, .mu-table td.status-selesai:hover {
+.mu-table td.status-siap:hover {
     background: #f5e7c6;
     box-shadow: 0 4px 16px #e7d7b1cc;
-    transform: scale(1.04);
+    transform: scale(1.04) rotate(-2deg);
+    animation: badge-shake 0.4s;
 }
-.mu-table td.status-perjalanan {
+.mu-table td.status-selesai {
     color: #fff;
-    background: var(--tastoria-red);
-    font-weight: 800;
+    background: #444;
+    font-weight: 900;
     border-radius: 0.7em;
     text-align: center;
     min-width: 110px;
     font-size: 1.08em;
     letter-spacing: 0.5px;
+    padding: 0.6em 1.4em;
+    box-shadow: 0 2px 8px #bbb;
+    margin: 0.1em 0;
+    vertical-align: middle;
+    border: none;
+    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    cursor: pointer;
+}
+.mu-table td.status-selesai:hover {
+    background: #666;
+    box-shadow: 0 4px 16px #bbb;
+    transform: scale(1.04) rotate(2deg);
+    animation: badge-shake 0.4s;
+}
+@keyframes badge-shake {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.04) rotate(-6deg); }
+    40% { transform: scale(1.04) rotate(6deg); }
+    60% { transform: scale(1.04) rotate(-3deg); }
+    80% { transform: scale(1.04) rotate(2deg); }
+    100% { transform: scale(1.04) rotate(0deg); }
 }
 .mu-btn.mu-btn-primary {
     background: var(--tastoria-red);
@@ -193,6 +245,25 @@
     font-size: 1.08em;
     letter-spacing: 0.5px;
     border: none;
+    position: relative;
+    overflow: hidden;
+}
+.mu-btn.mu-btn-primary:active::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 200%; height: 200%;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    transform: translate(-50%,-50%) scale(0.7);
+    animation: ripple 0.4s linear;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes ripple {
+    0% { opacity: 0.7; transform: translate(-50%,-50%) scale(0.7); }
+    80% { opacity: 0.3; transform: translate(-50%,-50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
 }
 .mu-btn.mu-btn-primary:hover {
     background: var(--tastoria-gold);
@@ -225,22 +296,27 @@
     <div class="mu-card" style="padding:0;overflow:hidden;background:var(--tastoria-bg);">
         <div class="kurir-hero">
             <div class="kurir-hero-svg">
-                <!-- SVG motor delivery -->
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG motor delivery animasi -->
+                <svg width="90" height="90" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="40" cy="40" r="40" fill="#fff3"/>
                   <g>
                     <rect x="30" y="38" width="20" height="8" rx="2" fill="#DA291C"/>
                     <rect x="50" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
                     <rect x="22" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
                     <rect x="36" y="30" width="8" height="8" rx="2" fill="#DA291C"/>
-                    <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3"/>
-                    <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3"/>
+                    <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3">
+                      <animateTransform attributeName="transform" type="rotate" from="0 26 50" to="360 26 50" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3">
+                      <animateTransform attributeName="transform" type="rotate" from="0 54 50" to="360 54 50" dur="2s" repeatCount="indefinite"/>
+                    </circle>
                   </g>
                 </svg>
             </div>
             <div class="kurir-hero-content">
                 <div class="kurir-hero-title">Dashboard Kurir</div>
                 <span class="kurir-hero-badge">Selamat datang, {{ auth()->user()->name }}!</span>
+                <div class="kurir-hero-subtitle">Siap mengantarkan pesanan dengan semangat juara! 🚀</div>
             </div>
         </div>
         <div class="mu-card-body" style="padding-top:2em;">
@@ -280,7 +356,7 @@
                         <td>{{ $order->nama_pemesan }}</td>
                         <td>{{ $order->alamat }}</td>
                         <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
-                        <td><span class="status-siap" style="margin-right:0.5em;"><i class="fas fa-box"></i> Siap antar</span></td>
+                        <td><span class="status-siap"><i class="fas fa-box"></i> Siap antar</span></td>
                         <td>
                             <form action="{{ route('kurir.order.update', $order->id) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -361,20 +437,24 @@
             @if($activeOrders->count() == 0 && $deliveringOrders->count() == 0 && $finishedOrders->count() == 0)
             <div style="text-align:center;padding:3.5rem 0;">
                 <div style="display:flex;justify-content:center;align-items:center;">
-                  <svg width="120" height="120" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="160" height="160" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:motor-bounce 2.5s infinite cubic-bezier(.68,-0.55,.27,1.55);">
                     <circle cx="40" cy="40" r="40" fill="#f8bdb7"/>
                     <g>
                       <rect x="30" y="38" width="20" height="8" rx="2" fill="#DA291C"/>
                       <rect x="50" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
                       <rect x="22" y="38" width="8" height="8" rx="2" fill="#B3A369"/>
                       <rect x="36" y="30" width="8" height="8" rx="2" fill="#DA291C"/>
-                      <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3"/>
-                      <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3"/>
+                      <circle cx="26" cy="50" r="6" fill="#fff" stroke="#B3A369" stroke-width="3">
+                        <animateTransform attributeName="transform" type="rotate" from="0 26 50" to="360 26 50" dur="2s" repeatCount="indefinite"/>
+                      </circle>
+                      <circle cx="54" cy="50" r="6" fill="#fff" stroke="#DA291C" stroke-width="3">
+                        <animateTransform attributeName="transform" type="rotate" from="0 54 50" to="360 54 50" dur="2s" repeatCount="indefinite"/>
+                      </circle>
                     </g>
                   </svg>
                 </div>
                 <h5 style="color:#888;font-size:1.3em;font-weight:900;margin-top:1.2em;">Belum Ada Pesanan</h5>
-                <p style="color:#888;">Belum ada pesanan yang perlu diantar. Silakan tunggu pesanan baru masuk.</p>
+                <p style="color:#888;">Belum ada pesanan yang perlu diantar. Tetap semangat, pesanan baru akan segera datang!</p>
             </div>
             @endif
         </div>
