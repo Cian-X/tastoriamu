@@ -183,13 +183,25 @@
 }
 .mu-table td.status-selesai {
     color: #fff;
-    background: var(--tastoria-dark);
-    font-weight: 800;
+    background: #444;
+    font-weight: 900;
     border-radius: 0.7em;
     text-align: center;
     min-width: 110px;
     font-size: 1.08em;
     letter-spacing: 0.5px;
+    padding: 0.6em 1.4em;
+    display: inline-block;
+    box-shadow: 0 2px 8px #bbb;
+    margin: 0.1em 0;
+    vertical-align: middle;
+    border: none;
+    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+}
+.mu-table td.status-selesai:hover {
+    background: #666;
+    box-shadow: 0 4px 16px #bbb;
+    transform: scale(1.04);
 }
 .mu-btn.mu-btn-primary {
     background: var(--tastoria-red);
