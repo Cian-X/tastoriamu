@@ -23,7 +23,7 @@
                         <td>{{ ucfirst($user->role) }}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="mu-btn mu-btn-outline"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.users.delete', $user->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="mu-btn mu-btn-danger" onclick="return confirm('Yakin hapus user ini?')"><i class="fas fa-trash"></i></button>
