@@ -238,6 +238,21 @@ body {
     .mu-food-container, .mu-section, .mu-main {
         background: #fff !important;
     }
+    .mu-hero .mu-btn,
+    .mu-hero .mu-btn-outline {
+        width: 90vw !important;
+        max-width: 340px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+        font-size: 1.1em !important;
+        padding: 0.9em 0 !important;
+        text-align: center !important;
+        box-sizing: border-box;
+    }
+    .mu-hero .mu-btn-outline {
+        margin-top: 1em !important;
+    }
 }
 
 /* CSS Reset Dasar */
