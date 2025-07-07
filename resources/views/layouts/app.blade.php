@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tastoria - Rasa yang Membawa Kemenangan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    {{-- <link rel="stylesheet" href="/css/mu-theme.css?v=fixoverflow2"> --}}
+    <link rel="stylesheet" href="/css/mu-theme.css?v=fixoverflow2">
     <style>
         body { background: #e5e5e5; }
     </style>
@@ -13,23 +13,20 @@
     <style>
     @media (max-width: 700px) {
       .mu-nav {
-        position: fixed !important;
-        top: 0 !important;
+        display: none !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100vw !important;
+        position: absolute !important;
         left: 0 !important;
         right: 0 !important;
-        width: 100vw !important;
-        min-width: 0 !important;
-        max-width: 100vw !important;
+        top: 64px !important;
         background: #DA291C !important;
-        z-index: 2000 !important;
+        z-index: 1001 !important;
+        align-items: stretch !important;
         box-shadow: 0 8px 32px rgba(218,41,28,0.13) !important;
         border-radius: 0 0 18px 18px !important;
-        padding: 1.5em 0 1em 0 !important;
-        margin: 0 !important;
-        overflow-x: hidden !important;
-      }
-      body, html {
-        overflow-x: hidden !important;
+        padding: 0.5em 0 1em 0 !important;
       }
       .mu-nav[style*='display: block'] {
         display: flex !important;
@@ -83,10 +80,11 @@
                     @elseif(auth()->user()->role === 'user')
                         <li><a href="/user/dashboard" @if(request()->is('user/dashboard*')) class="active" @endif>Dashboard</a></li>
                     @endif
-                    <li>
-                        <a href="#" id="logout-link" style="color:#fff;">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                    <li class="mu-nav-item">
+                        <span style="color:#fff;font-weight:500;min-width:60px;text-align:center;">{{ auth()->user()->name }}</span>
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                             @csrf
+                            <button type="submit" style="background:none;border:none;color:#fff;font-weight:500;cursor:pointer;padding:0 0.7em;font-size:1em;transition:color 0.2s;" onmouseover="this.style.color='#B3A369'" onmouseout="this.style.color='#fff'">Logout</button>
                         </form>
                     </li>
                 @endguest
@@ -166,14 +164,6 @@
       window.addEventListener('resize', checkMobile);
       window.addEventListener('DOMContentLoaded', checkMobile);
     })();
-    // Logout via link
-    var logoutLink = document.getElementById('logout-link');
-    if(logoutLink) {
-      logoutLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('logout-form').submit();
-      });
-    }
     </script>
 </body>
 </html> 
