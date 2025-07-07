@@ -42,6 +42,36 @@
                         <a href="#order{{ $order->id }}" class="admin-order-detail-btn"><i class="fas fa-eye"></i> Detail</a>
                     </div>
                 </div>
+                <div class="collapse" id="order{{ $order->id }}" style="margin-top:1.5em;">
+                    <div class="mu-card mu-card-body" style="background:#f9f9f9;border-radius:1em;">
+                        <h6 style="font-weight:700;margin-bottom:1em;">Detail Pesanan:</h6>
+                        @php $items = is_array($order->items) ? $order->items : json_decode($order->items, true); @endphp
+                        @foreach($items as $item)
+                        <div style="display:flex;align-items:center;gap:1em;margin-bottom:0.7em;">
+                            @if(isset($item['gambar']))
+                                <img src="{{ asset($item['gambar']) }}" alt="{{ $item['nama'] }}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid #eee;">
+                            @else
+                                @php
+                                  $food = \App\Models\Food::where('nama', $item['nama'])->first();
+                                @endphp
+                                @if($food && $food->gambar)
+                                  <img src="{{ asset($food->gambar) }}" alt="{{ $item['nama'] }}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid #eee;">
+                                @endif
+                            @endif
+                            <div>
+                                <b>{{ $item['nama'] }}</b> x{{ $item['qty'] }}<br>
+                                <span>Rp{{ number_format($item['harga'] * $item['qty'], 0, ',', '.') }}</span>
+                            </div>
+                        </div>
+                        @endforeach
+                        @if(!empty($order->catatan))
+                        <div style="margin-top:1em;">
+                            <span style="color:#DA291C;font-weight:600;">Catatan:</span><br>
+                            <span>{{ $order->catatan }}</span>
+                        </div>
+                        @endif
+                    </div>
+                </div>
                 @endforeach
             @else
                 <div style="text-align:center;padding:2.5rem 0;">

@@ -14,14 +14,14 @@
     --tastoria-pastel-red: #f8bdb7;
     --tastoria-pastel-gray: #f3f3f3;
 }
-.kurir-hero {
+    .kurir-hero {
     background: var(--tastoria-red);
-    color: #fff;
+        color: #fff;
     border-radius: 2em 2em 0 0;
     padding: 3.2em 2.5em 2.7em 2.5em;
-    display: flex;
-    align-items: center;
-    gap: 2em;
+        display: flex;
+        align-items: center;
+        gap: 2em;
     box-shadow: var(--tastoria-shadow);
     position: relative;
     overflow: hidden;
@@ -51,7 +51,7 @@
     width: 140px;
     height: 140px;
     background: rgba(255,255,255,0.7);
-    border-radius: 50%;
+        border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,12 +67,12 @@
     justify-content: center;
     align-items: flex-start;
     min-width: 0;
-}
-.kurir-hero-title {
+    }
+    .kurir-hero-title {
     font-size: 2.9em;
     font-weight: 900;
     margin-bottom: 0.25em;
-    letter-spacing: 1px;
+        letter-spacing: 1px;
     text-shadow: 0 4px 18px rgba(0,0,0,0.18);
     line-height: 1.08;
 }
@@ -114,21 +114,21 @@
 }
 .kurir-hero-subtitle .subtitle-emoji {
     font-size: 1.1em;
-}
-.kurir-stat {
-    display: flex;
-    gap: 2em;
-    margin: 2em 0 1.5em 0;
-    flex-wrap: wrap;
+    }
+    .kurir-stat {
+        display: flex;
+        gap: 2em;
+        margin: 2em 0 1.5em 0;
+        flex-wrap: wrap;
     justify-content: center;
-}
-.kurir-stat-card {
-    background: #fff;
+    }
+    .kurir-stat-card {
+        background: #fff;
     border-radius: 1.2em;
     box-shadow: 0 4px 24px rgba(218,41,28,0.10);
     padding: 1.7em 2.3em;
     min-width: 220px;
-    text-align: center;
+        text-align: center;
     flex: 1 1 220px;
     position: relative;
     overflow: hidden;
@@ -156,15 +156,15 @@
     border-radius: 50%;
     margin: 0 auto 0.3em auto;
     box-shadow: 0 2px 8px #e7d7b1cc;
-}
-.kurir-stat-label {
+    }
+    .kurir-stat-label {
     color: var(--tastoria-gold);
     font-weight: 700;
     font-size: 1.1em;
-    margin-bottom: 0.3em;
+        margin-bottom: 0.3em;
     letter-spacing: 0.5px;
-}
-.kurir-stat-value {
+    }
+    .kurir-stat-value {
     font-size: 2.6em;
     font-weight: 900;
     color: var(--tastoria-red);
@@ -187,10 +187,10 @@
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-}
-.mu-table th {
+    }
+    .mu-table th {
     background: var(--tastoria-red) !important;
-    color: #fff !important;
+        color: #fff !important;
     position: sticky;
     top: 0;
     z-index: 2;
@@ -209,8 +209,8 @@
 .mu-table td, .mu-table th {
     padding: 1.1em 1.3em;
     border: none;
-}
-.mu-table td.status-siap {
+    }
+    .mu-table td.status-siap {
     color: var(--tastoria-dark);
     background: var(--tastoria-pastel-gold);
     font-weight: 900;
@@ -236,9 +236,9 @@
     box-shadow: 0 4px 16px #e7d7b1cc;
     transform: scale(1.04) rotate(-2deg);
     animation: badge-shake 0.4s;
-}
-.mu-table td.status-selesai {
-    color: #fff;
+    }
+    .mu-table td.status-selesai {
+        color: #fff;
     background: #444;
     font-weight: 900;
     border-radius: 0.7em;
@@ -271,10 +271,10 @@
     60% { transform: scale(1.04) rotate(-3deg); }
     80% { transform: scale(1.04) rotate(2deg); }
     100% { transform: scale(1.04) rotate(0deg); }
-}
-.mu-btn.mu-btn-primary {
+    }
+    .mu-btn.mu-btn-primary {
     background: var(--tastoria-red);
-    color: #fff;
+        color: #fff;
     border-radius: 0.7em;
     font-weight: 800;
     transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
@@ -302,10 +302,10 @@
     0% { opacity: 0.7; transform: translate(-50%,-50%) scale(0.7); }
     80% { opacity: 0.3; transform: translate(-50%,-50%) scale(1.2); }
     100% { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
-}
-.mu-btn.mu-btn-primary:hover {
+    }
+    .mu-btn.mu-btn-primary:hover {
     background: var(--tastoria-gold);
-    color: #fff;
+        color: #fff;
     box-shadow: 0 4px 16px rgba(218,41,28,0.13);
     transform: scale(1.07);
 }
@@ -352,7 +352,7 @@
 @media (max-width: 600px) {
     .mu-alert-login { font-size: 1em; padding: 1em 1em 1em 1em; }
     .mu-alert-login .alert-bell { font-size: 1.2em; }
-}
+    }
 </style>
 @endpush
 

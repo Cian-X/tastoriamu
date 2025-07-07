@@ -71,8 +71,8 @@
             <thead><tr><th>Pemesan</th><th>Total</th><th>Status</th><th>Pembayaran</th></tr></thead>
             <tbody>
                 @foreach($recentOrders as $order)
-                <tr>
-                    <td>{{ $order->nama_pemesan }}</td>
+                        <tr>
+                            <td>{{ $order->nama_pemesan }}</td>
                     <td>Rp{{ number_format($order->total_harga,0,',','.') }}</td>
                     <td>
                         @if($order->status == 'menunggu pembayaran')
@@ -94,7 +94,7 @@
                             <span class="mu-badge" style="background:#28a745;color:#fff;">Sudah Bayar</span>
                         @endif
                     </td>
-                </tr>
+                        </tr>
                 @endforeach
             </tbody>
         </table>
