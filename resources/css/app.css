@@ -244,54 +244,10 @@ body {
         gap: 1.1em !important;
         box-sizing: border-box !important;
     }
-    body .mu-howto-step {
-        width: 92vw !important;
-        max-width: 400px !important;
-        min-width: 0 !important;
-        margin: 0.5em auto !important;
-        border-radius: 18px !important;
-        padding: 1.2em 0.7em !important;
-        font-size: 1em !important;
-        box-sizing: border-box !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        justify-content: center !important;
-        gap: 0.5em !important;
-        background: #fff !important;
-        box-shadow: 0 2px 12px #f3f3f3 !important;
-    }
-    body .mu-step-arrow {
-        width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin: 0.1em auto 0.1em auto !important;
-        text-align: center !important;
-        font-size: 1.7em !important;
-        color: #B3A369 !important;
-        background: none !important;
-        box-shadow: none !important;
-    }
-    body .mu-howto-step .mu-step-icon {
-        font-size: 2.2em !important;
-        margin-bottom: 0.2em !important;
-        display: block !important;
-        text-align: center !important;
-    }
-    body .mu-howto-step span:last-child {
-        display: block !important;
-        font-size: 1.08em !important;
-        font-weight: 600 !important;
-        margin-top: 0.1em !important;
-        text-align: center !important;
-    }
+    body .mu-howto-step,
     body .mu-advantage-card {
-        width: 92vw !important;
-        max-width: 400px !important;
-        min-width: 0 !important;
-        margin: 0.5em auto !important;
+        width: min(95vw, 400px) !important;
+        margin: 0.7em auto !important;
         border-radius: 18px !important;
         padding: 1.2em 0.7em !important;
         font-size: 1em !important;
@@ -306,22 +262,32 @@ body {
         box-shadow: 0 2px 12px #f3f3f3 !important;
         transform: none !important;
     }
+    body .mu-step-arrow {
+        width: 100% !important;
+        margin: 0.1em auto 0.1em auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        font-size: 1.7em !important;
+        color: #B3A369 !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+    body .mu-howto-step .mu-step-icon,
     body .mu-advantage-card i {
         font-size: 2.2em !important;
         margin-bottom: 0.2em !important;
         display: block !important;
         text-align: center !important;
     }
-    body .mu-advantage-card h4 {
-        margin: 0.2em 0 0.3em 0 !important;
-        font-size: 1.15em !important;
-        font-weight: 700 !important;
-        text-align: center !important;
-    }
+    body .mu-howto-step span:last-child,
+    body .mu-advantage-card h4,
     body .mu-advantage-card p {
-        margin: 0.1em 0 0 0 !important;
-        font-size: 1em !important;
+        display: block !important;
         text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
     body .mu-hero-section .btn,
     body .mu-hero .btn,
