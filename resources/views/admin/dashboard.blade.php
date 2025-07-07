@@ -173,62 +173,65 @@ window.onclick = function(event) {
     --tastoria-red: #DA291C;
     --tastoria-gold: #B3A369;
     --tastoria-pastel-gold: #f7ecd2;
+    --tastoria-glass: rgba(255,255,255,0.82);
 }
 .admin-stat-row {
     display: flex;
-    gap: 2.5em;
+    gap: 2.7em;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 2.5em;
+    margin-bottom: 2.7em;
 }
 .admin-stat-card {
-    background: #fff;
-    border-radius: 1.5em;
-    box-shadow: 0 6px 32px #da291c18;
-    padding: 2.5em 2.7em 2em 2.7em;
-    min-width: 220px;
+    background: var(--tastoria-glass);
+    border-radius: 1.7em;
+    box-shadow: 0 8px 36px #da291c18;
+    padding: 2.7em 2.9em 2.2em 2.9em;
+    min-width: 230px;
     text-align: center;
-    flex: 1 1 220px;
-    margin-bottom: 1.5em;
+    flex: 1 1 230px;
+    margin-bottom: 1.7em;
     position: relative;
     transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
-    border: 2px solid transparent;
+    border: 2.5px solid var(--tastoria-gold);
+    backdrop-filter: blur(7px);
 }
 .admin-stat-card:hover {
-    box-shadow: 0 12px 40px #da291c33;
-    transform: translateY(-8px) scale(1.045);
-    border: 2.5px solid var(--tastoria-gold);
+    box-shadow: 0 16px 48px #da291c33;
+    transform: translateY(-10px) scale(1.05);
+    border: 3px solid var(--tastoria-gold);
 }
 .admin-stat-icon-wrap {
-    width: 3.2em;
-    height: 3.2em;
+    width: 3.5em;
+    height: 3.5em;
     background: var(--tastoria-pastel-gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 0.5em auto;
-    box-shadow: 0 2px 8px #e7d7b1cc;
+    margin: 0 auto 0.7em auto;
+    box-shadow: 0 4px 18px #b3a36955;
+    border: 2.5px solid var(--tastoria-gold);
 }
 .admin-stat-icon {
-    font-size: 2em;
+    font-size: 2.1em;
     color: var(--tastoria-gold);
     display: block;
 }
 .admin-stat-badge {
     background: var(--tastoria-red);
     color: #fff;
-    font-size: 1.08em;
-    font-weight: 800;
-    border-radius: 0.7em;
-    padding: 0.3em 1.2em;
+    font-size: 1.13em;
+    font-weight: 900;
+    border-radius: 0.8em;
+    padding: 0.35em 1.3em;
     display: inline-block;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.8em;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 8px #da291c22;
 }
 .admin-stat-value {
-    font-size: 2.5em;
+    font-size: 2.7em;
     font-weight: 900;
     color: #222;
     margin-top: 0.2em;
@@ -241,7 +244,7 @@ window.onclick = function(event) {
     100% { transform: scale(1); }
 }
 .admin-nav-row {
-    margin-top: 2.5rem;
+    margin-top: 2.7rem;
     display: flex;
     gap: 1.5em;
     flex-wrap: wrap;
@@ -251,21 +254,21 @@ window.onclick = function(event) {
     background: #fff;
     color: var(--tastoria-red);
     border: 2.5px solid var(--tastoria-red);
-    border-radius: 1.2em;
-    font-weight: 800;
-    padding: 0.9em 2.1em;
-    font-size: 1.13em;
+    border-radius: 1.3em;
+    font-weight: 900;
+    padding: 1em 2.3em;
+    font-size: 1.15em;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px #da291c11;
+    box-shadow: 0 2px 12px #da291c11;
     display: flex;
     align-items: center;
-    gap: 0.9em;
+    gap: 1em;
     cursor: pointer;
     text-decoration: none;
     position: relative;
     overflow: hidden;
 }
-.admin-nav-btn i { font-size: 1.2em; }
+.admin-nav-btn i { font-size: 1.3em; }
 .admin-nav-btn:active::after {
     content: '';
     position: absolute;
@@ -286,52 +289,49 @@ window.onclick = function(event) {
 .admin-nav-btn:hover {
     background: var(--tastoria-red);
     color: #fff;
-    box-shadow: 0 4px 16px #da291c22;
+    box-shadow: 0 8px 24px #da291c22;
 }
 .admin-section {
-    margin-top: 2.7em;
-    background: #fff;
-    border-radius: 1.3em;
-    box-shadow: 0 4px 24px #da291c18;
-    padding: 2.7em 2.5em;
+    margin-top: 3em;
+    background: var(--tastoria-glass);
+    border-radius: 1.5em;
+    box-shadow: 0 8px 36px #da291c18;
+    padding: 3em 2.7em;
+    border: 2.5px solid var(--tastoria-gold);
+    backdrop-filter: blur(7px);
 }
 .admin-section-title {
     text-align: center;
     font-weight: 900;
-    font-size: 1.7em;
-    margin-bottom: 1.5em;
+    font-size: 1.8em;
+    margin-bottom: 1.7em;
     color: #222;
     letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.7em;
+    gap: 0.8em;
 }
 .admin-section-title .section-icon {
-    font-size: 1.3em;
+    font-size: 1.4em;
     color: var(--tastoria-red);
 }
 .admin-section-empty {
     text-align: center;
     color: #888;
-    padding: 3em 0 2em 0;
-}
-.admin-section-empty .empty-icon {
-    font-size: 3.2em;
-    color: #28a745;
-    margin-bottom: 1.2rem;
+    padding: 3.5em 0 2.2em 0;
 }
 .admin-section-empty .empty-svg {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 1.2rem;
+    width: 110px;
+    height: 110px;
+    margin-bottom: 1.5rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 @media (max-width: 900px) {
-    .admin-stat-row { flex-direction: column; gap: 1.2em; }
-    .admin-nav-row { flex-direction: column; gap: 0.7em; }
+    .admin-stat-row { flex-direction: column; gap: 1.3em; }
+    .admin-nav-row { flex-direction: column; gap: 0.9em; }
 }
 </style>
 @endpush
