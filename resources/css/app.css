@@ -241,14 +241,16 @@ body {
     .mu-hero .mu-btn,
     .mu-hero .mu-btn-outline {
         width: 90vw !important;
-        max-width: 340px;
+        max-width: 340px !important;
+        min-width: 0 !important;
         margin-left: auto !important;
         margin-right: auto !important;
         display: block !important;
         font-size: 1.1em !important;
         padding: 0.9em 0 !important;
         text-align: center !important;
-        box-sizing: border-box;
+        box-sizing: border-box !important;
+        border-radius: 12px !important;
     }
     .mu-hero .mu-btn-outline {
         margin-top: 1em !important;
