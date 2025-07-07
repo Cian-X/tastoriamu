@@ -83,11 +83,10 @@
                     @elseif(auth()->user()->role === 'user')
                         <li><a href="/user/dashboard" @if(request()->is('user/dashboard*')) class="active" @endif>Dashboard</a></li>
                     @endif
-                    <li class="mu-nav-username" style="font-weight:600;color:#fff;min-width:60px;text-align:left;padding-left:1.5em;">{{ auth()->user()->name }}</li>
-                    <li class="mu-nav-logout">
-                        <form action="{{ route('logout') }}" method="POST" style="display:block;width:100%;">
+                    <li>
+                        <a href="#" id="logout-link" style="color:#fff;">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
                             @csrf
-                            <button type="submit" class="mu-logout-btn">Logout</button>
                         </form>
                     </li>
                 @endguest
@@ -167,6 +166,14 @@
       window.addEventListener('resize', checkMobile);
       window.addEventListener('DOMContentLoaded', checkMobile);
     })();
+    // Logout via link
+    var logoutLink = document.getElementById('logout-link');
+    if(logoutLink) {
+      logoutLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('logout-form').submit();
+      });
+    }
     </script>
 </body>
 </html> 
