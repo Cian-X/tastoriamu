@@ -322,13 +322,45 @@
     .mu-table th, .mu-table td { font-size: 0.95em; }
     .mu-table { font-size: 0.95em; }
 }
+.mu-alert-login {
+    background: #fff;
+    border-left: 7px solid var(--tastoria-red);
+    box-shadow: 0 4px 18px #da291c18;
+    border-radius: 1em;
+    padding: 1.1em 2em 1.1em 1.7em;
+    display: flex;
+    align-items: center;
+    gap: 1.1em;
+    font-size: 1.18em;
+    font-weight: 700;
+    color: var(--tastoria-red);
+    margin: 1.5em auto 0 auto;
+    max-width: 520px;
+    position: relative;
+    z-index: 2;
+}
+.mu-alert-login .alert-bell {
+    font-size: 1.7em;
+    color: var(--tastoria-red);
+    animation: bell-pulse 1.2s infinite alternate;
+    margin-right: 0.3em;
+}
+@keyframes bell-pulse {
+    0% { transform: scale(1) rotate(-8deg); filter: brightness(1); }
+    60% { transform: scale(1.13) rotate(8deg); filter: brightness(1.2); }
+    100% { transform: scale(1) rotate(-8deg); filter: brightness(1); }
+}
+@media (max-width: 600px) {
+    .mu-alert-login { font-size: 1em; padding: 1em 1em 1em 1em; }
+    .mu-alert-login .alert-bell { font-size: 1.2em; }
+}
 </style>
 @endpush
 
 @section('content')
 @if($activeOrders->count() > 0)
-    <div class="mu-alert-login" style="margin:1.5em auto 0 auto;max-width:700px;">
-        <i class="fas fa-bell"></i> Ada <b>{{ $activeOrders->count() }}</b> pesanan siap diantar!
+    <div class="mu-alert-login">
+        <i class="fas fa-bell alert-bell"></i> Ada <b>{{ $activeOrders->count() }}</b> pesanan siap diantar!
     </div>
 @endif
 <div class="mu-container" style="max-width:1100px;margin:2rem auto;">
