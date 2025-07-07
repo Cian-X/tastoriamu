@@ -7,22 +7,22 @@
             <h4 class="mu-title" style="margin-bottom:2.2rem;"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h4>
             <div class="admin-stat-row">
                 <div class="admin-stat-card">
-                    <span class="admin-stat-icon"><i class="fas fa-users"></i></span>
+                    <span class="admin-stat-icon-wrap"><i class="fas fa-users admin-stat-icon"></i></span>
                     <span class="admin-stat-badge">Total User</span>
                     <div class="admin-stat-value">{{ $totalUsers }}</div>
                 </div>
                 <div class="admin-stat-card">
-                    <span class="admin-stat-icon"><i class="fas fa-utensils"></i></span>
+                    <span class="admin-stat-icon-wrap"><i class="fas fa-utensils admin-stat-icon"></i></span>
                     <span class="admin-stat-badge">Total Menu</span>
                     <div class="admin-stat-value">{{ $totalFoods }}</div>
                 </div>
                 <div class="admin-stat-card">
-                    <span class="admin-stat-icon"><i class="fas fa-receipt"></i></span>
+                    <span class="admin-stat-icon-wrap"><i class="fas fa-receipt admin-stat-icon"></i></span>
                     <span class="admin-stat-badge">Total Pesanan</span>
                     <div class="admin-stat-value">{{ $totalOrders }}</div>
                 </div>
                 <div class="admin-stat-card">
-                    <span class="admin-stat-icon"><i class="fas fa-money-bill-wave"></i></span>
+                    <span class="admin-stat-icon-wrap"><i class="fas fa-money-bill-wave admin-stat-icon"></i></span>
                     <span class="admin-stat-badge">Total Pendapatan</span>
                     <div class="admin-stat-value">Rp{{ number_format($totalRevenue,0,',','.') }}</div>
                 </div>
@@ -142,7 +142,11 @@
     </table>
     @else
     <div class="admin-section-empty">
-        <i class="fas fa-check-circle empty-icon"></i>
+        <svg class="empty-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="32" fill="#f7ecd2"/>
+          <path d="M20 36h24M20 28h24M24 20h16" stroke="#DA291C" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="32" cy="48" r="4" fill="#28a745"/>
+        </svg>
         <p>Tidak ada pesanan transfer yang menunggu konfirmasi pembayaran</p>
     </div>
     @endif
@@ -163,54 +167,58 @@ window.onclick = function(event) {
 }
 </script>
 
+@push('styles')
 <style>
-.mu-modal { position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center; }
-.mu-modal-content { background:#fff;border-radius:1em;padding:2em 1.5em;max-width:900px;width:95vw;max-height:80vh;overflow:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2);position:relative; margin:0 auto; display:block; }
-.mu-modal-close { position:absolute;top:1em;right:1em;font-size:2em;cursor:pointer;color:#DA291C; }
-.mu-table { width:100%;border-collapse:separate;border-spacing:0;margin-top:1em; table-layout:auto; background:#fff; border-radius:0.7em; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.03); }
-.mu-table th, .mu-table td { border:1px solid #eee;padding:0.7em 1.2em;text-align:center;font-size:1em; }
-.mu-table th { background:#DA291C;color:#fff;text-align:center;font-weight:600;letter-spacing:0.5px; }
-.mu-table tr:nth-child(even) { background:#faf9f7; }
-.mu-table tr:hover { background:#ffe5e5; transition: background 0.2s; }
-.mu-title { text-align:center;font-weight:700;font-size:1.5em;margin-bottom:1.2em;color:#222; }
-@media (max-width: 700px) {
-  .mu-modal-content { padding: 1em 0.3em; max-width:98vw; }
-  .mu-title { font-size: 1.1em; }
-  .mu-table th, .mu-table td { padding: 0.5em 0.3em; font-size: 0.95em; }
+:root {
+    --tastoria-red: #DA291C;
+    --tastoria-gold: #B3A369;
+    --tastoria-pastel-gold: #f7ecd2;
 }
 .admin-stat-row {
     display: flex;
-    gap: 2.2em;
+    gap: 2.5em;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 2.2em;
+    margin-bottom: 2.5em;
 }
 .admin-stat-card {
     background: #fff;
-    border-radius: 1.3em;
-    box-shadow: 0 4px 24px #da291c18;
-    padding: 2.2em 2.5em 1.7em 2.5em;
-    min-width: 210px;
+    border-radius: 1.5em;
+    box-shadow: 0 6px 32px #da291c18;
+    padding: 2.5em 2.7em 2em 2.7em;
+    min-width: 220px;
     text-align: center;
-    flex: 1 1 210px;
-    margin-bottom: 1.2em;
+    flex: 1 1 220px;
+    margin-bottom: 1.5em;
     position: relative;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+    border: 2px solid transparent;
 }
 .admin-stat-card:hover {
-    box-shadow: 0 8px 32px #da291c33;
-    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 40px #da291c33;
+    transform: translateY(-8px) scale(1.045);
+    border: 2.5px solid var(--tastoria-gold);
+}
+.admin-stat-icon-wrap {
+    width: 3.2em;
+    height: 3.2em;
+    background: var(--tastoria-pastel-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5em auto;
+    box-shadow: 0 2px 8px #e7d7b1cc;
 }
 .admin-stat-icon {
-    font-size: 2.3em;
-    margin-bottom: 0.3em;
-    color: #DA291C;
+    font-size: 2em;
+    color: var(--tastoria-gold);
     display: block;
 }
 .admin-stat-badge {
-    background: #DA291C;
+    background: var(--tastoria-red);
     color: #fff;
-    font-size: 1.05em;
+    font-size: 1.08em;
     font-weight: 800;
     border-radius: 0.7em;
     padding: 0.3em 1.2em;
@@ -220,76 +228,111 @@ window.onclick = function(event) {
     box-shadow: 0 2px 8px #da291c22;
 }
 .admin-stat-value {
-    font-size: 2.3em;
+    font-size: 2.5em;
     font-weight: 900;
     color: #222;
     margin-top: 0.2em;
     letter-spacing: 1px;
+    animation: stat-pop 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes stat-pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
 }
 .admin-nav-row {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     display: flex;
-    gap: 1.2em;
+    gap: 1.5em;
     flex-wrap: wrap;
     justify-content: center;
 }
 .admin-nav-btn {
     background: #fff;
-    color: #DA291C;
-    border: 2px solid #DA291C;
-    border-radius: 0.7em;
-    font-weight: 700;
-    padding: 0.7em 1.7em;
-    font-size: 1.08em;
+    color: var(--tastoria-red);
+    border: 2.5px solid var(--tastoria-red);
+    border-radius: 1.2em;
+    font-weight: 800;
+    padding: 0.9em 2.1em;
+    font-size: 1.13em;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 8px #da291c11;
     display: flex;
     align-items: center;
-    gap: 0.7em;
+    gap: 0.9em;
     cursor: pointer;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+.admin-nav-btn i { font-size: 1.2em; }
+.admin-nav-btn:active::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 200%; height: 200%;
+    background: rgba(218,41,28,0.13);
+    border-radius: 50%;
+    transform: translate(-50%,-50%) scale(0.7);
+    animation: ripple 0.4s linear;
+    pointer-events: none;
+    z-index: 1;
+}
+@keyframes ripple {
+    0% { opacity: 0.7; transform: translate(-50%,-50%) scale(0.7); }
+    80% { opacity: 0.3; transform: translate(-50%,-50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
 }
 .admin-nav-btn:hover {
-    background: #DA291C;
+    background: var(--tastoria-red);
     color: #fff;
     box-shadow: 0 4px 16px #da291c22;
 }
 .admin-section {
-    margin-top: 2.5em;
+    margin-top: 2.7em;
     background: #fff;
     border-radius: 1.3em;
     box-shadow: 0 4px 24px #da291c18;
-    padding: 2.2em 2.5em;
+    padding: 2.7em 2.5em;
 }
 .admin-section-title {
     text-align: center;
-    font-weight: 800;
-    font-size: 1.5em;
-    margin-bottom: 1.2em;
+    font-weight: 900;
+    font-size: 1.7em;
+    margin-bottom: 1.5em;
     color: #222;
     letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6em;
+    gap: 0.7em;
 }
 .admin-section-title .section-icon {
-    font-size: 1.2em;
-    color: #DA291C;
+    font-size: 1.3em;
+    color: var(--tastoria-red);
 }
 .admin-section-empty {
     text-align: center;
     color: #888;
-    padding: 2.5em 0 1.5em 0;
+    padding: 3em 0 2em 0;
 }
 .admin-section-empty .empty-icon {
-    font-size: 2.5em;
+    font-size: 3.2em;
     color: #28a745;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+}
+.admin-section-empty .empty-svg {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1.2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 @media (max-width: 900px) {
-    .admin-stat-row { flex-direction: column; gap: 1em; }
+    .admin-stat-row { flex-direction: column; gap: 1.2em; }
     .admin-nav-row { flex-direction: column; gap: 0.7em; }
 }
 </style>
+@endpush
 @endsection 
