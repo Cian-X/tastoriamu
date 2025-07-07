@@ -234,7 +234,8 @@ body {
         padding: 0 !important;
         box-sizing: border-box !important;
     }
-    .mu-howto-stepper, .mu-advantage-list-modern {
+    body .mu-howto-stepper,
+    body .mu-advantage-list-modern {
         display: flex !important;
         flex-direction: column !important;
         gap: 1.2em !important;
@@ -242,7 +243,8 @@ body {
         width: 100% !important;
         box-sizing: border-box !important;
     }
-    .mu-howto-step, .mu-advantage-card {
+    body .mu-howto-step,
+    body .mu-advantage-card {
         width: 95vw !important;
         max-width: 95vw !important;
         min-width: 0 !important;
@@ -255,7 +257,7 @@ body {
         flex-direction: column !important;
         align-items: center !important;
     }
-    .mu-step-arrow {
+    body .mu-step-arrow {
         text-align: center !important;
         font-size: 1.7em !important;
         margin: 0.2em 0 0.7em 0 !important;
@@ -263,18 +265,21 @@ body {
         display: flex !important;
         justify-content: center !important;
     }
-    .mu-step-icon, .mu-advantage-card i {
+    body .mu-step-icon,
+    body .mu-advantage-card i {
         font-size: 2.1em !important;
     }
-    .mu-hero-section .btn, .mu-hero .btn, .mu-hero-container .btn {
+    body .mu-hero-section .btn,
+    body .mu-hero .btn,
+    body .mu-hero-container .btn {
         width: 100% !important;
         max-width: 95vw !important;
         margin: 0.5em auto !important;
         display: block !important;
         text-align: center !important;
     }
-    .mu-hero .mu-btn,
-    .mu-hero .mu-btn-outline {
+    body .mu-hero .mu-btn,
+    body .mu-hero .mu-btn-outline {
         width: 90vw !important;
         max-width: 340px !important;
         min-width: 0 !important;
@@ -287,10 +292,10 @@ body {
         box-sizing: border-box !important;
         border-radius: 12px !important;
     }
-    .mu-hero .mu-btn-outline {
+    body .mu-hero .mu-btn-outline {
         margin-top: 1em !important;
     }
-    .mu-hero-btn-group {
+    body .mu-hero-btn-group {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -298,8 +303,8 @@ body {
         width: 100% !important;
         margin: 0 auto !important;
     }
-    .mu-hero-btn-group .mu-btn,
-    .mu-hero-btn-group .mu-btn-outline {
+    body .mu-hero-btn-group .mu-btn,
+    body .mu-hero-btn-group .mu-btn-outline {
         width: 90vw !important;
         max-width: 340px !important;
         min-width: 0 !important;
@@ -311,7 +316,7 @@ body {
         box-sizing: border-box !important;
         border-radius: 12px !important;
     }
-    .mu-hero-wave {
+    body .mu-hero-wave {
         display: none !important;
     }
     body .mu-section,
