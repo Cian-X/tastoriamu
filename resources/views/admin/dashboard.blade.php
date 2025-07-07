@@ -289,12 +289,12 @@ window.onclick = function(event) {
 }
 .admin-section {
     margin-top: 3em;
-    background: var(--tastoria-glass);
-    border-radius: 1.5em;
-    box-shadow: 0 8px 36px #da291c18;
-    padding: 3em 2.7em;
-    border: 2.5px solid var(--tastoria-gold);
-    backdrop-filter: blur(7px);
+    background: #fff;
+    border-radius: 0.7em;
+    box-shadow: none;
+    padding: 2.2em 1.2em;
+    border: none;
+    backdrop-filter: none;
 }
 .admin-section-title {
     text-align: center;
@@ -324,6 +324,13 @@ window.onclick = function(event) {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.mu-table th {
+    background: #DA291C !important;
+    color: #fff !important;
+}
+.mu-table th, .mu-table td {
+    border:1.5px solid #DA291C;
 }
 @media (max-width: 900px) {
     .admin-stat-row { flex-direction: column; gap: 1.3em; }
