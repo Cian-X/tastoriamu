@@ -357,8 +357,8 @@
             </div>
             <div class="kurir-hero-content">
                 <div class="kurir-hero-title">Dashboard Kurir</div>
-                <span class="kurir-hero-badge"><span class="badge-emoji">👋</span>Selamat datang, {{ auth()->user()->name }}!</span>
-                <div class="kurir-hero-subtitle"><span class="subtitle-emoji">🏅</span>Siap mengantarkan pesanan dengan semangat juara!</div>
+                <span class="kurir-hero-badge">Selamat datang, {{ auth()->user()->name }}!</span>
+                <div class="kurir-hero-subtitle">Siap mengantarkan pesanan dengan semangat juara!</div>
             </div>
         </div>
         <div class="mu-card-body" style="padding-top:2em;">
