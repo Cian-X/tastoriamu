@@ -25,20 +25,20 @@
 
 <div class="mu-section mu-howto-zigzag">
     <h3 class="mu-section-title">Cara Pesan di Tastoria</h3>
-    <div class="mu-howto-stepper" style="display:flex;flex-direction:column;gap:1.2em;align-items:center;width:100%;box-sizing:border-box;">
-        <div class="mu-howto-step mu-step-1" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><span class="mu-step-icon" style="font-size:2.1em;">🍽️</span><span>Pilih Menu</span></div>
-        <div class="mu-step-arrow" style="text-align:center;font-size:1.7em;margin:0.2em 0 0.7em 0;width:100%;display:flex;justify-content:center;"> <i class="fas fa-chevron-right"></i></div>
-        <div class="mu-howto-step mu-step-2" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><span class="mu-step-icon" style="font-size:2.1em;">💳</span><span>Pesan & Bayar</span></div>
-        <div class="mu-step-arrow" style="text-align:center;font-size:1.7em;margin:0.2em 0 0.7em 0;width:100%;display:flex;justify-content:center;"> <i class="fas fa-chevron-right"></i></div>
-        <div class="mu-howto-step mu-step-3" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><span class="mu-step-icon" style="font-size:2.1em;">🏠</span><span>Nikmati di Rumah</span></div>
+    <div class="mu-howto-stepper">
+        <div class="mu-howto-step mu-step-1"><span class="mu-step-icon">🍽️</span><span>Pilih Menu</span></div>
+        <div class="mu-step-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="mu-howto-step mu-step-2"><span class="mu-step-icon">💳</span><span>Pesan & Bayar</span></div>
+        <div class="mu-step-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="mu-howto-step mu-step-3"><span class="mu-step-icon">🏠</span><span>Nikmati di Rumah</span></div>
     </div>
 </div>
 
 <div class="mu-section mu-advantage-modern">
-    <div class="mu-advantage-list-modern" style="display:flex;flex-direction:column;gap:1.2em;align-items:center;width:100%;box-sizing:border-box;">
-        <div class="mu-advantage-card mu-advantage-tilt" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><i class="fas fa-bolt" style="font-size:2.1em;"></i><h4>Pesan Kilat</h4><p>Pesan makanan favoritmu, langsung sampai tanpa ribet!</p></div>
-        <div class="mu-advantage-card mu-advantage-tilt" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><i class="fas fa-trophy" style="font-size:2.1em;color:#B3A369;"></i><h4>Rasa Juara</h4><p>Menu pilihan dengan cita rasa juara, layaknya MU!</p></div>
-        <div class="mu-advantage-card mu-advantage-tilt" style="width:95vw;max-width:95vw;min-width:0;margin:0 auto 1.2em auto;border-radius:16px;padding:1.1em 0.7em;font-size:1em;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;"><i class="fas fa-clock" style="font-size:2.1em;"></i><h4>Layanan 24 Jam</h4><p>Pesan makanan kapan saja, siap melayani 24 jam!</p></div>
+    <div class="mu-advantage-list-modern">
+        <div class="mu-advantage-card mu-advantage-tilt"><i class="fas fa-bolt"></i><h4>Pesan Kilat</h4><p>Pesan makanan favoritmu, langsung sampai tanpa ribet!</p></div>
+        <div class="mu-advantage-card mu-advantage-tilt"><i class="fas fa-trophy"></i><h4>Rasa Juara</h4><p>Menu pilihan dengan cita rasa juara, layaknya MU!</p></div>
+        <div class="mu-advantage-card mu-advantage-tilt"><i class="fas fa-clock"></i><h4>Layanan 24 Jam</h4><p>Pesan makanan kapan saja, siap melayani 24 jam!</p></div>
     </div>
     <div class="mu-testimoni-modern">
         <h3 class="mu-section-title">Apa Kata Mereka?</h3>
