@@ -10,6 +10,54 @@
         body { background: #e5e5e5; }
     </style>
     @stack('styles')
+    <style>
+    @media (max-width: 700px) {
+      .mu-nav {
+        display: none !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100vw !important;
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 64px !important;
+        background: #DA291C !important;
+        z-index: 1001 !important;
+        align-items: stretch !important;
+        box-shadow: 0 8px 32px rgba(218,41,28,0.13) !important;
+        border-radius: 0 0 18px 18px !important;
+        padding: 0.5em 0 1em 0 !important;
+      }
+      .mu-nav[style*='display: block'] {
+        display: flex !important;
+      }
+      .mu-nav li {
+        width: 100% !important;
+        text-align: left !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-bottom: 1px solid #fff2 !important;
+      }
+      .mu-nav li:last-child {
+        border-bottom: none !important;
+      }
+      .mu-nav a, .mu-nav a.active {
+        width: 100% !important;
+        display: block !important;
+        padding: 1em 1.5em !important;
+        font-size: 1.1em !important;
+        border-radius: 0 !important;
+        color: #fff !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .mu-nav a:hover, .mu-nav a.active {
+        background: #b71c1c !important;
+        color: #fff !important;
+      }
+    }
+    </style>
 </head>
 <body>
     <nav class="mu-navbar">
