@@ -152,12 +152,24 @@
 .mu-table td.status-siap {
     color: var(--tastoria-dark);
     background: var(--tastoria-pastel-gold);
-    font-weight: 800;
+    font-weight: 900;
     border-radius: 0.7em;
     text-align: center;
     min-width: 110px;
     font-size: 1.08em;
     letter-spacing: 0.5px;
+    padding: 0.6em 1.4em;
+    display: inline-block;
+    box-shadow: 0 2px 8px #e7d7b1cc;
+    margin: 0.1em 0;
+    vertical-align: middle;
+    border: none;
+    transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+}
+.mu-table td.status-siap:hover {
+    background: #f5e7c6;
+    box-shadow: 0 4px 16px #e7d7b1cc;
+    transform: scale(1.04);
 }
 .mu-table td.status-perjalanan {
     color: #fff;
