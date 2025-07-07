@@ -5,6 +5,7 @@
     <div class="mu-card" style="background:none;box-shadow:none;padding:0;">
         <div class="mu-card-body" style="padding:0;">
             <h4 class="mu-title" style="margin-bottom:2.2rem;"><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h4>
+            <div style="text-align:center;font-size:2.1em;font-weight:900;color:#222;margin-bottom:2.2em;">Total Pendapatan: Rp{{ number_format($totalRevenue,0,',','.') }}</div>
             <div class="admin-stat-row">
                 <div class="admin-stat-card">
                     <span class="admin-stat-icon-wrap"><i class="fas fa-users admin-stat-icon"></i></span>
@@ -20,11 +21,6 @@
                     <span class="admin-stat-icon-wrap"><i class="fas fa-receipt admin-stat-icon"></i></span>
                     <span class="admin-stat-badge">Total Pesanan</span>
                     <div class="admin-stat-value">{{ $totalOrders }}</div>
-                </div>
-                <div class="admin-stat-card">
-                    <span class="admin-stat-icon-wrap"><i class="fas fa-money-bill-wave admin-stat-icon"></i></span>
-                    <span class="admin-stat-badge">Total Pendapatan</span>
-                    <div class="admin-stat-value">Rp{{ number_format($totalRevenue,0,',','.') }}</div>
                 </div>
             </div>
             <div class="admin-nav-row">
