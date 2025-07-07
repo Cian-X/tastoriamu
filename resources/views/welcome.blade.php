@@ -12,7 +12,7 @@
         <p class="mu-hero-slogan">Makan Enak, Semangat Juara!</p>
         <div class="mu-hero-btn-group">
             <a href="{{ route('foods.index') }}" class="mu-btn mu-btn-lg mu-cta-main mu-cta-anim"><i class="fas fa-utensils"></i> Lihat Menu</a>
-            <a href="{{ route('register') }}" class="mu-btn mu-btn-outline mu-btn-lg mu-cta-anim" style="margin-left:1rem;">Gabung Member</a>
+            <a href="{{ route('register') }}" class="mu-btn mu-btn-outline mu-btn-lg mu-cta-anim">Gabung Member</a>
         </div>
     </div>
 </div>

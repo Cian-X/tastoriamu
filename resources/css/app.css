@@ -255,6 +255,27 @@ body {
     .mu-hero .mu-btn-outline {
         margin-top: 1em !important;
     }
+    .mu-hero-btn-group {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1em !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+    .mu-hero-btn-group .mu-btn,
+    .mu-hero-btn-group .mu-btn-outline {
+        width: 90vw !important;
+        max-width: 340px !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        font-size: 1.1em !important;
+        padding: 0.9em 0 !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        border-radius: 12px !important;
+    }
 }
 
 /* CSS Reset Dasar */
