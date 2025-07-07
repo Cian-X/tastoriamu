@@ -324,10 +324,9 @@
 }
 .mu-alert-login {
     background: #fff;
-    border-left: 7px solid var(--tastoria-red);
     box-shadow: 0 4px 18px #da291c18;
     border-radius: 1em;
-    padding: 1.1em 2em 1.1em 1.7em;
+    padding: 1.1em 2em;
     display: flex;
     align-items: center;
     gap: 1.1em;
